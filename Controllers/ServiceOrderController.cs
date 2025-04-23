@@ -40,6 +40,8 @@ namespace WorkshopManager.Controllers
             var serviceOrder = await _context.ServiceOrders
                 .Include(s => s.AssignedMechanic)
                 .Include(s => s.Vehicle)
+                .Include(s => s.UsedParts) // dodajesz to
+                .ThenInclude(up => up.Part) // i to
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (serviceOrder == null) return NotFound();
 
@@ -174,5 +176,62 @@ namespace WorkshopManager.Controllers
 
             ViewData["AssignedMechanicId"] = new SelectList(mechanicy, "Id", "Display", selectedMechanicId);
         }
+        // GET: ServiceOrder/AddUsedPart/5
+        public async Task<IActionResult> AddUsedPart(int id)
+        {
+            var order = await _context.ServiceOrders.FindAsync(id);
+            if (order == null)
+                return NotFound();
+
+            var viewModel = new AddUsedPartViewModel
+            {
+                ServiceOrderId = id,
+                Parts = new SelectList(_context.Parts, "Id", "Name")
+            };
+
+            return View(viewModel);
+        }
+
+
+// POST: ServiceOrder/AddUsedPart
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddUsedPart(AddUsedPartViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var usedPart = new UsedPart
+                {
+                    ServiceOrderId = model.ServiceOrderId,
+                    PartId = model.PartId,
+                    Quantity = model.Quantity
+                };
+
+                _context.UsedParts.Add(usedPart);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details", new { id = model.ServiceOrderId });
+            }
+
+            // Przywracamy części do modelu, jeśli jest błąd
+            model.Parts = new SelectList(_context.Parts, "Id", "Name", model.PartId);
+            return View(model);
+        }
+        
+        //usuwanie czesci 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteUsedPart(int id, int serviceOrderId)
+        {
+            var part = await _context.UsedParts.FindAsync(id);
+            if (part != null)
+            {
+                _context.UsedParts.Remove(part);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Details", new { id = serviceOrderId });
+        }
+
+
     }
 }

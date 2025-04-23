@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace WorkshopManager.Models
@@ -23,5 +24,7 @@ namespace WorkshopManager.Models
 
         [StringLength(100)]
         public string Address { get; set; }
+
+        public List<Vehicle> Vehicles { get; set; } = new();
     }
 }

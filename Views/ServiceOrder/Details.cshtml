@@ -4,45 +4,77 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Szczegóły zlecenia</h1>
 
 <div>
-    <h4>ServiceOrder</h4>
+    <h4>Service Order</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StartDate)
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.StartDate)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.StartDate)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.EndDate)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.EndDate)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Status)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Status)</dd>
+
+        <dt class="col-sm-2">Pojazd</dt>
+        <dd class="col-sm-10">
+            @Model.Vehicle?.Brand @Model.Vehicle?.Model (@Model.Vehicle?.LicensePlate)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Vehicle)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Vehicle.Brand)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AssignedMechanic)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AssignedMechanic.Id)
+
+        <dt class="col-sm-2">Mechanik</dt>
+        <dd class="col-sm-10">
+            @Model.AssignedMechanic?.UserName
         </dd>
     </dl>
 </div>
+
+<hr />
+
+<h4>Użyte części</h4>
+
+@if (Model.UsedParts != null && Model.UsedParts.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nazwa części</th>
+                <th>Cena jednostkowa</th>
+                <th>Ilość</th>
+                <th>Łączny koszt</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.UsedParts)
+            {
+                <tr>
+                    <td>@item.Part?.Name</td>
+                    <td>@item.Part?.UnitPrice.ToString("C")</td>
+                    <td>@item.Quantity</td>
+                    <td>@string.Format("{0:C}", (item.Part?.UnitPrice ?? 0) * item.Quantity)</td>
+                    <td>
+                        <form asp-action="DeleteUsedPart" method="post" asp-route-id="@item.Id" asp-route-serviceOrderId="@Model.Id" onsubmit="return confirm('Na pewno usunąć tę część?');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-sm btn-danger">Usuń</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Brak przypisanych części.</p>
+}
+
+<a asp-action="AddUsedPart" asp-route-id="@Model.Id" class="btn btn-primary mt-3">Dodaj część</a>
+
+<hr />
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edytuj</a>
+    <a asp-action="Index" class="btn btn-secondary">Powrót</a>
 </div>

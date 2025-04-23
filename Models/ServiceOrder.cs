@@ -39,6 +39,7 @@ namespace WorkshopManager.Models
         [ValidateNever]
         public IdentityUser? AssignedMechanic { get; set; }
 
-        // TODO: dodamy później: lista czynności, części, komentarzy
+        // TODO: dodamy później: lista czynności, komentarzy
+        public List<UsedPart> UsedParts { get; set; } = new();
     }
 }

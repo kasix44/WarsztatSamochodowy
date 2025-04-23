@@ -342,3 +342,4 @@
 /Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/bin/Debug/net8.0/runtimes/linux-musl-s390x/native/libe_sqlite3.so
+/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/obj/Debug/net8.0/WorkshopManager.sourcelink.json

@@ -14,6 +14,9 @@ namespace WorkshopManager.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<ServiceOrder> ServiceOrders { get; set; }
+        public DbSet<Part> Parts { get; set; }
+        public DbSet<UsedPart> UsedParts { get; set; } = default!;
+
 
     }
 }

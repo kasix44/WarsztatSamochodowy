@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkshopManager.Data;
 
@@ -10,9 +11,11 @@ using WorkshopManager.Data;
 namespace WorkshopManager.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250423100122_AddPartEntity")]
+    partial class AddPartEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
@@ -296,30 +299,6 @@ namespace WorkshopManager.Data.Migrations
                     b.ToTable("ServiceOrders");
                 });
 
-            modelBuilder.Entity("WorkshopManager.Models.UsedPart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("PartId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ServiceOrderId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PartId");
-
-                    b.HasIndex("ServiceOrderId");
-
-                    b.ToTable("UsedParts");
-                });
-
             modelBuilder.Entity("WorkshopManager.Models.Vehicle", b =>
                 {
                     b.Property<int>("Id")
@@ -427,25 +406,6 @@ namespace WorkshopManager.Data.Migrations
                     b.Navigation("Vehicle");
                 });
 
-            modelBuilder.Entity("WorkshopManager.Models.UsedPart", b =>
-                {
-                    b.HasOne("WorkshopManager.Models.Part", "Part")
-                        .WithMany()
-                        .HasForeignKey("PartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WorkshopManager.Models.ServiceOrder", "ServiceOrder")
-                        .WithMany("UsedParts")
-                        .HasForeignKey("ServiceOrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Part");
-
-                    b.Navigation("ServiceOrder");
-                });
-
             modelBuilder.Entity("WorkshopManager.Models.Vehicle", b =>
                 {
                     b.HasOne("WorkshopManager.Models.Customer", "Customer")
@@ -460,11 +420,6 @@ namespace WorkshopManager.Data.Migrations
             modelBuilder.Entity("WorkshopManager.Models.Customer", b =>
                 {
                     b.Navigation("Vehicles");
-                });
-
-            modelBuilder.Entity("WorkshopManager.Models.ServiceOrder", b =>
-                {
-                    b.Navigation("UsedParts");
                 });
 #pragma warning restore 612, 618
         }
