@@ -11,7 +11,7 @@ using WorkshopManager.Models;
 
 namespace WorkshopManager.Controllers
 {
-    [Authorize(Roles = "Admin,Recepcjonista")]
+    [Authorize]
     public class ServiceOrderController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,6 +24,7 @@ namespace WorkshopManager.Controllers
         }
 
         // GET: ServiceOrder
+        [Authorize(Roles = "Admin,Recepcjonista")]
         public async Task<IActionResult> Index()
         {
             var orders = _context.ServiceOrders
@@ -33,6 +34,7 @@ namespace WorkshopManager.Controllers
         }
 
         // GET: ServiceOrder/Details/5
+        [Authorize(Roles = "Admin,Recepcjonista")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
@@ -49,6 +51,7 @@ namespace WorkshopManager.Controllers
         }
 
         // GET: ServiceOrder/Create
+        [Authorize(Roles = "Admin,Recepcjonista")]
         public IActionResult Create()
         {
             LoadDropdowns();
@@ -56,6 +59,7 @@ namespace WorkshopManager.Controllers
         }
 
         // POST: ServiceOrder/Create
+        [Authorize(Roles = "Admin,Recepcjonista")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,StartDate,EndDate,Status,VehicleId,AssignedMechanicId")] ServiceOrder serviceOrder)
@@ -83,6 +87,7 @@ namespace WorkshopManager.Controllers
         }
 
         // GET: ServiceOrder/Edit/5
+        [Authorize(Roles = "Admin,Recepcjonista")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -95,6 +100,7 @@ namespace WorkshopManager.Controllers
         }
 
         // POST: ServiceOrder/Edit/5
+        [Authorize(Roles = "Admin,Recepcjonista")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,StartDate,EndDate,Status,VehicleId,AssignedMechanicId")] ServiceOrder serviceOrder)
@@ -120,6 +126,7 @@ namespace WorkshopManager.Controllers
         }
 
         // GET: ServiceOrder/Delete/5
+        [Authorize(Roles = "Admin,Recepcjonista")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -134,6 +141,7 @@ namespace WorkshopManager.Controllers
         }
 
         // POST: ServiceOrder/Delete/5
+        [Authorize(Roles = "Admin,Recepcjonista")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -177,6 +185,7 @@ namespace WorkshopManager.Controllers
             ViewData["AssignedMechanicId"] = new SelectList(mechanicy, "Id", "Display", selectedMechanicId);
         }
         // GET: ServiceOrder/AddUsedPart/5
+        [Authorize(Roles = "Admin,Recepcjonista")]
         public async Task<IActionResult> AddUsedPart(int id)
         {
             var order = await _context.ServiceOrders.FindAsync(id);
@@ -194,6 +203,7 @@ namespace WorkshopManager.Controllers
 
 
 // POST: ServiceOrder/AddUsedPart
+        [Authorize(Roles = "Admin,Recepcjonista")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddUsedPart(AddUsedPartViewModel model)
@@ -218,6 +228,7 @@ namespace WorkshopManager.Controllers
         }
         
         //usuwanie czesci 
+        [Authorize(Roles = "Admin,Recepcjonista")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteUsedPart(int id, int serviceOrderId)
@@ -231,6 +242,42 @@ namespace WorkshopManager.Controllers
 
             return RedirectToAction("Details", new { id = serviceOrderId });
         }
+
+        // GET: ServiceOrder/MyOrders
+        [Authorize(Roles = "Mechanik")]
+        public async Task<IActionResult> MyOrders()
+        {
+            var userId = _userManager.GetUserId(User);
+
+            var orders = await _context.ServiceOrders
+                .Include(s => s.Vehicle)
+                .Include(s => s.UsedParts)
+                .ThenInclude(up => up.Part)
+                .Where(s => s.AssignedMechanicId == userId)
+                .ToListAsync();
+
+            return View("MyOrders", orders);
+        }
+        
+        // GET: ServiceOrder/MechanicDetails/5
+        [Authorize(Roles = "Mechanik")]
+        public async Task<IActionResult> MechanicDetails(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var userId = _userManager.GetUserId(User);
+
+            var serviceOrder = await _context.ServiceOrders
+                .Include(s => s.Vehicle)
+                .Include(s => s.UsedParts)
+                .ThenInclude(up => up.Part)
+                .FirstOrDefaultAsync(s => s.Id == id && s.AssignedMechanicId == userId);
+
+            if (serviceOrder == null) return Forbid(); // Brak dostępu do cudzych zleceń
+
+            return View("MechanicDetails", serviceOrder);
+        }
+
 
 
     }
