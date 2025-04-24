@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
@@ -17,7 +18,7 @@ namespace WorkshopManager.Models
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "Data rozpoczęcie")]
+        [Display(Name = "Data rozpoczęcia")]
         public DateTime StartDate { get; set; } = DateTime.Now;
 
         [Display(Name = "Data zakończenia")]
@@ -35,15 +36,16 @@ namespace WorkshopManager.Models
         [Display(Name = "Pojazd")]
         public Vehicle? Vehicle { get; set; }
 
+        // Powiązanie z mechanikiem
         public string? AssignedMechanicId { get; set; }
 
         [ForeignKey("AssignedMechanicId")]
         [ValidateNever]
         public IdentityUser? AssignedMechanic { get; set; }
 
-        // TODO: dodamy później: komentarzy
         public List<UsedPart> UsedParts { get; set; } = new();
         public ICollection<JobActivity>? JobActivities { get; set; }
-
+        public ICollection<ServiceOrderComment>? Comments { get; set; }
     }
+
 }

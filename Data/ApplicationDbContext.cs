@@ -17,6 +17,7 @@ namespace WorkshopManager.Data
         public DbSet<Part> Parts { get; set; }
         public DbSet<UsedPart> UsedParts { get; set; } = default!;
         public DbSet<JobActivity> JobActivities { get; set; } = default!;
+        public DbSet<ServiceOrderComment> ServiceOrderComments { get; set; }
 
     }
 }

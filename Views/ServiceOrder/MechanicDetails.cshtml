@@ -75,3 +75,31 @@ else
 {
     <p>Brak czynności przypisanych do zlecenia.</p>
 }
+<hr />
+<h4>Komentarze wewnętrzne</h4>
+
+@if (Model.Comments != null && Model.Comments.Any())
+{
+    <ul class="list-group mb-3">
+        @foreach (var comment in Model.Comments.OrderByDescending(c => c.CreatedAt))
+        {
+            <li class="list-group-item">
+                <small class="text-muted">@comment.CreatedAt.ToString("g")</small><br />
+                @comment.Content
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Brak komentarzy.</p>
+}
+
+<form asp-action="AddComment" method="post">
+    <input type="hidden" name="serviceOrderId" value="@Model.Id" />
+    <div class="form-group">
+        <label for="content">Nowy komentarz:</label>
+        <textarea name="content" class="form-control" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Dodaj komentarz</button>
+</form>

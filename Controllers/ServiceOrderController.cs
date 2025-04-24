@@ -376,6 +376,83 @@ namespace WorkshopManager.Controllers
 
             return View(model);
         }
+        [HttpPost]
+[ValidateAntiForgeryToken]
+[Authorize(Roles = "Admin,Recepcjonista,Mechanik")]
+public async Task<IActionResult> AddComment(int serviceOrderId, string content)
+{
+    var user = await _userManager.GetUserAsync(User);
+
+    if (!string.IsNullOrWhiteSpace(content) && user != null)
+    {
+        var comment = new ServiceOrderComment
+        {
+            Content = content,
+            CreatedAt = DateTime.Now,
+            ServiceOrderId = serviceOrderId,
+            Author = user.UserName,     // lub user.Email, jeśli wolisz
+            AuthorId = user.Id
+        };
+
+        _context.ServiceOrderComments.Add(comment);
+        await _context.SaveChangesAsync();
+    }
+
+    var isMechanic = await _userManager.IsInRoleAsync(user, "Mechanik");
+
+    return RedirectToAction(
+        isMechanic ? "MechanicDetails" : "Details",
+        new { id = serviceOrderId });
+}
+
+[HttpGet]
+[Authorize(Roles = "Admin,Mechanik,Recepcjonista")]
+public async Task<IActionResult> EditComment(int id)
+{
+    var comment = await _context.ServiceOrderComments.FindAsync(id);
+    var currentUserId = _userManager.GetUserId(User);
+    var isAdmin = User.IsInRole("Admin");
+
+    if (comment == null || (comment.AuthorId != currentUserId && !isAdmin))
+        return Forbid();
+
+    return View(comment);
+}
+
+[HttpPost]
+[ValidateAntiForgeryToken]
+[Authorize(Roles = "Admin,Mechanik,Recepcjonista")]
+public async Task<IActionResult> EditComment(int id, string text)
+{
+    var comment = await _context.ServiceOrderComments.FindAsync(id);
+    var currentUserId = _userManager.GetUserId(User);
+    var isAdmin = User.IsInRole("Admin");
+
+    if (comment == null || (comment.AuthorId != currentUserId && !isAdmin))
+        return Forbid();
+
+    comment.Content = text;
+    await _context.SaveChangesAsync();
+    return RedirectToAction("Details", new { id = comment.ServiceOrderId });
+}
+
+[HttpPost]
+[ValidateAntiForgeryToken]
+[Authorize(Roles = "Admin,Mechanik,Recepcjonista")]
+public async Task<IActionResult> DeleteComment(int id)
+{
+    var comment = await _context.ServiceOrderComments.FindAsync(id);
+    var currentUserId = _userManager.GetUserId(User);
+    var isAdmin = User.IsInRole("Admin");
+
+    if (comment == null || (comment.AuthorId != currentUserId && !isAdmin))
+        return Forbid();
+
+    _context.ServiceOrderComments.Remove(comment);
+    await _context.SaveChangesAsync();
+    return RedirectToAction("Details", new { id = comment.ServiceOrderId });
+}
+
 
     }
 }

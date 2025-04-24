@@ -278,7 +278,6 @@ namespace WorkshopManager.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("UnitPrice")
@@ -317,6 +316,35 @@ namespace WorkshopManager.Data.Migrations
                     b.HasIndex("VehicleId");
 
                     b.ToTable("ServiceOrders");
+                });
+
+            modelBuilder.Entity("WorkshopManager.Models.ServiceOrderComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Author")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ServiceOrderId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceOrderId");
+
+                    b.ToTable("ServiceOrderComments");
                 });
 
             modelBuilder.Entity("WorkshopManager.Models.UsedPart", b =>
@@ -459,6 +487,17 @@ namespace WorkshopManager.Data.Migrations
                     b.Navigation("Vehicle");
                 });
 
+            modelBuilder.Entity("WorkshopManager.Models.ServiceOrderComment", b =>
+                {
+                    b.HasOne("WorkshopManager.Models.ServiceOrder", "ServiceOrder")
+                        .WithMany("Comments")
+                        .HasForeignKey("ServiceOrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ServiceOrder");
+                });
+
             modelBuilder.Entity("WorkshopManager.Models.UsedPart", b =>
                 {
                     b.HasOne("WorkshopManager.Models.Part", "Part")
@@ -496,6 +535,8 @@ namespace WorkshopManager.Data.Migrations
 
             modelBuilder.Entity("WorkshopManager.Models.ServiceOrder", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("JobActivities");
 
                     b.Navigation("UsedParts");
