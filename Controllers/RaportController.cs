@@ -6,6 +6,9 @@ using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using WorkshopManager.Data;
 using System.Globalization;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using WorkshopManager.Models;
+
 
 namespace WorkshopManager.Controllers
 {
@@ -19,10 +22,6 @@ namespace WorkshopManager.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         [HttpPost]
         public async Task<IActionResult> Generate(string? customerEmail, string? licensePlate, string? month)
@@ -79,5 +78,30 @@ namespace WorkshopManager.Controllers
 
             return File(stream, "application/pdf", "RaportKosztow.pdf");
         }
+        public async Task<IActionResult> Index()
+        {
+            var customers = await _context.Customers
+                .Select(c => new SelectListItem
+                {
+                    Value = c.Email,
+                    Text = c.FirstName + " " + c.LastName + " (" + c.Email + ")"
+                }).ToListAsync();
+
+            var licensePlates = await _context.Vehicles
+                .Select(v => new SelectListItem
+                {
+                    Value = v.LicensePlate,
+                    Text = v.Brand + " " + v.Model + " (" + v.LicensePlate + ")"
+                }).ToListAsync();
+
+            var model = new ReportFilterViewModel
+            {
+                Customers = customers,
+                LicensePlates = licensePlates
+            };
+
+            return View(model);
+        }
+
     }
 }
