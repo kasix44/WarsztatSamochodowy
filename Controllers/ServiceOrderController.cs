@@ -273,6 +273,7 @@ namespace WorkshopManager.Controllers
                 .Include(s => s.Vehicle)
                 .Include(s => s.UsedParts)
                 .ThenInclude(up => up.Part)
+                .Include(s => s.JobActivities)
                 .FirstOrDefaultAsync(s => s.Id == id && s.AssignedMechanicId == userId);
 
             if (serviceOrder == null) return Forbid(); // Brak dostępu do cudzych zleceń

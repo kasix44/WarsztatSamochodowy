@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "17YGO6tqL90Y0HUwOGFrWjaa+CXfW80J1f8iS6qcsEQ=",
+  "Hash": "pOEH9LmItRgiWpevLs/p2+iNwopRaBNUKMTnMtWvtu4=",
   "Source": "WorkshopManager",
   "BasePath": "_content/WorkshopManager",
   "Mode": "Default",
@@ -2390,6 +2390,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/uploads/8021cbbf-48f7-45c4-8356-42aafe63edb1.jpg"
+    },
+    {
+      "Identity": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/91fb8421-10a1-4851-929d-0d02987e178a.jpg",
+      "SourceId": "WorkshopManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/",
+      "BasePath": "_content/WorkshopManager",
+      "RelativePath": "uploads/91fb8421-10a1-4851-929d-0d02987e178a.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/91fb8421-10a1-4851-929d-0d02987e178a.jpg"
     },
     {
       "Identity": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/porsche.jpg",

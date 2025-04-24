@@ -95,6 +95,28 @@ else
 <div class="mt-2">
     <a asp-controller="ServiceOrder" asp-action="AddExistingJobActivity" asp-route-serviceOrderId="@Model.Id" class="btn btn-sm btn-primary">Wybierz istniejącą czynność</a>
 </div>
+@{
+    var kosztCzesci = Model.UsedParts?.Sum(p => (p.Part?.UnitPrice ?? 0) * p.Quantity) ?? 0;
+    var kosztCzynnosci = Model.JobActivities?.Sum(a => a.LaborCost) ?? 0;
+    var kosztCalkowity = kosztCzesci + kosztCzynnosci;
+}
+
+<hr />
+<h4>Podsumowanie kosztów</h4>
+<table class="table table-bordered w-50">
+    <tr>
+        <th>Koszt części</th>
+        <td>@kosztCzesci.ToString("C")</td>
+    </tr>
+    <tr>
+        <th>Koszt robocizny</th>
+        <td>@kosztCzynnosci.ToString("C")</td>
+    </tr>
+    <tr>
+        <th><strong>Łączny koszt</strong></th>
+        <td><strong>@kosztCalkowity.ToString("C")</strong></td>
+    </tr>
+</table>
 
 <hr />
 <div>

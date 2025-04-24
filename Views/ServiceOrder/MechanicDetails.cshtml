@@ -49,3 +49,29 @@ else
 {
     <p>Brak przypisanych części.</p>
 }
+
+<h4>Wykonane czynności</h4>
+@if (Model.JobActivities != null && Model.JobActivities.Any())
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Opis</th>
+            <th>Koszt robocizny</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var activity in Model.JobActivities)
+        {
+            <tr>
+                <td>@activity.Description</td>
+                <td>@activity.LaborCost.ToString("C")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Brak czynności przypisanych do zlecenia.</p>
+}
