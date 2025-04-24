@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Raporty";
+}
+
+<h1>Generuj raport napraw</h1>
+
+<form asp-action="Generate" method="post">
+    <div class="form-group">
+        <label>Email klienta:</label>
+        <input name="customerEmail" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Numer rejestracyjny:</label>
+        <input name="licensePlate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Miesiąc (format RRRR-MM):</label>
+        <input name="month" class="form-control" placeholder="2025-04" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Wygeneruj PDF</button>
+</form>
