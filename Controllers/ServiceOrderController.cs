@@ -44,7 +44,8 @@ namespace WorkshopManager.Controllers
                 .Include(s => s.Vehicle)
                 .Include(s => s.UsedParts) 
                 .ThenInclude(up => up.Part)
-                .Include(s => s.JobActivities) 
+                .Include(s => s.JobActivities)
+                .Include(s => s.Comments) 
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (serviceOrder == null) return NotFound();
 
@@ -274,6 +275,7 @@ namespace WorkshopManager.Controllers
                 .Include(s => s.UsedParts)
                 .ThenInclude(up => up.Part)
                 .Include(s => s.JobActivities)
+                .Include(s => s.Comments) 
                 .FirstOrDefaultAsync(s => s.Id == id && s.AssignedMechanicId == userId);
 
             if (serviceOrder == null) return Forbid(); // Brak dostępu do cudzych zleceń
