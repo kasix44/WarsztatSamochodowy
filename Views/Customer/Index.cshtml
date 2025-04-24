@@ -4,7 +4,7 @@
     ViewData["Title"] = "Lista klientów";
 }
 
-<h1>Klienci</h1>
+<h1>Lista klientów</h1>
 
 <form asp-action="Index" method="get" class="mb-3">
     <div class="input-group">
@@ -25,11 +25,12 @@
         <th>@Html.DisplayNameFor(model => model.First().PhoneNumber)</th>
         <th>@Html.DisplayNameFor(model => model.First().Email)</th>
         <th>@Html.DisplayNameFor(model => model.First().Address)</th>
-        <th></th>
+        <th>Akcje</th>
     </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
             <td>@item.FirstName</td>
             <td>@item.LastName</td>
@@ -37,9 +38,12 @@
             <td>@item.Email</td>
             <td>@item.Address</td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Szczegóły</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edycja</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info ">Szczegóły</a>
+                <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline;" onsubmit="return confirm('Czy na pewno chcesz usunąć klienta?');">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-sm btn-danger">Usuń</button>
+                </form>
             </td>
         </tr>
     }

@@ -8,7 +8,6 @@ namespace WorkshopManager.Models
 {
     public enum OrderStatus
     {
-        Nowe,
         WTrakcie,
         Zakończone
     }
@@ -18,8 +17,10 @@ namespace WorkshopManager.Models
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Data rozpoczęcie")]
         public DateTime StartDate { get; set; } = DateTime.Now;
 
+        [Display(Name = "Data zakończenia")]
         public DateTime? EndDate { get; set; }
 
         [Required]
@@ -27,19 +28,22 @@ namespace WorkshopManager.Models
 
         // Powiązanie z pojazdem
         [Required]
+        [Display(Name = "ID Pojazdu")]
         public int VehicleId { get; set; }
 
         [ValidateNever]
+        [Display(Name = "Pojazd")]
         public Vehicle? Vehicle { get; set; }
 
-        // Przypisany mechanik (opcjonalnie)
         public string? AssignedMechanicId { get; set; }
 
         [ForeignKey("AssignedMechanicId")]
         [ValidateNever]
         public IdentityUser? AssignedMechanic { get; set; }
 
-        // TODO: dodamy później: lista czynności, komentarzy
+        // TODO: dodamy później: komentarzy
         public List<UsedPart> UsedParts { get; set; } = new();
+        public ICollection<JobActivity>? JobActivities { get; set; }
+
     }
 }

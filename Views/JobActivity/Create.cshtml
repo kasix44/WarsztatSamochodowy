@@ -1,0 +1,38 @@
+@model WorkshopManager.Models.JobActivity
+
+@{
+    ViewData["Title"] = "Dodaj czynność";
+    bool przypisaneDoZlecenia = Model.ServiceOrderId.HasValue;
+}
+
+<h2>Dodaj czynność serwisową</h2>
+
+<form asp-action="Create" method="post">
+    <input type="hidden" asp-for="ServiceOrderId" />
+
+    <div class="form-group">
+        <label asp-for="Description" class="control-label">Opis</label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LaborCost" class="control-label">Koszt robocizny</label>
+        <input asp-for="LaborCost" class="form-control" type="text" />
+        <span asp-validation-for="LaborCost" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Dodaj</button>
+    @if (przypisaneDoZlecenia)
+    {
+        <a asp-controller="ServiceOrder" asp-action="Details" asp-route-id="@Model.ServiceOrderId" class="btn btn-secondary">Anuluj</a>
+    }
+    else
+    {
+        <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+    }
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

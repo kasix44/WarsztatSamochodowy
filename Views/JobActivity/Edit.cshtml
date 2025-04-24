@@ -1,0 +1,31 @@
+@model WorkshopManager.Models.JobActivity
+
+@{
+    ViewData["Title"] = "Edytuj czynność";
+}
+
+<h1>Edytuj czynność</h1>
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="ServiceOrderId" />
+
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LaborCost" class="control-label"></label>
+        <input asp-for="LaborCost" class="form-control" type="text" />
+        <span asp-validation-for="LaborCost" class="text-danger"></span>
+    </div>
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+        <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+    </div>
+</form>

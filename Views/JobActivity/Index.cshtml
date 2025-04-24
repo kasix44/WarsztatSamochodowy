@@ -1,0 +1,35 @@
+@model IEnumerable<WorkshopManager.Models.JobActivity>
+
+@{
+    ViewData["Title"] = "Lista czynności";
+}
+
+<h1>Lista czynności serwisowych</h1>
+
+<a asp-action="Create" class="btn btn-success mb-3">Dodaj nową czynność</a>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Opis</th>
+        <th>Koszt robocizny</th>
+        <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var activity in Model)
+    {
+        <tr>
+            <td>@activity.Description</td>
+            <td>@activity.LaborCost.ToString("C")</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@activity.Id" asp-route-returnToServiceOrder="false" class="btn btn-sm btn-warning">Edytuj</a>
+                <form asp-action="Delete" method="post" asp-route-id="@activity.Id" style="display:inline;" onsubmit="return confirm('Czy na pewno chcesz usunąć tę czynność?');">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-sm btn-danger">Usuń</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

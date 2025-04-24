@@ -1,38 +1,37 @@
 @model WorkshopManager.Models.Vehicle
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Dodaj pojazd";
 }
 
 <h1>Dodaj pojazd</h1>
 
-<h4>Pojazd</h4>
-<hr />
 <div class="row">
     <div class="col-md-6">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="Brand" class="control-label"></label>
+                <label asp-for="Brand" class="control-label">Marka</label>
                 <input asp-for="Brand" class="form-control" />
                 <span asp-validation-for="Brand" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Model" class="control-label"></label>
+                <label asp-for="Model" class="control-label">Model</label>
                 <input asp-for="Model" class="form-control" />
                 <span asp-validation-for="Model" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="VIN" class="control-label"></label>
+                <label asp-for="VIN" class="control-label">VIN</label>
                 <input asp-for="VIN" class="form-control" />
                 <span asp-validation-for="VIN" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="LicensePlate" class="control-label"></label>
+                <label asp-for="LicensePlate" class="control-label">Numer rejestracyjny</label>
                 <input asp-for="LicensePlate" class="form-control" />
                 <span asp-validation-for="LicensePlate" class="text-danger"></span>
             </div>

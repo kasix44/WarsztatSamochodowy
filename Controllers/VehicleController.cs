@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WorkshopManager.Data;
 using WorkshopManager.Models;
 using Microsoft.AspNetCore.Authorization;
+using ImageMagick;
 
 
 namespace WorkshopManager.Controllers
@@ -56,34 +57,31 @@ namespace WorkshopManager.Controllers
         }
 
         // POST: Vehicle/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Brand,Model,VIN,LicensePlate,CustomerId")] Vehicle vehicle, IFormFile ImageFile)
         {
+            if (ImageFile != null)
+            {
+                var validationResult = await SaveImageAndReturnPathAsync(ImageFile);
+                if (validationResult != null)
+                {
+                    vehicle.ImagePath = validationResult;
+                }
+                else
+                {
+                    ModelState.AddModelError("ImageFile", "Dozwolone formaty: .jpg, .jpeg, .png, .heic (max 5MB)");
+                }
+            }
+
             if (ModelState.IsValid)
             {
-                if (ImageFile != null && ImageFile.Length > 0)
-                {
-                    var uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
-                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
-                    var filePath = Path.Combine(uploads, fileName);
-
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await ImageFile.CopyToAsync(stream);
-                    }
-
-                    vehicle.ImagePath = "/uploads/" + fileName;
-                }
-
                 _context.Add(vehicle);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "LastName", vehicle.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "FirstName", vehicle.CustomerId);
             return View(vehicle);
         }
 
@@ -106,15 +104,24 @@ namespace WorkshopManager.Controllers
         }
 
         // POST: Vehicle/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Brand,Model,VIN,LicensePlate,ImagePath,CustomerId")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Brand,Model,VIN,LicensePlate,ImagePath,CustomerId")] Vehicle vehicle, IFormFile ImageFile)
         {
             if (id != vehicle.Id)
-            {
                 return NotFound();
+
+            if (ImageFile != null)
+            {
+                var validationResult = await SaveImageAndReturnPathAsync(ImageFile);
+                if (validationResult != null)
+                {
+                    vehicle.ImagePath = validationResult;
+                }
+                else
+                {
+                    ModelState.AddModelError("ImageFile", "Dozwolone formaty: .jpg, .jpeg, .png, .heic (max 5MB)");
+                }
             }
 
             if (ModelState.IsValid)
@@ -127,16 +134,12 @@ namespace WorkshopManager.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!VehicleExists(vehicle.Id))
-                    {
                         return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "FirstName", vehicle.CustomerId);
             return View(vehicle);
         }
@@ -178,6 +181,37 @@ namespace WorkshopManager.Controllers
         private bool VehicleExists(int id)
         {
             return _context.Vehicles.Any(e => e.Id == id);
+        }
+        
+        // 🧩 Pomocnicza metoda zapisująca zdjęcie i obsługująca konwersję
+        private async Task<string?> SaveImageAndReturnPathAsync(IFormFile file)
+        {
+            var ext = Path.GetExtension(file.FileName).ToLower();
+            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".heic" };
+
+            if (!allowedExtensions.Contains(ext) || file.Length > 5 * 1024 * 1024)
+                return null;
+
+            var uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+            Directory.CreateDirectory(uploads);
+
+            var fileName = Guid.NewGuid().ToString() + ".jpg";
+            var fullPath = Path.Combine(uploads, fileName);
+
+            if (ext == ".heic")
+            {
+                using var stream = file.OpenReadStream();
+                using var image = new MagickImage(stream);
+                image.Format = MagickFormat.Jpg;
+                await image.WriteAsync(fullPath);
+            }
+            else
+            {
+                using var stream = new FileStream(fullPath, FileMode.Create);
+                await file.CopyToAsync(stream);
+            }
+
+            return "/uploads/" + fileName;
         }
     }
 }

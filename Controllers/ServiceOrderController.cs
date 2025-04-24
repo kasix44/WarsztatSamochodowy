@@ -42,8 +42,9 @@ namespace WorkshopManager.Controllers
             var serviceOrder = await _context.ServiceOrders
                 .Include(s => s.AssignedMechanic)
                 .Include(s => s.Vehicle)
-                .Include(s => s.UsedParts) // dodajesz to
-                .ThenInclude(up => up.Part) // i to
+                .Include(s => s.UsedParts) 
+                .ThenInclude(up => up.Part)
+                .Include(s => s.JobActivities) 
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (serviceOrder == null) return NotFound();
 
@@ -184,6 +185,7 @@ namespace WorkshopManager.Controllers
 
             ViewData["AssignedMechanicId"] = new SelectList(mechanicy, "Id", "Display", selectedMechanicId);
         }
+        
         // GET: ServiceOrder/AddUsedPart/5
         [Authorize(Roles = "Admin,Recepcjonista")]
         public async Task<IActionResult> AddUsedPart(int id)
@@ -278,7 +280,101 @@ namespace WorkshopManager.Controllers
             return View("MechanicDetails", serviceOrder);
         }
 
+        // GET: ServiceOrder/EditJobActivity/5
+        [Authorize(Roles = "Admin,Recepcjonista")]
+        public async Task<IActionResult> EditJobActivity(int? id)
+        {
+            if (id == null) return NotFound();
 
+            var activity = await _context.JobActivities.FindAsync(id);
+            if (activity == null) return NotFound();
+
+            return View(activity);
+        }
+
+// POST: ServiceOrder/EditJobActivity/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Recepcjonista")]
+        public async Task<IActionResult> EditJobActivity(int id, [Bind("Id,Description,LaborCost,ServiceOrderId")] JobActivity activity)
+        {
+            if (id != activity.Id) return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(activity);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Details", new { id = activity.ServiceOrderId });
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!_context.JobActivities.Any(e => e.Id == activity.Id)) return NotFound();
+                    throw;
+                }
+            }
+
+            return View(activity);
+        }
+
+// POST: ServiceOrder/DeleteJobActivity/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Recepcjonista")]
+        public async Task<IActionResult> DeleteJobActivity(int id, int serviceOrderId)
+        {
+            var activity = await _context.JobActivities.FindAsync(id);
+            if (activity != null)
+            {
+                _context.JobActivities.Remove(activity);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Details", new { id = serviceOrderId });
+        }
+
+        
+        [HttpGet]
+        [Authorize(Roles = "Admin,Recepcjonista")]
+        public async Task<IActionResult> AddExistingJobActivity(int serviceOrderId)
+        {
+            var availableActivities = await _context.JobActivities
+                .Where(a => a.ServiceOrderId == null)
+                .ToListAsync();
+
+            var model = new AddExistingJobActivityViewModel
+            {
+                ServiceOrderId = serviceOrderId,
+                AvailableJobActivities = availableActivities
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Recepcjonista")]
+        public async Task<IActionResult> AddExistingJobActivity(AddExistingJobActivityViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var activity = await _context.JobActivities.FindAsync(model.SelectedJobActivityId);
+                if (activity != null)
+                {
+                    activity.ServiceOrderId = model.ServiceOrderId;
+                    await _context.SaveChangesAsync();
+                }
+
+                return RedirectToAction("Details", new { id = model.ServiceOrderId });
+            }
+
+            model.AvailableJobActivities = await _context.JobActivities
+                .Where(a => a.ServiceOrderId == null)
+                .ToListAsync();
+
+            return View(model);
+        }
 
     }
 }

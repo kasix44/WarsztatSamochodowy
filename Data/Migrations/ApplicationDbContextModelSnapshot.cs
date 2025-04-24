@@ -247,6 +247,29 @@ namespace WorkshopManager.Data.Migrations
                     b.ToTable("Customers");
                 });
 
+            modelBuilder.Entity("WorkshopManager.Models.JobActivity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("LaborCost")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("ServiceOrderId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceOrderId");
+
+                    b.ToTable("JobActivities");
+                });
+
             modelBuilder.Entity("WorkshopManager.Models.Part", b =>
                 {
                     b.Property<int>("Id")
@@ -410,6 +433,15 @@ namespace WorkshopManager.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WorkshopManager.Models.JobActivity", b =>
+                {
+                    b.HasOne("WorkshopManager.Models.ServiceOrder", "ServiceOrder")
+                        .WithMany("JobActivities")
+                        .HasForeignKey("ServiceOrderId");
+
+                    b.Navigation("ServiceOrder");
+                });
+
             modelBuilder.Entity("WorkshopManager.Models.ServiceOrder", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "AssignedMechanic")
@@ -464,6 +496,8 @@ namespace WorkshopManager.Data.Migrations
 
             modelBuilder.Entity("WorkshopManager.Models.ServiceOrder", b =>
                 {
+                    b.Navigation("JobActivities");
+
                     b.Navigation("UsedParts");
                 });
 #pragma warning restore 612, 618

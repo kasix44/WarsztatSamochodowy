@@ -1,0 +1,31 @@
+@model WorkshopManager.Models.JobActivity
+
+@{
+    ViewData["Title"] = "Edytuj czynność";
+}
+
+<h2>Edytuj czynność</h2>
+
+<form asp-action="EditJobActivity">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="ServiceOrderId" />
+
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LaborCost" class="control-label"></label>
+        <input asp-for="LaborCost" class="form-control" />
+        <span asp-validation-for="LaborCost" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+    <a asp-action="Details" asp-route-id="@Model.ServiceOrderId" class="btn btn-secondary">Anuluj</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

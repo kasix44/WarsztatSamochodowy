@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uY8/+VKJkC0=",
+  "dgSpecHash": "y1BL+QPnzfM=",
   "success": true,
   "projectFilePath": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/WorkshopManager.csproj",
   "expectedPackageFiles": [
@@ -56,6 +56,8 @@
     "/Users/kasiadabek/.nuget/packages/humanizer.core.zh-cn/2.14.1/humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "/Users/kasiadabek/.nuget/packages/humanizer.core.zh-hans/2.14.1/humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "/Users/kasiadabek/.nuget/packages/humanizer.core.zh-hant/2.14.1/humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "/Users/kasiadabek/.nuget/packages/magick.net-q8-anycpu/14.6.0/magick.net-q8-anycpu.14.6.0.nupkg.sha512",
+    "/Users/kasiadabek/.nuget/packages/magick.net.core/14.6.0/magick.net.core.14.6.0.nupkg.sha512",
     "/Users/kasiadabek/.nuget/packages/microsoft.aspnetcore.cryptography.internal/8.0.4/microsoft.aspnetcore.cryptography.internal.8.0.4.nupkg.sha512",
     "/Users/kasiadabek/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/8.0.4/microsoft.aspnetcore.cryptography.keyderivation.8.0.4.nupkg.sha512",
     "/Users/kasiadabek/.nuget/packages/microsoft.aspnetcore.diagnostics.entityframeworkcore/8.0.4/microsoft.aspnetcore.diagnostics.entityframeworkcore.8.0.4.nupkg.sha512",

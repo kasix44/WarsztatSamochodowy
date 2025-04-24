@@ -1,65 +1,55 @@
 @model IEnumerable<WorkshopManager.Models.Vehicle>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Pojazdy";
 }
 
-<h1>Index</h1>
+<h1>Pojazdy</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Dodaj nowy pojazd</a>
 </p>
-<table class="table">
+
+<table class="table table-bordered">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Brand)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Model)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VIN)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LicensePlate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImagePath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>Marka</th>
+        <th>Model</th>
+        <th>VIN</th>
+        <th>Rejestracja</th>
+        <th>Zdjęcie</th>
+        <th>Klient</th>
+        <th>Akcje</th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
+            <td>@item.Brand</td>
+            <td>@item.Model</td>
+            <td>@item.VIN</td>
+            <td>@item.LicensePlate</td>
             <td>
-                @Html.DisplayFor(modelItem => item.Brand)
+                @if (!string.IsNullOrEmpty(item.ImagePath))
+                {
+                    <img src="@item.ImagePath" alt="Zdjęcie pojazdu" style="max-width: 200px; max-height: 150px;" />
+                }
+                else
+                {
+                    <span>Brak zdjęcia</span>
+                }
             </td>
+            <td>@item.Customer?.FirstName</td>
             <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VIN)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LicensePlate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImagePath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Customer.FirstName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning me-1">Edycja</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info me-1">Szczegóły</a>
+                <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline;" onsubmit="return confirm('Czy na pewno chcesz usunąć ten pojazd?');">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-sm btn-danger">Usuń</button>
+                </form>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>

@@ -9,6 +9,7 @@ namespace WorkshopManager.Models
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Marka")]
         public string Brand { get; set; }
 
         [Required]
@@ -21,15 +22,19 @@ namespace WorkshopManager.Models
 
         [Required]
         [StringLength(10)]
+        [Display(Name = "Numer rejestracyjny")]
         public string LicensePlate { get; set; }
 
+        [Display(Name = "Zdjęcie")]
         public string? ImagePath { get; set; } // Ścieżka do zdjęcia
 
         // Relacja z klientem
         [Required]
+        [Display(Name = "Klient")]
         public int CustomerId { get; set; }
 
         [ForeignKey("CustomerId")]
+        [Display(Name = "Klient")]
         public Customer? Customer { get; set; }
     }
 }

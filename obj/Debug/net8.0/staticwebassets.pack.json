@@ -245,8 +245,20 @@
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
     },
     {
+      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/3fb06667-c1f6-4749-8312-5c33c894f24a.jpg",
+      "PackagePath": "staticwebassets/uploads/3fb06667-c1f6-4749-8312-5c33c894f24a.jpg"
+    },
+    {
       "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/6e844f0a-d33e-4220-813c-2ea45b85f67d.HEIC",
       "PackagePath": "staticwebassets/uploads/6e844f0a-d33e-4220-813c-2ea45b85f67d.HEIC"
+    },
+    {
+      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/8021cbbf-48f7-45c4-8356-42aafe63edb1.jpg",
+      "PackagePath": "staticwebassets/uploads/8021cbbf-48f7-45c4-8356-42aafe63edb1.jpg"
+    },
+    {
+      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/porsche.jpg",
+      "PackagePath": "staticwebassets/uploads/porsche.jpg"
     },
     {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.WorkshopManager.Microsoft.AspNetCore.StaticWebAssets.props",

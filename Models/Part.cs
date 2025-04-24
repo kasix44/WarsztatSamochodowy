@@ -7,11 +7,13 @@ namespace WorkshopManager.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(100)]
-        public string Name { get; set; }
+        [Display(Name = "Nazwa części")]
+        public string Name { get; set; } = string.Empty;
 
         [Required]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than zero")]
+        [Range(0, 99999)]
+        [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Cena jednostkowa")]
         public decimal UnitPrice { get; set; }
     }
 }

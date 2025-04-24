@@ -1,0 +1,27 @@
+@model WorkshopManager.Models.AddExistingJobActivityViewModel
+
+@{
+    ViewData["Title"] = "Dodaj istniejącą czynność";
+}
+
+<h2>Dodaj istniejącą czynność do zlecenia</h2>
+
+<form asp-action="AddExistingJobActivity" method="post">
+    <input type="hidden" asp-for="ServiceOrderId" />
+
+    <div class="form-group">
+        <label asp-for="SelectedJobActivityId"></label>
+        <select asp-for="SelectedJobActivityId" class="form-control"
+                asp-items="@(new SelectList(Model.AvailableJobActivities, "Id", "Description"))">
+            <option value="">-- wybierz czynność --</option>
+        </select>
+        <span asp-validation-for="SelectedJobActivityId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Dodaj</button>
+    <a asp-action="Details" asp-route-id="@Model.ServiceOrderId" class="btn btn-secondary">Anuluj</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

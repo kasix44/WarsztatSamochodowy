@@ -1,59 +1,44 @@
 @model IEnumerable<WorkshopManager.Models.ServiceOrder>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lista zleceń";
 }
 
-<h1>Index</h1>
+<h1>Lista zleceń</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Dodaj nowe zlecenie</a>
 </p>
-<table class="table">
+
+<table class="table table-bordered">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Vehicle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AssignedMechanic)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.First().StartDate)</th>
+        <th>@Html.DisplayNameFor(model => model.First().EndDate)</th>
+        <th>@Html.DisplayNameFor(model => model.First().Status)</th>
+        <th>Pojazd</th>
+        <th>Mechanik (Email)</th>
+        <th>Akcje</th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
+            <td>@item.StartDate.ToShortDateString()</td>
+            <td>@item.EndDate?.ToShortDateString()</td>
+            <td>@item.Status</td>
+            <td>@item.Vehicle?.Brand @item.Vehicle?.Model</td>
+            <td>@item.AssignedMechanic?.Email</td>
             <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vehicle.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AssignedMechanic.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edytuj</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info text-white">Szczegóły</a>
+                <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline;" onsubmit="return confirm('Czy na pewno chcesz usunąć to zlecenie?');">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-sm btn-danger">Usuń</button>
+                </form>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BSWmL+Pe7pECLuwHqOwYPW5iOdbpCVx8ytX3HkSXpkg=",
+  "Hash": "17YGO6tqL90Y0HUwOGFrWjaa+CXfW80J1f8iS6qcsEQ=",
   "Source": "WorkshopManager",
   "BasePath": "_content/WorkshopManager",
   "Mode": "Default",
@@ -2335,6 +2335,25 @@
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
     },
     {
+      "Identity": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/3fb06667-c1f6-4749-8312-5c33c894f24a.jpg",
+      "SourceId": "WorkshopManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/",
+      "BasePath": "_content/WorkshopManager",
+      "RelativePath": "uploads/3fb06667-c1f6-4749-8312-5c33c894f24a.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/3fb06667-c1f6-4749-8312-5c33c894f24a.jpg"
+    },
+    {
       "Identity": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/6e844f0a-d33e-4220-813c-2ea45b85f67d.HEIC",
       "SourceId": "WorkshopManager",
       "SourceType": "Discovered",
@@ -2352,6 +2371,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/uploads/6e844f0a-d33e-4220-813c-2ea45b85f67d.HEIC"
+    },
+    {
+      "Identity": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/8021cbbf-48f7-45c4-8356-42aafe63edb1.jpg",
+      "SourceId": "WorkshopManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/",
+      "BasePath": "_content/WorkshopManager",
+      "RelativePath": "uploads/8021cbbf-48f7-45c4-8356-42aafe63edb1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/8021cbbf-48f7-45c4-8356-42aafe63edb1.jpg"
+    },
+    {
+      "Identity": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/porsche.jpg",
+      "SourceId": "WorkshopManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/",
+      "BasePath": "_content/WorkshopManager",
+      "RelativePath": "uploads/porsche.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/porsche.jpg"
     }
   ]
 }

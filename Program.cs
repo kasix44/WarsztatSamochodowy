@@ -2,8 +2,23 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using WorkshopManager.Data;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// 🔠 Ustawienie kultury "pl-PL"
+var cultureInfo = new CultureInfo("pl-PL");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+// 🌍 Konfiguracja lokalizacji żądań (RequestLocalization)
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[] { cultureInfo };
+    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture(cultureInfo);
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
 
 // 🔗 Połączenie z bazą danych
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
@@ -16,11 +31,11 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 // 🔐 Konfiguracja Identity + role
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
-    {
-        options.SignIn.RequireConfirmedAccount = true;
-    })
-    .AddRoles<IdentityRole>() // <--- obsługa ról
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+{
+    options.SignIn.RequireConfirmedAccount = true;
+})
+.AddRoles<IdentityRole>()
+.AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
@@ -38,12 +53,14 @@ else
     app.UseHsts();
 }
 
+app.UseRequestLocalization(); // <<< WAŻNE! Middleware do kultury PL
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication(); // <-- musi być przed Authorization!
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
