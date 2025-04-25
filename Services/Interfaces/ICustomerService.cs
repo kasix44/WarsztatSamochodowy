@@ -1,13 +1,14 @@
+using WorkshopManager.DTOs;
 using WorkshopManager.Models;
 
 namespace WorkshopManager.Services.Interfaces
 {
     public interface ICustomerService
     {
-        Task<List<Customer>> GetAllAsync(string? search = null);
-        Task<Customer?> GetByIdAsync(int id);
-        Task AddAsync(Customer customer);
-        Task UpdateAsync(Customer customer);
+        Task<List<CustomerDto>> GetAllAsync(string? search = null);
+        Task<CustomerDto?> GetByIdAsync(int id);
+        Task AddAsync(CustomerDto customerDto);
+        Task UpdateAsync(CustomerDto customerDto);
         Task DeleteAsync(int id);
         Task<bool> ExistsAsync(int id);
     }

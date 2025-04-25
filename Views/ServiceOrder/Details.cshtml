@@ -1,5 +1,5 @@
 @using System.Security.Claims
-@model WorkshopManager.Models.ServiceOrder
+@model WorkshopManager.DTOs.ServiceOrderDto
 
 @{
     ViewData["Title"] = "Szczegóły zlecenia";
@@ -23,7 +23,7 @@
         <dd class="col-sm-10">@Model.Vehicle?.Brand @Model.Vehicle?.Model (@Model.Vehicle?.LicensePlate)</dd>
 
         <dt class="col-sm-2">Mechanik</dt>
-        <dd class="col-sm-10">@Model.AssignedMechanic?.UserName</dd>
+        <dd class="col-sm-10">@Model.AssignedMechanicUserName</dd>
     </dl>
 </div>
 
@@ -127,7 +127,7 @@ else
         @foreach (var comment in Model.Comments.OrderByDescending(c => c.CreatedAt))
         {
             <li class="list-group-item">
-                <strong>@comment.Author</strong> (@comment.CreatedAt.ToString("g"))<br />
+                <strong>@comment.AuthorUserName</strong> (@comment.CreatedAt.ToString("g"))<br />
                 @comment.Content
                 @if (comment.AuthorId == User.FindFirstValue(ClaimTypes.NameIdentifier) || User.IsInRole("Admin"))
                 {
@@ -147,18 +147,16 @@ else
     <p>Brak komentarzy.</p>
 }
 
-
-<form asp-action="AddComment" method="post" class="mt-3">
-    <input type="hidden" name="ServiceOrderId" value="@Model.Id" />
+<form asp-action="AddComment" method="post">
+    <input type="hidden" name="serviceOrderId" value="@Model.Id" />
     <div class="form-group">
-        <label for="Content">Nowy komentarz:</label>
-        <textarea name="Content" class="form-control" rows="3" required></textarea>
+        <label for="content">Nowy komentarz:</label>
+        <textarea name="content" class="form-control" rows="3"></textarea>
     </div>
     <button type="submit" class="btn btn-primary mt-2">Dodaj komentarz</button>
 </form>
 
-<hr />
-<div>
+<div class="mt-3">
     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edytuj</a>
     <a asp-action="Index" class="btn btn-secondary">Powrót</a>
 </div>

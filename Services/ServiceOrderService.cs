@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WorkshopManager.Data;
+using WorkshopManager.DTOs;
+using WorkshopManager.Mappers;
 using WorkshopManager.Models;
 using WorkshopManager.Services.Interfaces;
 
@@ -8,68 +10,73 @@ namespace WorkshopManager.Services
     public class ServiceOrderService : IServiceOrderService
     {
         private readonly ApplicationDbContext _context;
+        private readonly ServiceOrderMapper _mapper;
 
-        public ServiceOrderService(ApplicationDbContext context)
+        public ServiceOrderService(ApplicationDbContext context, ServiceOrderMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public async Task<List<ServiceOrder>> GetAllAsync()
+        public async Task<List<ServiceOrderDto>> GetAllAsync()
         {
-            return await _context.ServiceOrders
+            var orders = await _context.ServiceOrders
                 .Include(o => o.Vehicle)
                 .Include(o => o.AssignedMechanic)
+                .Include(o => o.UsedParts)
+                    .ThenInclude(up => up.Part)
+                .Include(o => o.JobActivities)
+                .Include(o => o.Comments)
                 .ToListAsync();
+
+            return orders.Select(o => _mapper.ToDto(o)).ToList();
         }
 
-        public async Task<ServiceOrder?> GetByIdAsync(int id)
+        public async Task<ServiceOrderDto?> GetByIdAsync(int id)
         {
-            return await _context.ServiceOrders
+            var order = await _context.ServiceOrders
                 .Include(o => o.Vehicle)
                 .Include(o => o.AssignedMechanic)
-                .Include(o => o.UsedParts).ThenInclude(p => p.Part)
+                .Include(o => o.UsedParts)
+                    .ThenInclude(up => up.Part)
                 .Include(o => o.JobActivities)
                 .Include(o => o.Comments)
                 .FirstOrDefaultAsync(o => o.Id == id);
+
+            return order != null ? _mapper.ToDto(order) : null;
         }
 
-        public async Task AddAsync(ServiceOrder order)
+        public async Task<ServiceOrderDto> AddAsync(ServiceOrderDto orderDto)
         {
+            var order = _mapper.ToEntity(orderDto);
             _context.ServiceOrders.Add(order);
             await _context.SaveChangesAsync();
+            
+            // Reload the order with all its relationships
+            var savedOrder = await GetByIdAsync(order.Id);
+            return savedOrder!;
         }
 
-        public async Task UpdateAsync(ServiceOrder order)
+        public async Task UpdateAsync(ServiceOrderDto orderDto)
         {
+            var order = _mapper.ToEntity(orderDto);
             _context.ServiceOrders.Update(order);
             await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            var comments = _context.ServiceOrderComments
-                .Where(c => c.ServiceOrderId == id);
-            _context.ServiceOrderComments.RemoveRange(comments);
-
-            var usedParts = _context.UsedParts
-                .Where(up => up.ServiceOrderId == id);
-            _context.UsedParts.RemoveRange(usedParts);
-
-            var activities = _context.JobActivities
-                .Where(a => a.ServiceOrderId == id);
-            _context.JobActivities.RemoveRange(activities);
-
             var order = await _context.ServiceOrders.FindAsync(id);
             if (order != null)
+            {
                 _context.ServiceOrders.Remove(order);
-
-            await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
+            }
         }
 
-
-        public bool Exists(int id)
+        public async Task<bool> ExistsAsync(int id)
         {
-            return _context.ServiceOrders.Any(e => e.Id == id);
+            return await _context.ServiceOrders.AnyAsync(o => o.Id == id);
         }
     }
 }

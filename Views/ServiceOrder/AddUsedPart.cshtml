@@ -1,4 +1,4 @@
-@model WorkshopManager.Models.AddUsedPartViewModel
+@model WorkshopManager.DTOs.UsedPartDto
 
 @{
     ViewData["Title"] = "Dodaj część";
@@ -10,15 +10,15 @@
     <input type="hidden" asp-for="ServiceOrderId" />
 
     <div class="form-group">
-        <label asp-for="PartId" class="control-label"></label>
-        <select asp-for="PartId" class="form-control" asp-items="Model.Parts">
+        <label asp-for="PartId" class="control-label">Część</label>
+        <select asp-for="PartId" class="form-control" asp-items="ViewBag.Parts">
             <option value="">-- wybierz część --</option>
         </select>
         <span asp-validation-for="PartId" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Quantity" class="control-label"></label>
+        <label asp-for="Quantity" class="control-label">Ilość</label>
         <input asp-for="Quantity" class="form-control" />
         <span asp-validation-for="Quantity" class="text-danger"></span>
     </div>

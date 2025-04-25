@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WorkshopManager.Data;
+using WorkshopManager.DTOs;
+using WorkshopManager.Mappers;
 using WorkshopManager.Models;
 using WorkshopManager.Services.Interfaces;
 
@@ -11,32 +13,40 @@ namespace WorkshopManager.Services
     public class ServiceOrderCommentService : IServiceOrderCommentService
     {
         private readonly ApplicationDbContext _context;
+        private readonly ServiceOrderCommentMapper _mapper;
 
-        public ServiceOrderCommentService(ApplicationDbContext context)
+        public ServiceOrderCommentService(ApplicationDbContext context, ServiceOrderCommentMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public async Task<List<ServiceOrderComment>> GetByOrderIdAsync(int serviceOrderId)
+        public async Task<List<ServiceOrderCommentDto>> GetByOrderIdAsync(int serviceOrderId)
         {
-            return await _context.ServiceOrderComments
+            var comments = await _context.ServiceOrderComments
                 .Where(c => c.ServiceOrderId == serviceOrderId)
                 .ToListAsync();
+            
+            return comments.Select(c => _mapper.ToDto(c)).ToList();
         }
 
-        public async Task<ServiceOrderComment?> GetByIdAsync(int id)
+        public async Task<ServiceOrderCommentDto?> GetByIdAsync(int id)
         {
-            return await _context.ServiceOrderComments.FindAsync(id);
+            var comment = await _context.ServiceOrderComments.FindAsync(id);
+            return comment != null ? _mapper.ToDto(comment) : null;
         }
 
-        public async Task AddAsync(ServiceOrderComment comment)
+        public async Task<ServiceOrderCommentDto> AddAsync(ServiceOrderCommentDto commentDto)
         {
+            var comment = _mapper.ToEntity(commentDto);
             _context.ServiceOrderComments.Add(comment);
             await _context.SaveChangesAsync();
+            return _mapper.ToDto(comment);
         }
 
-        public async Task UpdateAsync(ServiceOrderComment comment)
+        public async Task UpdateAsync(ServiceOrderCommentDto commentDto)
         {
+            var comment = _mapper.ToEntity(commentDto);
             _context.ServiceOrderComments.Update(comment);
             await _context.SaveChangesAsync();
         }
@@ -51,9 +61,9 @@ namespace WorkshopManager.Services
             }
         }
 
-        public bool Exists(int id)
+        public async Task<bool> ExistsAsync(int id)
         {
-            return _context.ServiceOrderComments.Any(c => c.Id == id);
+            return await _context.ServiceOrderComments.AnyAsync(c => c.Id == id);
         }
     }
 }

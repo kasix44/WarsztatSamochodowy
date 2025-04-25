@@ -1,13 +1,13 @@
-using WorkshopManager.Models;
+using WorkshopManager.DTOs;
 
 namespace WorkshopManager.Services.Interfaces
 {
     public interface IVehicleService
     {
-        Task<List<Vehicle>> GetAllAsync();
-        Task<Vehicle?> GetByIdAsync(int id);
-        Task AddAsync(Vehicle vehicle);
-        Task UpdateAsync(Vehicle vehicle);
+        Task<List<VehicleDto>> GetAllAsync();
+        Task<VehicleDto?> GetByIdAsync(int id);
+        Task AddAsync(VehicleDto vehicleDto);
+        Task UpdateAsync(VehicleDto vehicleDto);
         Task DeleteAsync(int id);
         bool Exists(int id);
     }

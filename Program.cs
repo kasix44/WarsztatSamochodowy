@@ -6,7 +6,7 @@ using System.Globalization;
 using QuestPDF.Infrastructure;
 using WorkshopManager.Services;
 using WorkshopManager.Services.Interfaces;
-
+using WorkshopManager.Mappers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +50,15 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 })
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+// Add mappers
+builder.Services.AddScoped<PartMapper>();
+builder.Services.AddScoped<UsedPartMapper>();
+builder.Services.AddScoped<ServiceOrderMapper>();
+builder.Services.AddScoped<ServiceOrderCommentMapper>();
+builder.Services.AddScoped<JobActivityMapper>();
+builder.Services.AddScoped<VehicleMapper>();
+builder.Services.AddScoped<CustomerMapper>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();

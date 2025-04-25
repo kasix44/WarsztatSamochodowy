@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WorkshopManager.Models;
+using WorkshopManager.DTOs;
 using WorkshopManager.Services.Interfaces;
 
 namespace WorkshopManager.Controllers
@@ -45,12 +45,12 @@ namespace WorkshopManager.Controllers
         // POST: Customer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,PhoneNumber,Email,Address")] Customer customer)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,PhoneNumber,Email,Address")] CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
-                return View(customer);
+                return View(customerDto);
 
-            await _customerService.AddAsync(customer);
+            await _customerService.AddAsync(customerDto);
             return RedirectToAction(nameof(Index));
         }
 
@@ -70,21 +70,21 @@ namespace WorkshopManager.Controllers
         // POST: Customer/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,PhoneNumber,Email,Address")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,PhoneNumber,Email,Address")] CustomerDto customerDto)
         {
-            if (id != customer.Id)
+            if (id != customerDto.Id)
                 return NotFound();
 
             if (!ModelState.IsValid)
-                return View(customer);
+                return View(customerDto);
 
             try
             {
-                await _customerService.UpdateAsync(customer);
+                await _customerService.UpdateAsync(customerDto);
             }
             catch
             {
-                if (!await _customerService.ExistsAsync(customer.Id))
+                if (!await _customerService.ExistsAsync(customerDto.Id))
                     return NotFound();
                 throw;
             }

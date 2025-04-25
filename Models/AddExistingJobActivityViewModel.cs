@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using WorkshopManager.Models;
+using WorkshopManager.DTOs;
 
 namespace WorkshopManager.Models
 {
@@ -11,6 +11,6 @@ namespace WorkshopManager.Models
         [Display(Name = "Czynność")]
         public int SelectedJobActivityId { get; set; }
 
-        public List<JobActivity>? AvailableJobActivities { get; set; }
+        public List<JobActivityDto>? AvailableJobActivities { get; set; }
     }
 }

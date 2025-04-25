@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WorkshopManager.Data;
+using WorkshopManager.DTOs;
+using WorkshopManager.Mappers;
 using WorkshopManager.Models;
 using WorkshopManager.Services.Interfaces;
 
@@ -8,31 +10,46 @@ namespace WorkshopManager.Services
     public class JobActivityService : IJobActivityService
     {
         private readonly ApplicationDbContext _context;
+        private readonly JobActivityMapper _mapper;
 
         public JobActivityService(ApplicationDbContext context)
         {
             _context = context;
+            _mapper = new JobActivityMapper();
         }
 
-        public async Task<List<JobActivity>> GetAllAsync()
+        public async Task<List<JobActivityDto>> GetAllAsync()
         {
-            return await _context.JobActivities.ToListAsync();
+            var activities = await _context.JobActivities
+                .Include(a => a.ServiceOrder)
+                .ToListAsync();
+            
+            return activities.Select(a => _mapper.ToDto(a)).ToList();
         }
 
-        public async Task<JobActivity?> GetByIdAsync(int id)
+        public async Task<JobActivityDto?> GetByIdAsync(int id)
         {
-            return await _context.JobActivities.FirstOrDefaultAsync(a => a.Id == id);
+            var activity = await _context.JobActivities
+                .Include(a => a.ServiceOrder)
+                .FirstOrDefaultAsync(a => a.Id == id);
+            
+            return activity != null ? _mapper.ToDto(activity) : null;
         }
 
-        public async Task CreateAsync(JobActivity jobActivity)
+        public async Task<JobActivityDto> AddAsync(JobActivityDto activityDto)
         {
-            _context.JobActivities.Add(jobActivity);
+            var activity = _mapper.ToEntity(activityDto);
+            _context.JobActivities.Add(activity);
             await _context.SaveChangesAsync();
+            
+            var savedActivity = await GetByIdAsync(activity.Id);
+            return savedActivity!;
         }
 
-        public async Task UpdateAsync(JobActivity jobActivity)
+        public async Task UpdateAsync(JobActivityDto activityDto)
         {
-            _context.JobActivities.Update(jobActivity);
+            var activity = _mapper.ToEntity(activityDto);
+            _context.JobActivities.Update(activity);
             await _context.SaveChangesAsync();
         }
 
@@ -44,6 +61,11 @@ namespace WorkshopManager.Services
                 _context.JobActivities.Remove(activity);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task<bool> ExistsAsync(int id)
+        {
+            return await _context.JobActivities.AnyAsync(a => a.Id == id);
         }
     }
 }

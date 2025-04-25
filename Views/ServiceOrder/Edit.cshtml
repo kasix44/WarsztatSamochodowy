@@ -1,4 +1,4 @@
-@model WorkshopManager.Models.ServiceOrder
+@model WorkshopManager.DTOs.ServiceOrderDto
 
 @{
     ViewData["Title"] = "Edytuj zlecenie";
@@ -40,14 +40,16 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="AssignedMechanicId" class="control-label">Przypisany mechanik</label>
-                <select asp-for="AssignedMechanicId" class="form-control" asp-items="ViewBag.AssignedMechanicId"></select>
+                <label asp-for="AssignedMechanicId" class="control-label">Mechanik</label>
+                <select asp-for="AssignedMechanicId" class="form-control" asp-items="ViewBag.AssignedMechanicId">
+                    <option value="">-- wybierz mechanika --</option>
+                </select>
                 <span asp-validation-for="AssignedMechanicId" class="text-danger"></span>
             </div>
 
             <div class="form-group mt-3">
-                <input type="submit" value="Zapisz" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-secondary ms-2">Anuluj</a>
+                <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+                <a asp-action="Index" class="btn btn-secondary">Powrót</a>
             </div>
         </form>
     </div>

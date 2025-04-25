@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WorkshopManager.Data;
+using WorkshopManager.DTOs;
 using WorkshopManager.Models;
 using WorkshopManager.Services.Interfaces;
+using WorkshopManager.Mappers;
 
 namespace WorkshopManager.Controllers
 {
@@ -20,19 +22,25 @@ namespace WorkshopManager.Controllers
         private readonly IUsedPartService _usedPartService;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly ServiceOrderMapper _mapper;
+        private readonly JobActivityMapper _jobActivityMapper;
 
         public ServiceOrderController(
             IServiceOrderService serviceOrderService,
             IServiceOrderCommentService commentService,
             IUsedPartService usedPartService,
             ApplicationDbContext context,
-            UserManager<IdentityUser> userManager)
+            UserManager<IdentityUser> userManager,
+            ServiceOrderMapper mapper,
+            JobActivityMapper jobActivityMapper)
         {
             _serviceOrderService = serviceOrderService;
             _commentService = commentService;
             _usedPartService = usedPartService;
             _context = context;
             _userManager = userManager;
+            _mapper = mapper;
+            _jobActivityMapper = jobActivityMapper;
         }
 
         // GET: ServiceOrder
@@ -59,7 +67,9 @@ namespace WorkshopManager.Controllers
                 "LicensePlate", "Display", licensePlate
             );
 
-            return View(await ordersQuery.ToListAsync());
+            var orders = await ordersQuery.ToListAsync();
+            var orderDtos = orders.Select(o => _mapper.ToDto(o)).ToList();
+            return View(orderDtos);
         }
 
         // GET: ServiceOrder/Details/5
@@ -68,17 +78,10 @@ namespace WorkshopManager.Controllers
         {
             if (id == null) return NotFound();
 
-            var serviceOrder = await _context.ServiceOrders
-                .Include(s => s.AssignedMechanic)
-                .Include(s => s.Vehicle)
-                .Include(s => s.UsedParts)
-                .ThenInclude(up => up.Part)
-                .Include(s => s.JobActivities)
-                .Include(s => s.Comments)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var orderDto = await _serviceOrderService.GetByIdAsync(id.Value);
+            if (orderDto == null) return NotFound();
 
-            if (serviceOrder == null) return NotFound();
-            return View(serviceOrder);
+            return View(orderDto);
         }
 
         // GET: ServiceOrder/Create
@@ -86,23 +89,23 @@ namespace WorkshopManager.Controllers
         public IActionResult Create()
         {
             LoadDropdowns();
-            return View();
+            return View(new ServiceOrderDto());
         }
 
         // POST: ServiceOrder/Create
         [Authorize(Roles = "Admin,Recepcjonista")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,StartDate,EndDate,Status,VehicleId,AssignedMechanicId")] ServiceOrder serviceOrder)
+        public async Task<IActionResult> Create([Bind("Id,StartDate,EndDate,Status,VehicleId,AssignedMechanicId")] ServiceOrderDto orderDto)
         {
             if (ModelState.IsValid)
             {
-                await _serviceOrderService.AddAsync(serviceOrder);
+                await _serviceOrderService.AddAsync(orderDto);
                 return RedirectToAction(nameof(Index));
             }
 
-            LoadDropdowns(serviceOrder.VehicleId, serviceOrder.AssignedMechanicId);
-            return View(serviceOrder);
+            LoadDropdowns(orderDto.VehicleId, orderDto.AssignedMechanicId);
+            return View(orderDto);
         }
 
         // GET: ServiceOrder/Edit/5
@@ -111,37 +114,37 @@ namespace WorkshopManager.Controllers
         {
             if (id == null) return NotFound();
 
-            var serviceOrder = await _serviceOrderService.GetByIdAsync(id.Value);
-            if (serviceOrder == null) return NotFound();
+            var orderDto = await _serviceOrderService.GetByIdAsync(id.Value);
+            if (orderDto == null) return NotFound();
 
-            LoadDropdowns(serviceOrder.VehicleId, serviceOrder.AssignedMechanicId);
-            return View(serviceOrder);
+            LoadDropdowns(orderDto.VehicleId, orderDto.AssignedMechanicId);
+            return View(orderDto);
         }
 
         // POST: ServiceOrder/Edit/5
         [Authorize(Roles = "Admin,Recepcjonista")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,StartDate,EndDate,Status,VehicleId,AssignedMechanicId")] ServiceOrder serviceOrder)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,StartDate,EndDate,Status,VehicleId,AssignedMechanicId")] ServiceOrderDto orderDto)
         {
-            if (id != serviceOrder.Id) return NotFound();
+            if (id != orderDto.Id) return NotFound();
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    await _serviceOrderService.UpdateAsync(serviceOrder);
+                    await _serviceOrderService.UpdateAsync(orderDto);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!_serviceOrderService.Exists(serviceOrder.Id)) return NotFound();
+                    if (!await _serviceOrderService.ExistsAsync(orderDto.Id)) return NotFound();
                     else throw;
                 }
                 return RedirectToAction(nameof(Index));
             }
 
-            LoadDropdowns(serviceOrder.VehicleId, serviceOrder.AssignedMechanicId);
-            return View(serviceOrder);
+            LoadDropdowns(orderDto.VehicleId, orderDto.AssignedMechanicId);
+            return View(orderDto);
         }
         
         // GET: ServiceOrder/Delete/5
@@ -150,13 +153,10 @@ namespace WorkshopManager.Controllers
         {
             if (id == null) return NotFound();
 
-            var serviceOrder = await _context.ServiceOrders
-                .Include(s => s.AssignedMechanic)
-                .Include(s => s.Vehicle)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var orderDto = await _serviceOrderService.GetByIdAsync(id.Value);
+            if (orderDto == null) return NotFound();
 
-            if (serviceOrder == null) return NotFound();
-            return View(serviceOrder);
+            return View(orderDto);
         }
 
         // POST: ServiceOrder/Delete/5
@@ -167,11 +167,6 @@ namespace WorkshopManager.Controllers
         {
             await _serviceOrderService.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool ServiceOrderExists(int id)
-        {
-            return _context.ServiceOrders.Any(e => e.Id == id);
         }
 
         // 👇 Metoda pomocnicza do dropdownów
@@ -201,40 +196,28 @@ namespace WorkshopManager.Controllers
         [Authorize(Roles = "Admin,Recepcjonista")]
         public async Task<IActionResult> AddUsedPart(int id)
         {
-            var order = await _context.ServiceOrders.FindAsync(id);
-            if (order == null)
+            var orderDto = await _serviceOrderService.GetByIdAsync(id);
+            if (orderDto == null)
                 return NotFound();
 
-            var viewModel = new AddUsedPartViewModel
-            {
-                ServiceOrderId = id,
-                Parts = new SelectList(_context.Parts, "Id", "Name")
-            };
-
-            return View(viewModel);
+            ViewBag.Parts = new SelectList(_context.Parts, "Id", "Name");
+            return View(new UsedPartDto { ServiceOrderId = id });
         }
 
         // POST: ServiceOrder/AddUsedPart
         [Authorize(Roles = "Admin,Recepcjonista")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddUsedPart(AddUsedPartViewModel model)
+        public async Task<IActionResult> AddUsedPart(UsedPartDto usedPartDto)
         {
             if (ModelState.IsValid)
             {
-                var usedPart = new UsedPart
-                {
-                    ServiceOrderId = model.ServiceOrderId,
-                    PartId = model.PartId,
-                    Quantity = model.Quantity
-                };
-
-                await _usedPartService.AddAsync(usedPart);
-                return RedirectToAction("Details", new { id = model.ServiceOrderId });
+                await _usedPartService.AddAsync(usedPartDto);
+                return RedirectToAction("Details", new { id = usedPartDto.ServiceOrderId });
             }
 
-            model.Parts = new SelectList(_context.Parts, "Id", "Name", model.PartId);
-            return View(model);
+            ViewBag.Parts = new SelectList(_context.Parts, "Id", "Name", usedPartDto.PartId);
+            return View(usedPartDto);
         }
         
         // POST: ServiceOrder/DeleteUsedPart
@@ -260,7 +243,8 @@ namespace WorkshopManager.Controllers
                 .Where(s => s.AssignedMechanicId == userId)
                 .ToListAsync();
 
-            return View("MyOrders", orders);
+            var orderDtos = orders.Select(o => _mapper.ToDto(o)).ToList();
+            return View("MyOrders", orderDtos);
         }
         
         // GET: ServiceOrder/MechanicDetails/5
@@ -271,17 +255,11 @@ namespace WorkshopManager.Controllers
 
             var userId = _userManager.GetUserId(User);
 
-            var serviceOrder = await _context.ServiceOrders
-                .Include(s => s.Vehicle)
-                .Include(s => s.UsedParts)
-                .ThenInclude(up => up.Part)
-                .Include(s => s.JobActivities)
-                .Include(s => s.Comments) 
-                .FirstOrDefaultAsync(s => s.Id == id && s.AssignedMechanicId == userId);
+            var orderDto = await _serviceOrderService.GetByIdAsync(id.Value);
+            if (orderDto == null || orderDto.AssignedMechanicId != userId) 
+                return Forbid(); // Brak dostępu do cudzych zleceń
 
-            if (serviceOrder == null) return Forbid(); // Brak dostępu do cudzych zleceń
-
-            return View("MechanicDetails", serviceOrder);
+            return View("MechanicDetails", orderDto);
         }
 
         // GET: ServiceOrder/EditJobActivity/5
@@ -293,36 +271,38 @@ namespace WorkshopManager.Controllers
             var activity = await _context.JobActivities.FindAsync(id);
             if (activity == null) return NotFound();
 
-            return View(activity);
+            var activityDto = _jobActivityMapper.ToDto(activity);
+            return View(activityDto);
         }
 
-// POST: ServiceOrder/EditJobActivity/5
+        // POST: ServiceOrder/EditJobActivity/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Recepcjonista")]
-        public async Task<IActionResult> EditJobActivity(int id, [Bind("Id,Description,LaborCost,ServiceOrderId")] JobActivity activity)
+        public async Task<IActionResult> EditJobActivity(int id, [Bind("Id,Description,LaborCost,ServiceOrderId")] JobActivityDto activityDto)
         {
-            if (id != activity.Id) return NotFound();
+            if (id != activityDto.Id) return NotFound();
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    var activity = _jobActivityMapper.ToEntity(activityDto);
                     _context.Update(activity);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction("Details", new { id = activity.ServiceOrderId });
+                    return RedirectToAction("Details", new { id = activityDto.ServiceOrderId });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!_context.JobActivities.Any(e => e.Id == activity.Id)) return NotFound();
+                    if (!_context.JobActivities.Any(e => e.Id == activityDto.Id)) return NotFound();
                     throw;
                 }
             }
 
-            return View(activity);
+            return View(activityDto);
         }
 
-// POST: ServiceOrder/DeleteJobActivity/5
+        // POST: ServiceOrder/DeleteJobActivity/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Recepcjonista")]
@@ -338,7 +318,6 @@ namespace WorkshopManager.Controllers
             return RedirectToAction("Details", new { id = serviceOrderId });
         }
 
-        
         [HttpGet]
         [Authorize(Roles = "Admin,Recepcjonista")]
         public async Task<IActionResult> AddExistingJobActivity(int serviceOrderId)
@@ -347,10 +326,12 @@ namespace WorkshopManager.Controllers
                 .Where(a => a.ServiceOrderId == null)
                 .ToListAsync();
 
+            var activityDtos = availableActivities.Select(a => _jobActivityMapper.ToDto(a)).ToList();
+
             var model = new AddExistingJobActivityViewModel
             {
                 ServiceOrderId = serviceOrderId,
-                AvailableJobActivities = availableActivities
+                AvailableJobActivities = activityDtos
             };
 
             return View(model);
@@ -373,14 +354,16 @@ namespace WorkshopManager.Controllers
                 return RedirectToAction("Details", new { id = model.ServiceOrderId });
             }
 
-            model.AvailableJobActivities = await _context.JobActivities
+            var availableActivities = await _context.JobActivities
                 .Where(a => a.ServiceOrderId == null)
                 .ToListAsync();
+
+            model.AvailableJobActivities = availableActivities.Select(a => _jobActivityMapper.ToDto(a)).ToList();
 
             return View(model);
         }
         
-         [HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Recepcjonista,Mechanik")]
         public async Task<IActionResult> AddComment(int serviceOrderId, string content)
@@ -389,16 +372,16 @@ namespace WorkshopManager.Controllers
 
             if (!string.IsNullOrWhiteSpace(content) && user != null)
             {
-                var comment = new ServiceOrderComment
+                var commentDto = new ServiceOrderCommentDto
                 {
                     Content = content,
                     CreatedAt = DateTime.Now,
                     ServiceOrderId = serviceOrderId,
-                    Author = user.UserName,
-                    AuthorId = user.Id
+                    AuthorId = user.Id,
+                    AuthorUserName = user.UserName
                 };
 
-                await _commentService.AddAsync(comment);
+                await _commentService.AddAsync(commentDto);
             }
 
             var isMechanic = await _userManager.IsInRoleAsync(user, "Mechanik");
@@ -411,14 +394,14 @@ namespace WorkshopManager.Controllers
         [Authorize(Roles = "Admin,Mechanik,Recepcjonista")]
         public async Task<IActionResult> EditComment(int id)
         {
-            var comment = await _commentService.GetByIdAsync(id);
+            var commentDto = await _commentService.GetByIdAsync(id);
             var currentUserId = _userManager.GetUserId(User);
             var isAdmin = User.IsInRole("Admin");
 
-            if (comment == null || (comment.AuthorId != currentUserId && !isAdmin))
+            if (commentDto == null || (commentDto.AuthorId != currentUserId && !isAdmin))
                 return Forbid();
 
-            return View(comment);
+            return View(commentDto);
         }
 
         [HttpPost]
@@ -426,16 +409,16 @@ namespace WorkshopManager.Controllers
         [Authorize(Roles = "Admin,Mechanik,Recepcjonista")]
         public async Task<IActionResult> EditComment(int id, string text)
         {
-            var comment = await _commentService.GetByIdAsync(id);
+            var commentDto = await _commentService.GetByIdAsync(id);
             var currentUserId = _userManager.GetUserId(User);
             var isAdmin = User.IsInRole("Admin");
 
-            if (comment == null || (comment.AuthorId != currentUserId && !isAdmin))
+            if (commentDto == null || (commentDto.AuthorId != currentUserId && !isAdmin))
                 return Forbid();
 
-            comment.Content = text;
-            await _commentService.UpdateAsync(comment);
-            return RedirectToAction("Details", new { id = comment.ServiceOrderId });
+            commentDto.Content = text;
+            await _commentService.UpdateAsync(commentDto);
+            return RedirectToAction("Details", new { id = commentDto.ServiceOrderId });
         }
 
         [HttpPost]
@@ -443,15 +426,15 @@ namespace WorkshopManager.Controllers
         [Authorize(Roles = "Admin,Mechanik,Recepcjonista")]
         public async Task<IActionResult> DeleteComment(int id)
         {
-            var comment = await _commentService.GetByIdAsync(id);
+            var commentDto = await _commentService.GetByIdAsync(id);
             var currentUserId = _userManager.GetUserId(User);
             var isAdmin = User.IsInRole("Admin");
 
-            if (comment == null || (comment.AuthorId != currentUserId && !isAdmin))
+            if (commentDto == null || (commentDto.AuthorId != currentUserId && !isAdmin))
                 return Forbid();
 
             await _commentService.DeleteAsync(id);
-            return RedirectToAction("Details", new { id = comment.ServiceOrderId });
+            return RedirectToAction("Details", new { id = commentDto.ServiceOrderId });
         }
     }
 }

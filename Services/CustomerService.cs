@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WorkshopManager.Data;
+using WorkshopManager.DTOs;
+using WorkshopManager.Mappers;
 using WorkshopManager.Models;
 using WorkshopManager.Services.Interfaces;
 
@@ -8,13 +10,15 @@ namespace WorkshopManager.Services
     public class CustomerService : ICustomerService
     {
         private readonly ApplicationDbContext _context;
+        private readonly CustomerMapper _mapper;
 
         public CustomerService(ApplicationDbContext context)
         {
             _context = context;
+            _mapper = new CustomerMapper();
         }
 
-        public async Task<List<Customer>> GetAllAsync(string? search = null)
+        public async Task<List<CustomerDto>> GetAllAsync(string? search = null)
         {
             var query = _context.Customers.AsQueryable();
 
@@ -24,24 +28,29 @@ namespace WorkshopManager.Services
                     c.FirstName.Contains(search) || c.LastName.Contains(search));
             }
 
-            return await query.ToListAsync();
+            var customers = await query.ToListAsync();
+            return customers.Select(c => _mapper.ToDto(c)).ToList();
         }
 
-        public async Task<Customer?> GetByIdAsync(int id)
+        public async Task<CustomerDto?> GetByIdAsync(int id)
         {
-            return await _context.Customers
+            var customer = await _context.Customers
                 .Include(c => c.Vehicles)
                 .FirstOrDefaultAsync(c => c.Id == id);
+                
+            return customer != null ? _mapper.ToDto(customer) : null;
         }
 
-        public async Task AddAsync(Customer customer)
+        public async Task AddAsync(CustomerDto customerDto)
         {
+            var customer = _mapper.ToEntity(customerDto);
             _context.Customers.Add(customer);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(Customer customer)
+        public async Task UpdateAsync(CustomerDto customerDto)
         {
+            var customer = _mapper.ToEntity(customerDto);
             _context.Customers.Update(customer);
             await _context.SaveChangesAsync();
         }

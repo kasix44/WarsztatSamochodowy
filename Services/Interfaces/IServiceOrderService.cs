@@ -1,14 +1,14 @@
-using WorkshopManager.Models;
+using WorkshopManager.DTOs;
 
 namespace WorkshopManager.Services.Interfaces
 {
     public interface IServiceOrderService
     {
-        Task<List<ServiceOrder>> GetAllAsync();
-        Task<ServiceOrder?> GetByIdAsync(int id);
-        Task AddAsync(ServiceOrder order);
-        Task UpdateAsync(ServiceOrder order);
+        Task<List<ServiceOrderDto>> GetAllAsync();
+        Task<ServiceOrderDto?> GetByIdAsync(int id);
+        Task<ServiceOrderDto> AddAsync(ServiceOrderDto orderDto);
+        Task UpdateAsync(ServiceOrderDto orderDto);
         Task DeleteAsync(int id);
-        bool Exists(int id);
+        Task<bool> ExistsAsync(int id);
     }
 }

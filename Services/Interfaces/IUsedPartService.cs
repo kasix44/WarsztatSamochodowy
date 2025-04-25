@@ -1,11 +1,11 @@
 using System.Threading.Tasks;
-using WorkshopManager.Models;
+using WorkshopManager.DTOs;
 
 namespace WorkshopManager.Services.Interfaces
 {
     public interface IUsedPartService
     {
-        Task AddAsync(UsedPart usedPart);
+        Task<UsedPartDto> AddAsync(UsedPartDto usedPartDto);
         Task DeleteAsync(int id);
     }
 }

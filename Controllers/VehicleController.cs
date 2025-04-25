@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
-using WorkshopManager.Models;
+using WorkshopManager.DTOs;
 using WorkshopManager.Services.Interfaces;
 using ImageMagick;
 
@@ -49,26 +49,26 @@ namespace WorkshopManager.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Brand,Model,VIN,LicensePlate,CustomerId")] Vehicle vehicle, IFormFile ImageFile)
+        public async Task<IActionResult> Create([Bind("Id,Brand,Model,VIN,LicensePlate,CustomerId")] VehicleDto vehicleDto, IFormFile ImageFile)
         {
             if (ImageFile != null)
             {
                 var path = await SaveImageAndReturnPathAsync(ImageFile);
                 if (path != null)
-                    vehicle.ImagePath = path;
+                    vehicleDto.ImagePath = path;
                 else
                     ModelState.AddModelError("ImageFile", "Dozwolone formaty: .jpg, .jpeg, .png, .heic (max 5MB)");
             }
 
             if (ModelState.IsValid)
             {
-                await _vehicleService.AddAsync(vehicle);
+                await _vehicleService.AddAsync(vehicleDto);
                 return RedirectToAction(nameof(Index));
             }
 
             var customers = await _customerService.GetAllAsync();
-            ViewData["CustomerId"] = new SelectList(customers, "Id", "FirstName", vehicle.CustomerId);
-            return View(vehicle);
+            ViewData["CustomerId"] = new SelectList(customers, "Id", "FirstName", vehicleDto.CustomerId);
+            return View(vehicleDto);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -87,20 +87,20 @@ namespace WorkshopManager.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, VehicleDto vehicleDto)
         {
-            if (id != vehicle.Id)
+            if (id != vehicleDto.Id)
                 return NotFound();
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    await _vehicleService.UpdateAsync(vehicle);
+                    await _vehicleService.UpdateAsync(vehicleDto);
                 }
                 catch
                 {
-                    if (!_vehicleService.Exists(vehicle.Id))
+                    if (!_vehicleService.Exists(vehicleDto.Id))
                         return NotFound();
                     throw;
                 }
@@ -109,8 +109,8 @@ namespace WorkshopManager.Controllers
             }
 
             var customers = await _customerService.GetAllAsync();
-            ViewData["CustomerId"] = new SelectList(customers, "Id", "FirstName", vehicle.CustomerId);
-            return View(vehicle);
+            ViewData["CustomerId"] = new SelectList(customers, "Id", "FirstName", vehicleDto.CustomerId);
+            return View(vehicleDto);
         }
 
         public async Task<IActionResult> Delete(int? id)
