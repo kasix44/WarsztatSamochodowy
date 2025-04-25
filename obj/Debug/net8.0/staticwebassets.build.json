@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Kh6Dm2Ljqf+mgfH+8nHL+5n32gnGPASH5haoad9iRmA=",
+  "Hash": "9lJoqthb2QaNjtTGSQeTcndScHu6ryGMAr3Y2yEjpVE=",
   "Source": "WorkshopManager",
   "BasePath": "_content/WorkshopManager",
   "Mode": "Default",
@@ -2335,6 +2335,25 @@
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
     },
     {
+      "Identity": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/05ec8b5d-c322-4c8c-ad85-cde36239fd38.jpg",
+      "SourceId": "WorkshopManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/",
+      "BasePath": "_content/WorkshopManager",
+      "RelativePath": "uploads/05ec8b5d-c322-4c8c-ad85-cde36239fd38.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/05ec8b5d-c322-4c8c-ad85-cde36239fd38.jpg"
+    },
+    {
       "Identity": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/3fb06667-c1f6-4749-8312-5c33c894f24a.jpg",
       "SourceId": "WorkshopManager",
       "SourceType": "Discovered",
@@ -2390,6 +2409,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/uploads/8021cbbf-48f7-45c4-8356-42aafe63edb1.jpg"
+    },
+    {
+      "Identity": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/835f909c-9a7b-454e-8cbf-8fc039f03819.jpg",
+      "SourceId": "WorkshopManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/",
+      "BasePath": "_content/WorkshopManager",
+      "RelativePath": "uploads/835f909c-9a7b-454e-8cbf-8fc039f03819.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/835f909c-9a7b-454e-8cbf-8fc039f03819.jpg"
     },
     {
       "Identity": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/91fb8421-10a1-4851-929d-0d02987e178a.jpg",

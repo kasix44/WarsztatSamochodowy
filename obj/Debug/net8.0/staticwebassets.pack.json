@@ -245,6 +245,10 @@
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
     },
     {
+      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/05ec8b5d-c322-4c8c-ad85-cde36239fd38.jpg",
+      "PackagePath": "staticwebassets/uploads/05ec8b5d-c322-4c8c-ad85-cde36239fd38.jpg"
+    },
+    {
       "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/3fb06667-c1f6-4749-8312-5c33c894f24a.jpg",
       "PackagePath": "staticwebassets/uploads/3fb06667-c1f6-4749-8312-5c33c894f24a.jpg"
     },
@@ -255,6 +259,10 @@
     {
       "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/8021cbbf-48f7-45c4-8356-42aafe63edb1.jpg",
       "PackagePath": "staticwebassets/uploads/8021cbbf-48f7-45c4-8356-42aafe63edb1.jpg"
+    },
+    {
+      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/835f909c-9a7b-454e-8cbf-8fc039f03819.jpg",
+      "PackagePath": "staticwebassets/uploads/835f909c-9a7b-454e-8cbf-8fc039f03819.jpg"
     },
     {
       "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/91fb8421-10a1-4851-929d-0d02987e178a.jpg",

@@ -4,10 +4,16 @@ using Microsoft.EntityFrameworkCore;
 using WorkshopManager.Data;
 using System.Globalization;
 using QuestPDF.Infrastructure;
+using WorkshopManager.Services;
+using WorkshopManager.Services.Interfaces;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 QuestPDF.Settings.License = LicenseType.Community;
+
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IVehicleService, VehicleService>();
 
 // 🔠 Ustawienie kultury "pl-PL"
 var cultureInfo = new CultureInfo("pl-PL");
