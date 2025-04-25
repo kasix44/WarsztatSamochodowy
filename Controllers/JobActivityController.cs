@@ -1,27 +1,24 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using WorkshopManager.Data;
 using WorkshopManager.Models;
+using WorkshopManager.Services.Interfaces;
 
 namespace WorkshopManager.Controllers
 {
     [Authorize(Roles = "Admin,Recepcjonista")]
     public class JobActivityController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IJobActivityService _jobActivityService;
 
-        public JobActivityController(ApplicationDbContext context)
+        public JobActivityController(IJobActivityService jobActivityService)
         {
-            _context = context;
+            _jobActivityService = jobActivityService;
         }
 
         // GLOBALNA LISTA CZYNNOŚCI
         public async Task<IActionResult> Index()
         {
-            var activities = await _context.JobActivities
-                .Include(j => j.ServiceOrder)
-                .ToListAsync();
+            var activities = await _jobActivityService.GetAllAsync();
             return View(activities);
         }
 
@@ -44,8 +41,7 @@ namespace WorkshopManager.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.JobActivities.Add(jobActivity);
-                await _context.SaveChangesAsync();
+                await _jobActivityService.CreateAsync(jobActivity);
 
                 if (jobActivity.ServiceOrderId.HasValue)
                 {
@@ -62,22 +58,21 @@ namespace WorkshopManager.Controllers
         // GET: JobActivity/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            var activity = await _context.JobActivities.FindAsync(id);
+            var activity = await _jobActivityService.GetByIdAsync(id);
             if (activity == null)
                 return NotFound();
 
             return View(activity);
         }
 
-// POST: JobActivity/Edit/5
+        // POST: JobActivity/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(JobActivity jobActivity)
         {
             if (ModelState.IsValid)
             {
-                _context.Update(jobActivity);
-                await _context.SaveChangesAsync();
+                await _jobActivityService.UpdateAsync(jobActivity);
                 return RedirectToAction(nameof(Index)); // Zawsze wracaj do listy czynności
             }
 
@@ -85,17 +80,11 @@ namespace WorkshopManager.Controllers
         }
 
         // DELETE
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id, int? serviceOrderId = null)
         {
-            var activity = await _context.JobActivities.FindAsync(id);
-            if (activity != null)
-            {
-                _context.JobActivities.Remove(activity);
-                await _context.SaveChangesAsync();
-            }
+            await _jobActivityService.DeleteAsync(id);
 
             if (serviceOrderId.HasValue)
             {
