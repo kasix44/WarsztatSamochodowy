@@ -20,7 +20,7 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "9.0.0",
           "NLog.Web.AspNetCore": "5.4.0",
           "QuestPDF": "2025.4.0",
-          "Riok.Mapperly": "1.0.0",
+          "Riok.Mapperly": "4.2.1",
           "Swashbuckle.AspNetCore": "6.5.0"
         },
         "runtime": {
@@ -2246,11 +2246,11 @@
           }
         }
       },
-      "Riok.Mapperly/1.0.0": {
+      "Riok.Mapperly/4.2.1": {
         "runtime": {
           "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+            "assemblyVersion": "4.2.1.0",
+            "fileVersion": "4.2.1.0"
           }
         }
       },
@@ -3680,12 +3680,12 @@
       "path": "questpdf/2025.4.0",
       "hashPath": "questpdf.2025.4.0.nupkg.sha512"
     },
-    "Riok.Mapperly/1.0.0": {
+    "Riok.Mapperly/4.2.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-FiwNk9e/H5R9YcuBbL1rLm7Rt6Yf7v0WqNL2PR478MQdIhCsY7Wa884bWzPOdK5ZjvVNVIGLDqwluDFsiWovPw==",
-      "path": "riok.mapperly/1.0.0",
-      "hashPath": "riok.mapperly.1.0.0.nupkg.sha512"
+      "sha512": "sha512-UZeQSieVlHr48t64J4k2s/lvbMeCXvzsXqV2A/0wyNdPpW8Cyn47+9mfWFJjouPxoSFfEhDbxg+WRbFIHvq4Zw==",
+      "path": "riok.mapperly/4.2.1",
+      "hashPath": "riok.mapperly.4.2.1.nupkg.sha512"
     },
     "SQLitePCLRaw.bundle_e_sqlite3/2.1.10": {
       "type": "package",

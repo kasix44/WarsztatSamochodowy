@@ -16,7 +16,6 @@ namespace WorkshopManager.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
-
         public ServiceOrderController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
@@ -25,13 +24,32 @@ namespace WorkshopManager.Controllers
 
         // GET: ServiceOrder
         [Authorize(Roles = "Admin,Recepcjonista")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? licensePlate)
         {
-            var orders = _context.ServiceOrders
+            var ordersQuery = _context.ServiceOrders
                 .Include(s => s.AssignedMechanic)
-                .Include(s => s.Vehicle);
-            return View(await orders.ToListAsync());
+                .Include(s => s.Vehicle)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(licensePlate))
+            {
+                ordersQuery = ordersQuery.Where(s => s.Vehicle.LicensePlate == licensePlate);
+            }
+
+            // Do ViewBag wrzucamy wszystkie tablice do filtrowania
+            ViewBag.LicensePlates = new SelectList(
+                await _context.Vehicles
+                    .Select(v => new
+                    {
+                        v.LicensePlate,
+                        Display = v.Brand + " " + v.Model + " (" + v.LicensePlate + ")"
+                    }).Distinct().ToListAsync(),
+                "LicensePlate", "Display", licensePlate
+            );
+
+            return View(await ordersQuery.ToListAsync());
         }
+
 
         // GET: ServiceOrder/Details/5
         [Authorize(Roles = "Admin,Recepcjonista")]
@@ -378,6 +396,7 @@ namespace WorkshopManager.Controllers
 
             return View(model);
         }
+        
         [HttpPost]
 [ValidateAntiForgeryToken]
 [Authorize(Roles = "Admin,Recepcjonista,Mechanik")]
@@ -454,6 +473,8 @@ public async Task<IActionResult> DeleteComment(int id)
     await _context.SaveChangesAsync();
     return RedirectToAction("Details", new { id = comment.ServiceOrderId });
 }
+
+
 
 
     }

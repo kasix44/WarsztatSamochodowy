@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jRl9Xba+WcA=",
+  "dgSpecHash": "EUxoAC3BXeU=",
   "success": true,
   "projectFilePath": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/WorkshopManager.csproj",
   "expectedPackageFiles": [
@@ -145,7 +145,7 @@
     "/Users/kasiadabek/.nuget/packages/nuget.protocol/6.11.0/nuget.protocol.6.11.0.nupkg.sha512",
     "/Users/kasiadabek/.nuget/packages/nuget.versioning/6.11.0/nuget.versioning.6.11.0.nupkg.sha512",
     "/Users/kasiadabek/.nuget/packages/questpdf/2025.4.0/questpdf.2025.4.0.nupkg.sha512",
-    "/Users/kasiadabek/.nuget/packages/riok.mapperly/1.0.0/riok.mapperly.1.0.0.nupkg.sha512",
+    "/Users/kasiadabek/.nuget/packages/riok.mapperly/4.2.1/riok.mapperly.4.2.1.nupkg.sha512",
     "/Users/kasiadabek/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.1.10/sqlitepclraw.bundle_e_sqlite3.2.1.10.nupkg.sha512",
     "/Users/kasiadabek/.nuget/packages/sqlitepclraw.core/2.1.10/sqlitepclraw.core.2.1.10.nupkg.sha512",
     "/Users/kasiadabek/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.10/sqlitepclraw.lib.e_sqlite3.2.1.10.nupkg.sha512",
@@ -191,16 +191,5 @@
     "/Users/kasiadabek/.nuget/packages/system.threading.tasks.dataflow/8.0.0/system.threading.tasks.dataflow.8.0.0.nupkg.sha512",
     "/Users/kasiadabek/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "WorkshopManager depends on Riok.Mapperly (>= 0.14.0) but Riok.Mapperly 0.14.0 was not found. Riok.Mapperly 1.0.0 was resolved instead.",
-      "libraryId": "Riok.Mapperly",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }

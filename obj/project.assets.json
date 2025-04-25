@@ -2718,13 +2718,20 @@
           }
         }
       },
-      "Riok.Mapperly/1.0.0": {
+      "Riok.Mapperly/4.2.1": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll": {}
+          "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll": {}
+          "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/Riok.Mapperly.targets": {}
         }
       },
       "SQLitePCLRaw.bundle_e_sqlite3/2.1.10": {
@@ -7988,18 +7995,29 @@
         "runtimes/win-x86/native/qpdf.dll"
       ]
     },
-    "Riok.Mapperly/1.0.0": {
-      "sha512": "FiwNk9e/H5R9YcuBbL1rLm7Rt6Yf7v0WqNL2PR478MQdIhCsY7Wa884bWzPOdK5ZjvVNVIGLDqwluDFsiWovPw==",
+    "Riok.Mapperly/4.2.1": {
+      "sha512": "UZeQSieVlHr48t64J4k2s/lvbMeCXvzsXqV2A/0wyNdPpW8Cyn47+9mfWFJjouPxoSFfEhDbxg+WRbFIHvq4Zw==",
       "type": "package",
-      "path": "riok.mapperly/1.0.0",
+      "path": "riok.mapperly/4.2.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
-        "analyzers/dotnet/cs/Riok.Mapperly.Abstractions.dll",
-        "analyzers/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.0/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.0/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.11/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.11/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.4/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.4/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.5/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.5/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.7/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.7/dotnet/cs/Riok.Mapperly.dll",
+        "build/Riok.Mapperly.targets",
         "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll",
-        "riok.mapperly.1.0.0.nupkg.sha512",
+        "lib/netstandard2.0/Riok.Mapperly.Abstractions.xml",
+        "logo.png",
+        "riok.mapperly.4.2.1.nupkg.sha512",
         "riok.mapperly.nuspec"
       ]
     },
@@ -9518,7 +9536,7 @@
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 9.0.0",
       "NLog.Web.AspNetCore >= 5.4.0",
       "QuestPDF >= 2025.4.0",
-      "Riok.Mapperly >= 0.14.0",
+      "Riok.Mapperly >= 4.2.1",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
@@ -9618,7 +9636,7 @@
           },
           "Riok.Mapperly": {
             "target": "Package",
-            "version": "[0.14.0, )"
+            "version": "[4.2.1, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
@@ -9647,17 +9665,5 @@
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.408/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "WorkshopManager depends on Riok.Mapperly (>= 0.14.0) but Riok.Mapperly 0.14.0 was not found. Riok.Mapperly 1.0.0 was resolved instead.",
-      "libraryId": "Riok.Mapperly",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  }
 }
