@@ -8,16 +8,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WorkshopManager.Data;
 using WorkshopManager.Models;
+using WorkshopManager.Services.Interfaces;
 
 namespace WorkshopManager.Controllers
 {
     [Authorize]
     public class ServiceOrderController : Controller
     {
+        private readonly IServiceOrderService _serviceOrderService;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
-        public ServiceOrderController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+
+        public ServiceOrderController(
+            IServiceOrderService serviceOrderService,
+            ApplicationDbContext context,
+            UserManager<IdentityUser> userManager)
         {
+            _serviceOrderService = serviceOrderService;
             _context = context;
             _userManager = userManager;
         }
@@ -36,7 +43,6 @@ namespace WorkshopManager.Controllers
                 ordersQuery = ordersQuery.Where(s => s.Vehicle.LicensePlate == licensePlate);
             }
 
-            // Do ViewBag wrzucamy wszystkie tablice do filtrowania
             ViewBag.LicensePlates = new SelectList(
                 await _context.Vehicles
                     .Select(v => new
@@ -50,7 +56,6 @@ namespace WorkshopManager.Controllers
             return View(await ordersQuery.ToListAsync());
         }
 
-
         // GET: ServiceOrder/Details/5
         [Authorize(Roles = "Admin,Recepcjonista")]
         public async Task<IActionResult> Details(int? id)
@@ -60,13 +65,13 @@ namespace WorkshopManager.Controllers
             var serviceOrder = await _context.ServiceOrders
                 .Include(s => s.AssignedMechanic)
                 .Include(s => s.Vehicle)
-                .Include(s => s.UsedParts) 
+                .Include(s => s.UsedParts)
                 .ThenInclude(up => up.Part)
                 .Include(s => s.JobActivities)
-                .Include(s => s.Comments) 
+                .Include(s => s.Comments)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (serviceOrder == null) return NotFound();
 
+            if (serviceOrder == null) return NotFound();
             return View(serviceOrder);
         }
 
@@ -84,24 +89,12 @@ namespace WorkshopManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,StartDate,EndDate,Status,VehicleId,AssignedMechanicId")] ServiceOrder serviceOrder)
         {
-            if (!ModelState.IsValid)
-            {
-                foreach (var key in ModelState.Keys)
-                {
-                    var state = ModelState[key];
-                    foreach (var error in state.Errors)
-                    {
-                        Console.WriteLine($"{key}: {error.ErrorMessage}");
-                    }
-                }
-            }
-
             if (ModelState.IsValid)
             {
-                _context.Add(serviceOrder);
-                await _context.SaveChangesAsync();
+                await _serviceOrderService.AddAsync(serviceOrder);
                 return RedirectToAction(nameof(Index));
             }
+
             LoadDropdowns(serviceOrder.VehicleId, serviceOrder.AssignedMechanicId);
             return View(serviceOrder);
         }
@@ -112,7 +105,7 @@ namespace WorkshopManager.Controllers
         {
             if (id == null) return NotFound();
 
-            var serviceOrder = await _context.ServiceOrders.FindAsync(id);
+            var serviceOrder = await _serviceOrderService.GetByIdAsync(id.Value);
             if (serviceOrder == null) return NotFound();
 
             LoadDropdowns(serviceOrder.VehicleId, serviceOrder.AssignedMechanicId);
@@ -131,20 +124,20 @@ namespace WorkshopManager.Controllers
             {
                 try
                 {
-                    _context.Update(serviceOrder);
-                    await _context.SaveChangesAsync();
+                    await _serviceOrderService.UpdateAsync(serviceOrder);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ServiceOrderExists(serviceOrder.Id)) return NotFound();
+                    if (!_serviceOrderService.Exists(serviceOrder.Id)) return NotFound();
                     else throw;
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             LoadDropdowns(serviceOrder.VehicleId, serviceOrder.AssignedMechanicId);
             return View(serviceOrder);
         }
-
+        
         // GET: ServiceOrder/Delete/5
         [Authorize(Roles = "Admin,Recepcjonista")]
         public async Task<IActionResult> Delete(int? id)
@@ -155,8 +148,8 @@ namespace WorkshopManager.Controllers
                 .Include(s => s.AssignedMechanic)
                 .Include(s => s.Vehicle)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (serviceOrder == null) return NotFound();
 
+            if (serviceOrder == null) return NotFound();
             return View(serviceOrder);
         }
 
@@ -166,13 +159,7 @@ namespace WorkshopManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var serviceOrder = await _context.ServiceOrders.FindAsync(id);
-            if (serviceOrder != null)
-            {
-                _context.ServiceOrders.Remove(serviceOrder);
-                await _context.SaveChangesAsync();
-            }
-
+            await _serviceOrderService.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
@@ -195,7 +182,6 @@ namespace WorkshopManager.Controllers
                 "Id", "Display", selectedVehicleId
             );
 
-            // 👇 Pobieramy użytkowników z bazy i filtrujemy ręcznie
             var allUsers = _userManager.Users.ToList();
             var mechanicy = allUsers
                 .Where(u => _userManager.IsInRoleAsync(u, "Mechanik").GetAwaiter().GetResult())

@@ -14,6 +14,7 @@ QuestPDF.Settings.License = LicenseType.Community;
 
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IVehicleService, VehicleService>();
+builder.Services.AddScoped<IServiceOrderService, ServiceOrderService>();
 
 // 🔠 Ustawienie kultury "pl-PL"
 var cultureInfo = new CultureInfo("pl-PL");
