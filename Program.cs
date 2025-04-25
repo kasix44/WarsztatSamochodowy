@@ -17,6 +17,8 @@ builder.Services.AddScoped<IVehicleService, VehicleService>();
 builder.Services.AddScoped<IServiceOrderService, ServiceOrderService>();
 builder.Services.AddScoped<IPartService, PartService>();
 builder.Services.AddScoped<IJobActivityService, JobActivityService>();
+builder.Services.AddScoped<IUsedPartService, UsedPartService>();
+builder.Services.AddScoped<IServiceOrderCommentService, ServiceOrderCommentService>();
 
 // 🔠 Ustawienie kultury "pl-PL"
 var cultureInfo = new CultureInfo("pl-PL");

@@ -47,13 +47,25 @@ namespace WorkshopManager.Services
 
         public async Task DeleteAsync(int id)
         {
+            var comments = _context.ServiceOrderComments
+                .Where(c => c.ServiceOrderId == id);
+            _context.ServiceOrderComments.RemoveRange(comments);
+
+            var usedParts = _context.UsedParts
+                .Where(up => up.ServiceOrderId == id);
+            _context.UsedParts.RemoveRange(usedParts);
+
+            var activities = _context.JobActivities
+                .Where(a => a.ServiceOrderId == id);
+            _context.JobActivities.RemoveRange(activities);
+
             var order = await _context.ServiceOrders.FindAsync(id);
             if (order != null)
-            {
                 _context.ServiceOrders.Remove(order);
-                await _context.SaveChangesAsync();
-            }
+
+            await _context.SaveChangesAsync();
         }
+
 
         public bool Exists(int id)
         {

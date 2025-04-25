@@ -16,15 +16,21 @@ namespace WorkshopManager.Controllers
     public class ServiceOrderController : Controller
     {
         private readonly IServiceOrderService _serviceOrderService;
+        private readonly IServiceOrderCommentService _commentService;
+        private readonly IUsedPartService _usedPartService;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
 
         public ServiceOrderController(
             IServiceOrderService serviceOrderService,
+            IServiceOrderCommentService commentService,
+            IUsedPartService usedPartService,
             ApplicationDbContext context,
             UserManager<IdentityUser> userManager)
         {
             _serviceOrderService = serviceOrderService;
+            _commentService = commentService;
+            _usedPartService = usedPartService;
             _context = context;
             _userManager = userManager;
         }
@@ -208,8 +214,7 @@ namespace WorkshopManager.Controllers
             return View(viewModel);
         }
 
-
-// POST: ServiceOrder/AddUsedPart
+        // POST: ServiceOrder/AddUsedPart
         [Authorize(Roles = "Admin,Recepcjonista")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -224,29 +229,21 @@ namespace WorkshopManager.Controllers
                     Quantity = model.Quantity
                 };
 
-                _context.UsedParts.Add(usedPart);
-                await _context.SaveChangesAsync();
+                await _usedPartService.AddAsync(usedPart);
                 return RedirectToAction("Details", new { id = model.ServiceOrderId });
             }
 
-            // Przywracamy części do modelu, jeśli jest błąd
             model.Parts = new SelectList(_context.Parts, "Id", "Name", model.PartId);
             return View(model);
         }
         
-        //usuwanie czesci 
+        // POST: ServiceOrder/DeleteUsedPart
         [Authorize(Roles = "Admin,Recepcjonista")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteUsedPart(int id, int serviceOrderId)
         {
-            var part = await _context.UsedParts.FindAsync(id);
-            if (part != null)
-            {
-                _context.UsedParts.Remove(part);
-                await _context.SaveChangesAsync();
-            }
-
+            await _usedPartService.DeleteAsync(id);
             return RedirectToAction("Details", new { id = serviceOrderId });
         }
 
@@ -383,85 +380,78 @@ namespace WorkshopManager.Controllers
             return View(model);
         }
         
-        [HttpPost]
-[ValidateAntiForgeryToken]
-[Authorize(Roles = "Admin,Recepcjonista,Mechanik")]
-public async Task<IActionResult> AddComment(int serviceOrderId, string content)
-{
-    var user = await _userManager.GetUserAsync(User);
-
-    if (!string.IsNullOrWhiteSpace(content) && user != null)
-    {
-        var comment = new ServiceOrderComment
+         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Recepcjonista,Mechanik")]
+        public async Task<IActionResult> AddComment(int serviceOrderId, string content)
         {
-            Content = content,
-            CreatedAt = DateTime.Now,
-            ServiceOrderId = serviceOrderId,
-            Author = user.UserName,     // lub user.Email, jeśli wolisz
-            AuthorId = user.Id
-        };
+            var user = await _userManager.GetUserAsync(User);
 
-        _context.ServiceOrderComments.Add(comment);
-        await _context.SaveChangesAsync();
-    }
+            if (!string.IsNullOrWhiteSpace(content) && user != null)
+            {
+                var comment = new ServiceOrderComment
+                {
+                    Content = content,
+                    CreatedAt = DateTime.Now,
+                    ServiceOrderId = serviceOrderId,
+                    Author = user.UserName,
+                    AuthorId = user.Id
+                };
 
-    var isMechanic = await _userManager.IsInRoleAsync(user, "Mechanik");
+                await _commentService.AddAsync(comment);
+            }
 
-    return RedirectToAction(
-        isMechanic ? "MechanicDetails" : "Details",
-        new { id = serviceOrderId });
-}
+            var isMechanic = await _userManager.IsInRoleAsync(user, "Mechanik");
+            return RedirectToAction(
+                isMechanic ? "MechanicDetails" : "Details",
+                new { id = serviceOrderId });
+        }
 
-[HttpGet]
-[Authorize(Roles = "Admin,Mechanik,Recepcjonista")]
-public async Task<IActionResult> EditComment(int id)
-{
-    var comment = await _context.ServiceOrderComments.FindAsync(id);
-    var currentUserId = _userManager.GetUserId(User);
-    var isAdmin = User.IsInRole("Admin");
+        [HttpGet]
+        [Authorize(Roles = "Admin,Mechanik,Recepcjonista")]
+        public async Task<IActionResult> EditComment(int id)
+        {
+            var comment = await _commentService.GetByIdAsync(id);
+            var currentUserId = _userManager.GetUserId(User);
+            var isAdmin = User.IsInRole("Admin");
 
-    if (comment == null || (comment.AuthorId != currentUserId && !isAdmin))
-        return Forbid();
+            if (comment == null || (comment.AuthorId != currentUserId && !isAdmin))
+                return Forbid();
 
-    return View(comment);
-}
+            return View(comment);
+        }
 
-[HttpPost]
-[ValidateAntiForgeryToken]
-[Authorize(Roles = "Admin,Mechanik,Recepcjonista")]
-public async Task<IActionResult> EditComment(int id, string text)
-{
-    var comment = await _context.ServiceOrderComments.FindAsync(id);
-    var currentUserId = _userManager.GetUserId(User);
-    var isAdmin = User.IsInRole("Admin");
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Mechanik,Recepcjonista")]
+        public async Task<IActionResult> EditComment(int id, string text)
+        {
+            var comment = await _commentService.GetByIdAsync(id);
+            var currentUserId = _userManager.GetUserId(User);
+            var isAdmin = User.IsInRole("Admin");
 
-    if (comment == null || (comment.AuthorId != currentUserId && !isAdmin))
-        return Forbid();
+            if (comment == null || (comment.AuthorId != currentUserId && !isAdmin))
+                return Forbid();
 
-    comment.Content = text;
-    await _context.SaveChangesAsync();
-    return RedirectToAction("Details", new { id = comment.ServiceOrderId });
-}
+            comment.Content = text;
+            await _commentService.UpdateAsync(comment);
+            return RedirectToAction("Details", new { id = comment.ServiceOrderId });
+        }
 
-[HttpPost]
-[ValidateAntiForgeryToken]
-[Authorize(Roles = "Admin,Mechanik,Recepcjonista")]
-public async Task<IActionResult> DeleteComment(int id)
-{
-    var comment = await _context.ServiceOrderComments.FindAsync(id);
-    var currentUserId = _userManager.GetUserId(User);
-    var isAdmin = User.IsInRole("Admin");
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Mechanik,Recepcjonista")]
+        public async Task<IActionResult> DeleteComment(int id)
+        {
+            var comment = await _commentService.GetByIdAsync(id);
+            var currentUserId = _userManager.GetUserId(User);
+            var isAdmin = User.IsInRole("Admin");
 
-    if (comment == null || (comment.AuthorId != currentUserId && !isAdmin))
-        return Forbid();
+            if (comment == null || (comment.AuthorId != currentUserId && !isAdmin))
+                return Forbid();
 
-    _context.ServiceOrderComments.Remove(comment);
-    await _context.SaveChangesAsync();
-    return RedirectToAction("Details", new { id = comment.ServiceOrderId });
-}
-
-
-
-
+            await _commentService.DeleteAsync(id);
+            return RedirectToAction("Details", new { id = comment.ServiceOrderId });
+        }
     }
 }
