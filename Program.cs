@@ -46,7 +46,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 // 🔐 Konfiguracja Identity + role
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
-    options.SignIn.RequireConfirmedAccount = true;
+    options.SignIn.RequireConfirmedAccount = false;
 })
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -78,7 +78,6 @@ else
 
 app.UseRequestLocalization(); // <<< WAŻNE! Middleware do kultury PL
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
