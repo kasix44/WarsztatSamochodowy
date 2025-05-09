@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/WorkshopManager.csproj": {}
+    "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/WorkshopManager.csproj": {}
   },
   "projects": {
-    "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/WorkshopManager.csproj": {
+    "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/WorkshopManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/WorkshopManager.csproj",
+        "projectUniqueName": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/WorkshopManager.csproj",
         "projectName": "WorkshopManager",
-        "projectPath": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/WorkshopManager.csproj",
+        "projectPath": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/WorkshopManager.csproj",
         "packagesPath": "/Users/kasiadabek/.nuget/packages/",
-        "outputPath": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/obj/",
+        "outputPath": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/kasiadabek/.nuget/NuGet/NuGet.Config"
@@ -37,7 +37,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -95,6 +96,18 @@
               "target": "Package",
               "version": "[4.2.1, )"
             },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
@@ -119,7 +132,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.408/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

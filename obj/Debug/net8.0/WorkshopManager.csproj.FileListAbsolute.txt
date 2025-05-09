@@ -329,3 +329,12 @@
 /Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Drawing.Common.dll
 /Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Security.Cryptography.ProtectedData.dll
 /Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Windows.Extensions.dll
+/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/bin/Debug/net8.0/Serilog.dll
+/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/bin/Debug/net8.0/Serilog.AspNetCore.dll
+/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/bin/Debug/net8.0/Serilog.Extensions.Hosting.dll
+/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/bin/Debug/net8.0/Serilog.Extensions.Logging.dll
+/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/bin/Debug/net8.0/Serilog.Formatting.Compact.dll
+/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/bin/Debug/net8.0/Serilog.Settings.Configuration.dll
+/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/bin/Debug/net8.0/Serilog.Sinks.Console.dll
+/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/bin/Debug/net8.0/Serilog.Sinks.Debug.dll
+/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/bin/Debug/net8.0/Serilog.Sinks.File.dll

@@ -7,8 +7,32 @@ using QuestPDF.Infrastructure;
 using WorkshopManager.Services;
 using WorkshopManager.Services.Interfaces;
 using WorkshopManager.Mappers;
+using Serilog;
+using Serilog.Events;
 
-var builder = WebApplication.CreateBuilder(args);
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Verbose()
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Verbose)
+    .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Verbose)
+    .MinimumLevel.Override("Microsoft.AspNetCore.Identity", LogEventLevel.Verbose)
+    .MinimumLevel.Override("System", LogEventLevel.Verbose)
+    .Enrich.FromLogContext()
+    .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] [{SourceContext}] {Message:lj}{NewLine}{Exception}")
+    .WriteTo.File(
+        Path.Combine(AppContext.BaseDirectory, "logs/workshop-app-.log"),
+        rollingInterval: RollingInterval.Hour,
+        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] [{SourceContext}] {Message:lj}{NewLine}{Exception}",
+        shared: true,
+        flushToDiskInterval: TimeSpan.FromSeconds(1)
+    )
+    .CreateLogger();
+
+try
+{
+    Log.Information("Starting WorkshopManager application");
+    var builder = WebApplication.CreateBuilder(args);
+
+    builder.Host.UseSerilog();
 
 QuestPDF.Settings.License = LicenseType.Community;
 
@@ -20,12 +44,10 @@ builder.Services.AddScoped<IJobActivityService, JobActivityService>();
 builder.Services.AddScoped<IUsedPartService, UsedPartService>();
 builder.Services.AddScoped<IServiceOrderCommentService, ServiceOrderCommentService>();
 
-// 🔠 Ustawienie kultury "pl-PL"
 var cultureInfo = new CultureInfo("pl-PL");
 CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
 CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
-// 🌍 Konfiguracja lokalizacji żądań (RequestLocalization)
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
     var supportedCultures = new[] { cultureInfo };
@@ -34,7 +56,6 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedUICultures = supportedCultures;
 });
 
-// 🔗 Połączenie z bazą danych
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
                        throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
@@ -46,7 +67,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-// 🔐 Konfiguracja Identity + role
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
@@ -68,7 +88,6 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.ExpireTimeSpan = TimeSpan.FromDays(7);
 });
 
-// Add mappers
 builder.Services.AddScoped<PartMapper>();
 builder.Services.AddScoped<UsedPartMapper>();
 builder.Services.AddScoped<ServiceOrderMapper>();
@@ -80,9 +99,18 @@ builder.Services.AddScoped<CustomerMapper>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "Workshop Manager API",
+        Version = "v1",
+        Description = "API dla systemu zarządzania warsztatem samochodowym"
+    });
+});
+
 var app = builder.Build();
 
-// 🌐 Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
@@ -93,11 +121,20 @@ else
     app.UseHsts();
 }
 
-app.UseRequestLocalization(); // <<< WAŻNE! Middleware do kultury PL
+app.UseRequestLocalization();
 
 app.UseStaticFiles();
 
 app.UseRouting();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Workshop Manager API v1");
+    });
+}
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -107,9 +144,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
-// ===============================
-// SEED RÓL + KONT TESTOWYCH
-// ===============================
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
@@ -167,3 +201,12 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
+}

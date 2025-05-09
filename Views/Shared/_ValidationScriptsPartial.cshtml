@@ -3,9 +3,18 @@
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
 <script>
-    // ✅ Naprawa walidatora liczby dla kultury pl-PL (przecinek zamiast kropki)
     $.validator.methods.number = function (value, element) {
-        // Akceptuj liczby z przecinkiem, np. 123,45
-        return this.optional(element) || /^-?\d+(,\d+)?$/.test(value);
+        return this.optional(element) || /^-?\d+([\.,]\d+)?$/.test(value);
     };
+
+    $(document).ready(function() {
+        $('form').submit(function() {
+            $('input[type="number"]').each(function() {
+                var value = $(this).val();
+                if (value && value.includes('.')) {
+                    $(this).val(value.replace('.', ','));
+                }
+            });
+        });
+    });
 </script>

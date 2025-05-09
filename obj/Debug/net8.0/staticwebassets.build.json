@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "7pQBF7UV6fB+ZHlOC8K7haQGlnSYo0l2Cx6QgXH+atw=",
+  "Hash": "7tVQa8QKzmuCW/USvBLamWe5z4X1U3lPbjVXOLbIQNY=",
   "Source": "WorkshopManager",
   "BasePath": "_content/WorkshopManager",
   "Mode": "Default",
@@ -2428,6 +2428,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/uploads/835f909c-9a7b-454e-8cbf-8fc039f03819.jpg"
+    },
+    {
+      "Identity": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/8ca90f9f-fd35-4ff8-83f3-eb6e1820bfae.jpg",
+      "SourceId": "WorkshopManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/",
+      "BasePath": "_content/WorkshopManager",
+      "RelativePath": "uploads/8ca90f9f-fd35-4ff8-83f3-eb6e1820bfae.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/8ca90f9f-fd35-4ff8-83f3-eb6e1820bfae.jpg"
     },
     {
       "Identity": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/91fb8421-10a1-4851-929d-0d02987e178a.jpg",

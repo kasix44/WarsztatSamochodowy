@@ -15,8 +15,9 @@
 
     <div class="form-group">
         <label asp-for="UnitPrice" class="control-label">Cena jednostkowa</label>
-        <input asp-for="UnitPrice" class="form-control" type="text" />
+        <input asp-for="UnitPrice" class="form-control" type="text" inputmode="decimal" placeholder="np. 123,45" pattern="[0-9]+([,\.][0-9]+)?" />
         <span asp-validation-for="UnitPrice" class="text-danger"></span>
+        <small class="form-text text-muted">Wprowadź kwotę używając przecinka dla części dziesiętnych (np. 123,45)</small>
     </div>
 
     <button type="submit" class="btn btn-primary">Dodaj</button>

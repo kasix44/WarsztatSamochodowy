@@ -18,8 +18,9 @@
 
     <div class="form-group">
         <label asp-for="LaborCost" class="control-label">Koszt robocizny</label>
-        <input asp-for="LaborCost" class="form-control" type="text" />
+        <input asp-for="LaborCost" class="form-control" type="text" inputmode="decimal" placeholder="np. 123,45" pattern="[0-9]+([,\.][0-9]+)?" />
         <span asp-validation-for="LaborCost" class="text-danger"></span>
+        <small class="form-text text-muted">Wprowadź kwotę używając przecinka dla części dziesiętnych (np. 123,45)</small>
     </div>
 
     <button type="submit" class="btn btn-primary">Dodaj</button>
