@@ -66,13 +66,28 @@ namespace WorkshopManager.Services
 
         public async Task DeleteAsync(int id)
         {
-            var order = await _context.ServiceOrders.FindAsync(id);
+            var order = await _context.ServiceOrders
+                .Include(o => o.JobActivities)
+                .FirstOrDefaultAsync(o => o.Id == id);
+
             if (order != null)
             {
+                // Odłącz czynności od zlecenia
+                if (order.JobActivities != null)
+                {
+                    foreach (var job in order.JobActivities)
+                    {
+                        job.ServiceOrderId = null;
+                        job.ServiceOrder = null;
+                    }
+                }
+
+                // Usuń zlecenie
                 _context.ServiceOrders.Remove(order);
                 await _context.SaveChangesAsync();
             }
         }
+
 
         public async Task<bool> ExistsAsync(int id)
         {

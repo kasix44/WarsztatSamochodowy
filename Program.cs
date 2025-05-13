@@ -10,6 +10,7 @@ using WorkshopManager.Mappers;
 using Serilog;
 using Serilog.Events;
 
+//serilog - glowny logger 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Verbose()
     .MinimumLevel.Override("Microsoft", LogEventLevel.Verbose)
@@ -33,9 +34,10 @@ try
     var builder = WebApplication.CreateBuilder(args);
 
     builder.Host.UseSerilog();
-
+//licencja pdf 
 QuestPDF.Settings.License = LicenseType.Community;
 
+//rejestracja serwisów DI 
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IVehicleService, VehicleService>();
 builder.Services.AddScoped<IServiceOrderService, ServiceOrderService>();
@@ -44,6 +46,7 @@ builder.Services.AddScoped<IJobActivityService, JobActivityService>();
 builder.Services.AddScoped<IUsedPartService, UsedPartService>();
 builder.Services.AddScoped<IServiceOrderCommentService, ServiceOrderCommentService>();
 
+//ustawienia kultury 
 var cultureInfo = new CultureInfo("pl-PL");
 CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
 CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
@@ -59,6 +62,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
                        throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
+//polaczenie z baza 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString, sqlServerOptions => sqlServerOptions.EnableRetryOnFailure(
         maxRetryCount: 5,
@@ -67,6 +71,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+//identity - autoryzacja i role 
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
@@ -88,6 +93,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.ExpireTimeSpan = TimeSpan.FromDays(7);
 });
 
+//mappery 
 builder.Services.AddScoped<PartMapper>();
 builder.Services.AddScoped<UsedPartMapper>();
 builder.Services.AddScoped<ServiceOrderMapper>();
@@ -96,9 +102,11 @@ builder.Services.AddScoped<JobActivityMapper>();
 builder.Services.AddScoped<VehicleMapper>();
 builder.Services.AddScoped<CustomerMapper>();
 
+//mvc + razor pages
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+//swagger - dokumentacja API
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -144,6 +152,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
+//seed uzytkownikow 
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();

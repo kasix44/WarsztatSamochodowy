@@ -37,8 +37,4 @@ public partial class CustomerMapper
         entity.Customer = null;
         return entity;
     }
-
-    // You can also add custom mapping methods if needed:
-    // [MapProperty(nameof(CustomerDto.FirstName), nameof(Customer.FirstName))]
-    // public partial Customer ToEntityWithCustomMapping(CustomerDto dto);
 } 

@@ -1,296 +1,308 @@
 {
   "Files": [
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/obj/Debug/net8.0/scopedcss/projectbundle/WorkshopManager.bundle.scp.css",
-      "PackagePath": "staticwebassets/WorkshopManager.bundle.scp.css"
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/obj/Debug/net8.0/scopedcss/projectbundle/WorkshopManager.bundle.scp.css",
+      "PackagePath": "staticwebassets/WorkshopManager.ikufh299mk.bundle.scp.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/css/site.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/favicon.ico",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/favicon.ico",
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/js/site.js",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/LICENSE",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/LICENSE",
       "PackagePath": "staticwebassets/lib/bootstrap"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
       "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/LICENSE.txt"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/jquery-validation/LICENSE.md",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/jquery-validation/LICENSE.md",
       "PackagePath": "staticwebassets/lib/jquery-validation/LICENSE.md"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/jquery-validation/dist/additional-methods.js",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/jquery-validation/dist/additional-methods.js",
       "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.js"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
       "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.min.js"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
       "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.js"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
       "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.min.js"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/jquery/LICENSE.txt",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/jquery/LICENSE.txt",
       "PackagePath": "staticwebassets/lib/jquery/LICENSE.txt"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/jquery/dist/jquery.js",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/jquery/dist/jquery.js",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.js"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/jquery/dist/jquery.min.js",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/jquery/dist/jquery.min.js",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.js"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/lib/jquery/dist/jquery.min.map",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/lib/jquery/dist/jquery.min.map",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/05ec8b5d-c322-4c8c-ad85-cde36239fd38.jpg",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/05ec8b5d-c322-4c8c-ad85-cde36239fd38.jpg",
       "PackagePath": "staticwebassets/uploads/05ec8b5d-c322-4c8c-ad85-cde36239fd38.jpg"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/3fb06667-c1f6-4749-8312-5c33c894f24a.jpg",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/0b00d821-2a03-480a-9885-518c118d15f4.jpg",
+      "PackagePath": "staticwebassets/uploads/0b00d821-2a03-480a-9885-518c118d15f4.jpg"
+    },
+    {
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/3fb06667-c1f6-4749-8312-5c33c894f24a.jpg",
       "PackagePath": "staticwebassets/uploads/3fb06667-c1f6-4749-8312-5c33c894f24a.jpg"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/6e844f0a-d33e-4220-813c-2ea45b85f67d.HEIC",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/6e844f0a-d33e-4220-813c-2ea45b85f67d.HEIC",
       "PackagePath": "staticwebassets/uploads/6e844f0a-d33e-4220-813c-2ea45b85f67d.HEIC"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/8021cbbf-48f7-45c4-8356-42aafe63edb1.jpg",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/8021cbbf-48f7-45c4-8356-42aafe63edb1.jpg",
       "PackagePath": "staticwebassets/uploads/8021cbbf-48f7-45c4-8356-42aafe63edb1.jpg"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/835f909c-9a7b-454e-8cbf-8fc039f03819.jpg",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/835f909c-9a7b-454e-8cbf-8fc039f03819.jpg",
       "PackagePath": "staticwebassets/uploads/835f909c-9a7b-454e-8cbf-8fc039f03819.jpg"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/8ca90f9f-fd35-4ff8-83f3-eb6e1820bfae.jpg",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/8ca90f9f-fd35-4ff8-83f3-eb6e1820bfae.jpg",
       "PackagePath": "staticwebassets/uploads/8ca90f9f-fd35-4ff8-83f3-eb6e1820bfae.jpg"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/91fb8421-10a1-4851-929d-0d02987e178a.jpg",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/91fb8421-10a1-4851-929d-0d02987e178a.jpg",
       "PackagePath": "staticwebassets/uploads/91fb8421-10a1-4851-929d-0d02987e178a.jpg"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/a36bfe30-2d00-4b6e-a7a0-71bcd39f59d9.jpg",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/a36bfe30-2d00-4b6e-a7a0-71bcd39f59d9.jpg",
       "PackagePath": "staticwebassets/uploads/a36bfe30-2d00-4b6e-a7a0-71bcd39f59d9.jpg"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/b5a54069-d11d-4dc2-82d7-8b7089bfebf8.jpg",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/b5a54069-d11d-4dc2-82d7-8b7089bfebf8.jpg",
       "PackagePath": "staticwebassets/uploads/b5a54069-d11d-4dc2-82d7-8b7089bfebf8.jpg"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/b832f1a9-1b15-48fc-88c2-9077111eb3a1.jpg",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/b832f1a9-1b15-48fc-88c2-9077111eb3a1.jpg",
       "PackagePath": "staticwebassets/uploads/b832f1a9-1b15-48fc-88c2-9077111eb3a1.jpg"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/bfc93d86-46df-4d14-9aa7-173c79fda7ae.jpg",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/bfc93d86-46df-4d14-9aa7-173c79fda7ae.jpg",
       "PackagePath": "staticwebassets/uploads/bfc93d86-46df-4d14-9aa7-173c79fda7ae.jpg"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WorkshopManager/WorkshopManager/wwwroot/uploads/porsche.jpg",
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/f6ece2a1-ab2a-4e6b-a7e0-825a41bc3809.jpg",
+      "PackagePath": "staticwebassets/uploads/f6ece2a1-ab2a-4e6b-a7e0-825a41bc3809.jpg"
+    },
+    {
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/porsche.jpg",
       "PackagePath": "staticwebassets/uploads/porsche.jpg"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.WorkshopManager.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.WorkshopManager.Microsoft.AspNetCore.StaticWebAssets.props",

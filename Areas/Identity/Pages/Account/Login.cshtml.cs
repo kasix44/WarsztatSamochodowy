@@ -26,6 +26,7 @@ namespace WorkshopManager.Areas.Identity.Pages.Account
         [TempData]
         public string ErrorMessage { get; set; }
 
+        //model danych formularza do logowania
         public class InputModel
         {
             [Required(ErrorMessage = "Email jest wymagany.")]
