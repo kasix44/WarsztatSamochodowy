@@ -23,7 +23,7 @@ namespace WorkshopManager.Services
             var orders = await _context.ServiceOrders
                 .Include(o => o.Vehicle)
                 .Include(o => o.AssignedMechanic)
-                .Include(o => o.UsedParts)
+                .Include(o => o.UsedParts!)
                     .ThenInclude(up => up.Part)
                 .Include(o => o.JobActivities)
                 .Include(o => o.Comments)
@@ -37,7 +37,7 @@ namespace WorkshopManager.Services
             var order = await _context.ServiceOrders
                 .Include(o => o.Vehicle)
                 .Include(o => o.AssignedMechanic)
-                .Include(o => o.UsedParts)
+                .Include(o => o.UsedParts!)
                     .ThenInclude(up => up.Part)
                 .Include(o => o.JobActivities)
                 .Include(o => o.Comments)
@@ -67,27 +67,30 @@ namespace WorkshopManager.Services
         public async Task DeleteAsync(int id)
         {
             var order = await _context.ServiceOrders
-                .Include(o => o.JobActivities)
-                .FirstOrDefaultAsync(o => o.Id == id);
+                .Include(so => so.JobActivities) // Eagerly load JobActivities
+                .FirstOrDefaultAsync(so => so.Id == id);
 
             if (order != null)
             {
-                // Odłącz czynności od zlecenia
-                if (order.JobActivities != null)
+                // Load and remove UsedParts
+                var usedParts = await _context.UsedParts.Where(up => up.ServiceOrderId == id).ToListAsync();
+                if (usedParts.Any())
                 {
-                    foreach (var job in order.JobActivities)
-                    {
-                        job.ServiceOrderId = null;
-                        job.ServiceOrder = null;
-                    }
+                    _context.UsedParts.RemoveRange(usedParts);
                 }
 
-                // Usuń zlecenie
+                // Load and remove Comments
+                var comments = await _context.ServiceOrderComments.Where(c => c.ServiceOrderId == id).ToListAsync();
+                if (comments.Any())
+                {
+                    _context.ServiceOrderComments.RemoveRange(comments);
+                }
+
+                // Then remove the ServiceOrder
                 _context.ServiceOrders.Remove(order);
                 await _context.SaveChangesAsync();
             }
         }
-
 
         public async Task<bool> ExistsAsync(int id)
         {

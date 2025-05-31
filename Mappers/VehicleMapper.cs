@@ -1,47 +1,41 @@
 using Riok.Mapperly.Abstractions;
 using WorkshopManager.DTOs;
 using WorkshopManager.Models;
+using System; // Required for Lazy<T>
 
 namespace WorkshopManager.Mappers;
 
 [Mapper]
 public partial class VehicleMapper
 {
-    [MapProperty(nameof(Vehicle.Customer), nameof(VehicleDto.Customer))]
-    public partial VehicleDto ToDto(Vehicle vehicle);
+    private readonly Lazy<CustomerMapper> _customerMapperLazy;
+
+    [MapperConstructor]
+    public VehicleMapper(Lazy<CustomerMapper> customerMapperLazy)
+    {
+        _customerMapperLazy = customerMapperLazy;
+    }
+
+    // Guide Mapperly to use our custom method for the Customer property.
+    [MapProperty(nameof(Vehicle.Customer), nameof(VehicleDto.Customer), Use = nameof(MapToShallowCustomerDto))]
+    public partial VehicleDto? ToDto(Vehicle? vehicle);
     
-    [MapProperty(nameof(VehicleDto.Customer), nameof(Vehicle.Customer))]
-    public partial Vehicle ToEntity(VehicleDto dto);
+    [MapProperty(nameof(VehicleDto.Customer), nameof(Vehicle.Customer), Use = nameof(MapToShallowCustomerEntity))]
+    public partial Vehicle? ToEntity(VehicleDto? dto);
     
-    private CustomerDto MapCustomer(Customer customer)
+    // Custom method to map Customer to CustomerDto (shallow version)
+    public CustomerDto? MapToShallowCustomerDto(Customer? customer)
     {
         if (customer == null) return null;
-        return new CustomerDto
-        {
-            Id = customer.Id,
-            FirstName = customer.FirstName,
-            LastName = customer.LastName,
-            PhoneNumber = customer.PhoneNumber,
-            Email = customer.Email,
-            Address = customer.Address,
-            // Don't map Vehicles here to prevent circular reference
-            Vehicles = null
-        };
+        return _customerMapperLazy.Value.ToShallowDto(customer);
     }
     
-    private Customer MapCustomer(CustomerDto dto)
+    // Custom method to map CustomerDto to Customer (shallow version)
+    public Customer? MapToShallowCustomerEntity(CustomerDto? customerDto)
     {
-        if (dto == null) return null;
-        return new Customer
-        {
-            Id = dto.Id,
-            FirstName = dto.FirstName,
-            LastName = dto.LastName,
-            PhoneNumber = dto.PhoneNumber,
-            Email = dto.Email,
-            Address = dto.Address,
-            // Don't map Vehicles here to prevent circular reference
-            Vehicles = null
-        };
+        if (customerDto == null) return null;
+        return _customerMapperLazy.Value.ToShallowEntity(customerDto);
     }
+
+    // The old private MapCustomer methods are no longer needed as we explicitly call CustomerMapper's shallow methods.
 } 

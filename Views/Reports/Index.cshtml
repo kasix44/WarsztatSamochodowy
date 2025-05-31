@@ -1,24 +1,38 @@
 @model WorkshopManager.Models.ReportFilterViewModel
 
-<form asp-action="Generate" method="post">
-    <div class="form-group">
-        <label for="CustomerEmail">Klient</label>
-        <select asp-for="CustomerEmail" class="form-control" asp-items="Model.Customers">
-            <option value="">-- wybierz klienta --</option>
-        </select>
-    </div>
-    
-    <div class="form-group">
-        <label for="LicensePlate">Tablica rejestracyjna</label>
-        <select asp-for="LicensePlate" class="form-control" asp-items="Model.LicensePlates">
-            <option value="">-- wybierz pojazd --</option>
-        </select>
-    </div>
+<div class="container mt-4">
+    <h2>Generowanie raportu</h2>
 
-    <div class="form-group">
-        <label for="Month">Miesiąc</label>
-        <input asp-for="Month" class="form-control" placeholder="rrrr-mm" />
-    </div>
+    <form asp-action="Generate" method="post" class="mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="CustomerEmail">Klient</label>
+                    <select asp-for="CustomerEmail" asp-items="Model.Customers" class="form-control">
+                        <option value="">-- Wybierz klienta --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="LicensePlate">Pojazd</label>
+                    <select asp-for="LicensePlate" asp-items="Model.LicensePlates" class="form-control">
+                        <option value="">-- Wybierz pojazd --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="Month">Miesiąc</label>
+                    <input asp-for="Month" type="month" class="form-control" />
+                </div>
+            </div>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Generuj raport</button>
-</form>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Generuj raport</button>
+            </div>
+        </div>
+    </form>
+</div>

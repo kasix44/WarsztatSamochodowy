@@ -8,12 +8,12 @@ namespace WorkshopManager.Mappers;
 public partial class JobActivityMapper
 {
     [MapProperty(nameof(JobActivity.ServiceOrder), nameof(JobActivityDto.ServiceOrder))]
-    public partial JobActivityDto ToDto(JobActivity activity);
+    public partial JobActivityDto? ToDto(JobActivity? activity);
 
     [MapProperty(nameof(JobActivityDto.ServiceOrder), nameof(JobActivity.ServiceOrder))]
-    public partial JobActivity ToEntity(JobActivityDto dto);
+    public partial JobActivity? ToEntity(JobActivityDto? dto);
 
-    private ServiceOrderDto MapServiceOrder(ServiceOrder order)
+    private ServiceOrderDto? MapServiceOrder(ServiceOrder? order)
     {
         if (order == null) return null;
         return new ServiceOrderDto
@@ -32,7 +32,7 @@ public partial class JobActivityMapper
         };
     }
 
-    private ServiceOrder MapServiceOrder(ServiceOrderDto dto)
+    private ServiceOrder? MapServiceOrder(ServiceOrderDto? dto)
     {
         if (dto == null) return null;
         return new ServiceOrder

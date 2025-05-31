@@ -46,8 +46,12 @@ namespace WorkshopManager.Services
 
         public async Task UpdateAsync(ServiceOrderCommentDto commentDto)
         {
-            var comment = _mapper.ToEntity(commentDto);
-            _context.ServiceOrderComments.Update(comment);
+            var existingComment = await _context.ServiceOrderComments.FindAsync(commentDto.Id);
+            if (existingComment == null)
+                throw new KeyNotFoundException($"Comment with ID {commentDto.Id} not found.");
+
+            var updatedComment = _mapper.ToEntity(commentDto);
+            _context.Entry(existingComment).CurrentValues.SetValues(updatedComment);
             await _context.SaveChangesAsync();
         }
 

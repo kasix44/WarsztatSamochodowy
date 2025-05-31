@@ -7,25 +7,26 @@ namespace WorkshopManager.Mappers;
 [Mapper]
 public partial class UsedPartMapper
 {
-    private readonly PartMapper _partMapper = new();
+    private readonly PartMapper _partMapper;
 
     [MapperConstructor]
-    public UsedPartMapper()
+    public UsedPartMapper(PartMapper partMapper)
     {
+        _partMapper = partMapper;
     }
 
     [MapProperty(nameof(UsedPart.Part), nameof(UsedPartDto.Part))]
-    [MapProperty(nameof(UsedPart.ServiceOrder), nameof(UsedPartDto.ServiceOrder))]
-    public partial UsedPartDto ToDto(UsedPart part);
+    [MapProperty(nameof(UsedPart.ServiceOrder), nameof(UsedPartDto.ServiceOrder), Use = nameof(MapServiceOrderToDto))]
+    public partial UsedPartDto? ToDto(UsedPart? part);
 
     [MapProperty(nameof(UsedPartDto.Part), nameof(UsedPart.Part))]
-    [MapProperty(nameof(UsedPartDto.ServiceOrder), nameof(UsedPart.ServiceOrder))]
-    public partial UsedPart ToEntity(UsedPartDto dto);
+    [MapProperty(nameof(UsedPartDto.ServiceOrderId), nameof(UsedPart.ServiceOrderId))]
+    public partial UsedPart? ToEntity(UsedPartDto? dto);
 
-    private PartDto MapPart(Part part) => _partMapper.ToDto(part);
-    private Part MapPart(PartDto dto) => _partMapper.ToEntity(dto);
+    private PartDto? MapPartToDto(Part? part) => _partMapper.ToDto(part);
+    private Part? MapPartFromDto(PartDto? dto) => _partMapper.ToEntity(dto);
 
-    private ServiceOrderDto MapServiceOrder(ServiceOrder order)
+    private ServiceOrderDto? MapServiceOrderToDto(ServiceOrder? order)
     {
         if (order == null) return null;
         return new ServiceOrderDto
@@ -36,43 +37,11 @@ public partial class UsedPartMapper
             Status = order.Status,
             VehicleId = order.VehicleId,
             AssignedMechanicId = order.AssignedMechanicId,
-            // Don't map collections to prevent circular reference
+            AssignedMechanicUserName = order.AssignedMechanic?.UserName,
             Vehicle = null,
             UsedParts = null,
             JobActivities = null,
             Comments = null
         };
     }
-
-    private ServiceOrder MapServiceOrder(ServiceOrderDto dto)
-    {
-        if (dto == null) return null;
-        return new ServiceOrder
-        {
-            Id = dto.Id,
-            StartDate = dto.StartDate,
-            EndDate = dto.EndDate,
-            Status = dto.Status,
-            VehicleId = dto.VehicleId,
-            AssignedMechanicId = dto.AssignedMechanicId,
-            // Don't map collections to prevent circular reference
-            Vehicle = null,
-            UsedParts = null,
-            JobActivities = null,
-            Comments = null
-        };
-    }
-
-    private UsedPart MapUsedPart(UsedPartDto dto)
-    {
-        if (dto == null) return null;
-        return new UsedPart
-        {
-            // Don't set Id for new entities
-            Id = dto.Id == 0 ? 0 : dto.Id,
-            PartId = dto.PartId,
-            Quantity = dto.Quantity,
-            ServiceOrderId = dto.ServiceOrderId
-        };
-    }
-} 
+}

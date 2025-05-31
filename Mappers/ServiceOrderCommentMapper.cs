@@ -9,12 +9,14 @@ namespace WorkshopManager.Mappers;
 public partial class ServiceOrderCommentMapper
 {
     [MapProperty(nameof(ServiceOrderComment.ServiceOrder), nameof(ServiceOrderCommentDto.ServiceOrder))]
-    public partial ServiceOrderCommentDto ToDto(ServiceOrderComment comment);
+    [MapProperty(nameof(ServiceOrderComment.Author), nameof(ServiceOrderCommentDto.AuthorUserName))]
+    public partial ServiceOrderCommentDto? ToDto(ServiceOrderComment? comment);
 
     [MapProperty(nameof(ServiceOrderCommentDto.ServiceOrder), nameof(ServiceOrderComment.ServiceOrder))]
-    public partial ServiceOrderComment ToEntity(ServiceOrderCommentDto dto);
+    [MapProperty(nameof(ServiceOrderCommentDto.AuthorUserName), nameof(ServiceOrderComment.Author))]
+    public partial ServiceOrderComment? ToEntity(ServiceOrderCommentDto? dto);
 
-    private ServiceOrderDto MapServiceOrder(ServiceOrder order)
+    private ServiceOrderDto? MapServiceOrder(ServiceOrder? order)
     {
         if (order == null) return null;
         return new ServiceOrderDto
@@ -33,7 +35,7 @@ public partial class ServiceOrderCommentMapper
         };
     }
 
-    private ServiceOrder MapServiceOrder(ServiceOrderDto dto)
+    private ServiceOrder? MapServiceOrder(ServiceOrderDto? dto)
     {
         if (dto == null) return null;
         return new ServiceOrder

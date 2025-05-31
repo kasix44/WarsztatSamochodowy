@@ -24,17 +24,23 @@ namespace WorkshopManager.Services
             // Ensure we're not setting an ID for new entities
             usedPartDto.Id = 0;
 
+            // Don't create a new ServiceOrder, just use the ID reference
             var usedPart = _mapper.ToEntity(usedPartDto);
             _context.UsedParts.Add(usedPart);
             await _context.SaveChangesAsync();
 
-            // Reload the used part with its relationships
             var savedUsedPart = await _context.UsedParts
                 .Include(up => up.Part)
                 .FirstOrDefaultAsync(up => up.Id == usedPart.Id);
 
-            return _mapper.ToDto(savedUsedPart);
+            if (savedUsedPart == null)
+            {
+                throw new InvalidOperationException($"Failed to retrieve the used part with ID {usedPart.Id} after saving.");
+            }
+
+            return _mapper.ToDto(savedUsedPart)!;
         }
+
 
         public async Task DeleteAsync(int id)
         {

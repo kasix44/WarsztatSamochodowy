@@ -8,18 +8,18 @@ public class VehicleDto
     
     [Required]
     [Display(Name = "Marka")]
-    public string Brand { get; set; }
+    public string Brand { get; set; } = string.Empty;
     
     [Required]
     [Display(Name = "Model")]
-    public string Model { get; set; }
+    public string Model { get; set; } = string.Empty;
     
     [Required]
     [Display(Name = "Numer rejestracyjny")]
-    public string LicensePlate { get; set; }
+    public string LicensePlate { get; set; } = string.Empty;
     
     [Display(Name = "VIN")]
-    public string VIN { get; set; }
+    public string VIN { get; set; } = string.Empty;
 
     [Required]
     [Display(Name = "Klient")]

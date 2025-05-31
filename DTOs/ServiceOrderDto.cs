@@ -27,7 +27,7 @@ public class ServiceOrderDto
     public string? AssignedMechanicId { get; set; }
     public string? AssignedMechanicUserName { get; set; }
 
-    public List<UsedPartDto> UsedParts { get; set; } = new();
-    public List<JobActivityDto> JobActivities { get; set; } = new();
-    public List<ServiceOrderCommentDto> Comments { get; set; } = new();
+    public List<UsedPartDto>? UsedParts { get; set; } = new();
+    public List<JobActivityDto>? JobActivities { get; set; } = new();
+    public List<ServiceOrderCommentDto>? Comments { get; set; } = new();
 } 

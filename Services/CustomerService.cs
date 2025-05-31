@@ -12,10 +12,10 @@ namespace WorkshopManager.Services
         private readonly ApplicationDbContext _context;
         private readonly CustomerMapper _mapper;
 
-        public CustomerService(ApplicationDbContext context)
+        public CustomerService(ApplicationDbContext context, CustomerMapper mapper)
         {
             _context = context;
-            _mapper = new CustomerMapper();
+            _mapper = mapper;
         }
 
         public async Task<List<CustomerDto>> GetAllAsync(string? search = null)

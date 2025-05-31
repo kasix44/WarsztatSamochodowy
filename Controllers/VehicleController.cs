@@ -129,8 +129,26 @@ namespace WorkshopManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _vehicleService.DeleteAsync(id);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                await _vehicleService.DeleteAsync(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Log the error (optional)
+                // ModelState.AddModelError(string.Empty, ex.Message);
+                TempData["ErrorMessage"] = ex.Message; // Use TempData to pass error to the view after redirect or to the same view if returning it.
+                // It's generally better to return to the delete confirmation page with the error.
+                var vehicle = await _vehicleService.GetByIdAsync(id);
+                if (vehicle == null)
+                {
+                    return NotFound(); // Should not happen if caught InvalidOperationException from service
+                }
+                // Passing the vehicle model back to the Delete view to re-display it with the error message.
+                // Ensure your Delete.cshtml view can display this error message (e.g., from TempData or ViewData/ModelState)
+                return View("Delete", vehicle); 
+            }
         }
 
         private async Task<string?> SaveImageAndReturnPathAsync(IFormFile file)

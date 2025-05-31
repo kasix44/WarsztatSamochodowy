@@ -245,12 +245,12 @@
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/05ec8b5d-c322-4c8c-ad85-cde36239fd38.jpg",
-      "PackagePath": "staticwebassets/uploads/05ec8b5d-c322-4c8c-ad85-cde36239fd38.jpg"
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/03e6120f-9e7d-4c5a-bd25-0c7722b39d02.jpg",
+      "PackagePath": "staticwebassets/uploads/03e6120f-9e7d-4c5a-bd25-0c7722b39d02.jpg"
     },
     {
-      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/0b00d821-2a03-480a-9885-518c118d15f4.jpg",
-      "PackagePath": "staticwebassets/uploads/0b00d821-2a03-480a-9885-518c118d15f4.jpg"
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/05ec8b5d-c322-4c8c-ad85-cde36239fd38.jpg",
+      "PackagePath": "staticwebassets/uploads/05ec8b5d-c322-4c8c-ad85-cde36239fd38.jpg"
     },
     {
       "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/3fb06667-c1f6-4749-8312-5c33c894f24a.jpg",
@@ -261,16 +261,16 @@
       "PackagePath": "staticwebassets/uploads/6e844f0a-d33e-4220-813c-2ea45b85f67d.HEIC"
     },
     {
+      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/7a74a30b-402c-4764-8fed-0b8eea5cf8b9.jpg",
+      "PackagePath": "staticwebassets/uploads/7a74a30b-402c-4764-8fed-0b8eea5cf8b9.jpg"
+    },
+    {
       "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/8021cbbf-48f7-45c4-8356-42aafe63edb1.jpg",
       "PackagePath": "staticwebassets/uploads/8021cbbf-48f7-45c4-8356-42aafe63edb1.jpg"
     },
     {
       "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/835f909c-9a7b-454e-8cbf-8fc039f03819.jpg",
       "PackagePath": "staticwebassets/uploads/835f909c-9a7b-454e-8cbf-8fc039f03819.jpg"
-    },
-    {
-      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/8ca90f9f-fd35-4ff8-83f3-eb6e1820bfae.jpg",
-      "PackagePath": "staticwebassets/uploads/8ca90f9f-fd35-4ff8-83f3-eb6e1820bfae.jpg"
     },
     {
       "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/91fb8421-10a1-4851-929d-0d02987e178a.jpg",
@@ -291,10 +291,6 @@
     {
       "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/bfc93d86-46df-4d14-9aa7-173c79fda7ae.jpg",
       "PackagePath": "staticwebassets/uploads/bfc93d86-46df-4d14-9aa7-173c79fda7ae.jpg"
-    },
-    {
-      "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/f6ece2a1-ab2a-4e6b-a7e0-825a41bc3809.jpg",
-      "PackagePath": "staticwebassets/uploads/f6ece2a1-ab2a-4e6b-a7e0-825a41bc3809.jpg"
     },
     {
       "Id": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/porsche.jpg",

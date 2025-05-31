@@ -24,6 +24,14 @@ namespace WorkshopManager.Data
         {
             base.OnModelCreating(builder);
 
+            builder.Entity<Customer>()
+                .HasIndex(c => c.FirstName);
+            builder.Entity<Customer>()
+                .HasIndex(c => c.LastName);
+
+            builder.Entity<ServiceOrderComment>()
+                .HasIndex(c => c.ServiceOrderId);
+
             builder.Entity<JobActivity>()
                 .Property(j => j.LaborCost)
                 .HasPrecision(18, 2);

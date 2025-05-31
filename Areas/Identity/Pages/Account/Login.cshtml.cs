@@ -16,6 +16,9 @@ namespace WorkshopManager.Areas.Identity.Pages.Account
         {
             _signInManager = signInManager;
             _logger = logger;
+            Input = new InputModel();
+            ErrorMessage = string.Empty;
+            ReturnUrl = string.Empty;
         }
 
         [BindProperty]
@@ -26,38 +29,35 @@ namespace WorkshopManager.Areas.Identity.Pages.Account
         [TempData]
         public string ErrorMessage { get; set; }
 
-        //model danych formularza do logowania
         public class InputModel
         {
             [Required(ErrorMessage = "Email jest wymagany.")]
             [EmailAddress(ErrorMessage = "Niepoprawny format adresu email.")]
             [Display(Name = "Email")]
-            public string Email { get; set; }
+            public string Email { get; set; } = string.Empty;
 
             [Required(ErrorMessage = "Hasło jest wymagane.")]
             [DataType(DataType.Password)]
             [Display(Name = "Hasło")]
-            public string Password { get; set; }
+            public string Password { get; set; } = string.Empty;
 
             [Display(Name = "Zapamiętaj mnie")]
             public bool RememberMe { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public void OnGet(string? returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
-            returnUrl ??= Url.Content("~/");
-            ReturnUrl = returnUrl;
+            ReturnUrl = returnUrl ?? Url.Content("~/");
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
-            ReturnUrl = returnUrl;
+            ReturnUrl = returnUrl ?? Url.Content("~/");
             
             try
             {
@@ -124,13 +124,13 @@ namespace WorkshopManager.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User {Email} logged in successfully", Input.Email);
-                    return LocalRedirect(returnUrl);
+                    return LocalRedirect(ReturnUrl);
                 }
                 
                 if (result.RequiresTwoFactor)
                 {
                     _logger.LogInformation("Two-factor authentication required for user {Email}", Input.Email);
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = ReturnUrl, RememberMe = Input.RememberMe });
                 }
                 
                 if (result.IsLockedOut)

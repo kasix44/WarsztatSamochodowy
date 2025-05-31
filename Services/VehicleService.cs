@@ -12,10 +12,10 @@ namespace WorkshopManager.Services
         private readonly ApplicationDbContext _context;
         private readonly VehicleMapper _mapper;
 
-        public VehicleService(ApplicationDbContext context)
+        public VehicleService(ApplicationDbContext context, VehicleMapper mapper)
         {
             _context = context;
-            _mapper = new VehicleMapper();
+            _mapper = mapper;
         }
 
         public async Task<List<VehicleDto>> GetAllAsync()
@@ -46,9 +46,17 @@ namespace WorkshopManager.Services
 
         public async Task DeleteAsync(int id)
         {
-            var vehicle = await _context.Vehicles.FindAsync(id);
+            var vehicle = await _context.Vehicles
+                .Include(v => v.ServiceOrders)
+                .FirstOrDefaultAsync(v => v.Id == id);
+
             if (vehicle != null)
             {
+                if (vehicle.ServiceOrders != null && vehicle.ServiceOrders.Any())
+                {
+                    throw new InvalidOperationException("Cannot delete vehicle with existing service orders.");
+                }
+                
                 _context.Vehicles.Remove(vehicle);
                 await _context.SaveChangesAsync();
             }

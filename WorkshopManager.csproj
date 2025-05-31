@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="itext7" Version="9.2.0" />
       <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="14.6.0" />
       <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.4" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.4" />
@@ -25,16 +26,38 @@
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.4" />
       <PackageReference Include="NLog.Web.AspNetCore" Version="5.4.0" />
       <PackageReference Include="QuestPDF" Version="2025.4.0" />
-      <PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
-      <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
-      <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
       <PackageReference Include="Riok.Mapperly" Version="4.2.1" />
       <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+      <PackageReference Include="NBomber" Version="5.8.1" />
+      <PackageReference Include="NBomber.Http" Version="5.2.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="DTOs\" />
       <Folder Include="Mappers\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="nlog.config">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="TextAnalyzer\NUnitTestProject\bin\Debug\net9.0\TextAnalyzer.deps.json" />
+      <_ContentIncludedByDefault Remove="TextAnalyzer\NUnitTestProject\bin\Debug\net9.0\TextAnalyzer.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="TextAnalyzer\NUnitTestProject\bin\Debug\net9.0\TextAnalyzerTests.deps.json" />
+      <_ContentIncludedByDefault Remove="TextAnalyzer\NUnitTestProject\bin\Debug\net9.0\TextAnalyzerTests.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="TextAnalyzer\NUnitTestProject\obj\NUnit Test Project.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="TextAnalyzer\NUnitTestProject\obj\NUnitTestProject.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="TextAnalyzer\NUnitTestProject\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="TextAnalyzer\NUnitTestProject\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="TextAnalyzer\TextAnalyzer\bin\Debug\net9.0\TextAnalyzer.deps.json" />
+      <_ContentIncludedByDefault Remove="TextAnalyzer\TextAnalyzer\bin\Debug\net9.0\TextAnalyzer.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="TextAnalyzer\TextAnalyzer\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="TextAnalyzer\TextAnalyzer\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="TextAnalyzer\TextAnalyzer\obj\TextAnalyzer.csproj.nuget.dgspec.json" />
     </ItemGroup>
 
 </Project>

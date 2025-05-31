@@ -54,7 +54,7 @@ namespace WorkshopManager.Controllers
 
             if (!string.IsNullOrEmpty(licensePlate))
             {
-                ordersQuery = ordersQuery.Where(s => s.Vehicle.LicensePlate == licensePlate);
+                ordersQuery = ordersQuery.Where(s => s.Vehicle != null && s.Vehicle.LicensePlate == licensePlate);
             }
 
             ViewBag.LicensePlates = new SelectList(
@@ -185,8 +185,8 @@ namespace WorkshopManager.Controllers
 
             var allUsers = _userManager.Users.ToList();
             var mechanicy = allUsers
-                .Where(u => _userManager.IsInRoleAsync(u, "Mechanik").GetAwaiter().GetResult())
-                .Select(u => new { u.Id, Display = u.UserName })
+                .Where(u => u != null && _userManager.IsInRoleAsync(u, "Mechanik").GetAwaiter().GetResult())
+                .Select(u => new { u.Id, Display = u.UserName ?? "N/A" })
                 .ToList();
 
             ViewData["AssignedMechanicId"] = new SelectList(mechanicy, "Id", "Display", selectedMechanicId);
@@ -238,7 +238,7 @@ namespace WorkshopManager.Controllers
 
             var orders = await _context.ServiceOrders
                 .Include(s => s.Vehicle)
-                .Include(s => s.UsedParts)
+                .Include(s => s.UsedParts!)
                 .ThenInclude(up => up.Part)
                 .Where(s => s.AssignedMechanicId == userId)
                 .ToListAsync();
@@ -384,7 +384,12 @@ namespace WorkshopManager.Controllers
                 await _commentService.AddAsync(commentDto);
             }
 
-            var isMechanic = await _userManager.IsInRoleAsync(user, "Mechanik");
+            var isMechanic = false;
+            if (user != null)
+            {
+                isMechanic = await _userManager.IsInRoleAsync(user, "Mechanik");
+            }
+            
             return RedirectToAction(
                 isMechanic ? "MechanicDetails" : "Details",
                 new { id = serviceOrderId });

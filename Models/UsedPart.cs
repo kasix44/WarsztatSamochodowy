@@ -11,7 +11,7 @@ public class UsedPart
     public int PartId { get; set; }
 
     [ForeignKey("PartId")]
-    public Part Part { get; set; }
+    public Part Part { get; set; } = null!;
 
     [Required]
     [Range(1, 999)]
@@ -21,5 +21,5 @@ public class UsedPart
     public int ServiceOrderId { get; set; }
 
     [ForeignKey("ServiceOrderId")]
-    public ServiceOrder ServiceOrder { get; set; }
+    public ServiceOrder ServiceOrder { get; set; } = null!;
 }
