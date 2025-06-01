@@ -8,6 +8,7 @@ using WorkshopManager.Services;
 using WorkshopManager.Services.Interfaces;
 using WorkshopManager.Mappers;
 using NLog.Web;
+using WorkshopManager.PerformanceTests;
 
 var logger = NLog.LogManager.GetCurrentClassLogger();
 logger.Debug("init main");
@@ -193,7 +194,15 @@ try
             await userManager.AddToRoleAsync(user, "Recepcjonista");
         }
     }
-
+    
+    // Run the load test in a background task after the application starts
+    Task.Run(() =>
+    {
+        // Give the application a moment to start up
+        Thread.Sleep(5000);
+        OrdersLoadTest.Run();
+    });
+    
     app.Run();
 }
 catch (Exception exception)

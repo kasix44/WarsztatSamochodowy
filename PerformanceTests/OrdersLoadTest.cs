@@ -6,42 +6,46 @@ namespace WorkshopManager.PerformanceTests;
 
 public class OrdersLoadTest
 {
-    
     private static readonly HttpClient HttpClient = new();
+    private const string BaseUrl = "http://localhost:5124"; // Changed to HTTPS and correct port
 
     public static void Run()
     {
         var scenario = Scenario.Create("get_all_orders_scenario", async context =>
         {
-            // Assuming the API is running on http://localhost:5000 or https://localhost:5001
-            // Adjust the base URL as needed.
-            // Prefer HTTPS if available and configured.
-            var request = Http.CreateRequest("GET", "http://localhost:5000/api/orders"); 
-                                                                                      
-            var response = await Http.Send(HttpClient, request);
-            
-            var fsharpOption = response.Payload;
-            bool optionIsSome = fsharpOption.IsSome();
-            bool successStatusCode = false;
-            if (optionIsSome)
+            try
             {
-                successStatusCode = fsharpOption.Value.IsSuccessStatusCode;
+                var request = Http.CreateRequest("GET", $"{BaseUrl}/ServiceOrder");
+                var response = await Http.Send(HttpClient, request);
+                
+                var fsharpOption = response.Payload;
+                if (!fsharpOption.IsSome())
+                {
+                    return Response.Fail<string>("No response received", "No response", 0);
+                }
+
+                var httpResponse = fsharpOption.Value;
+                if (!httpResponse.IsSuccessStatusCode)
+                {
+                    return Response.Fail<string>($"Request failed with status code: {httpResponse.StatusCode}", "HTTP error", 0);
+                }
+
+                return Response.Ok();
             }
-            
-            return optionIsSome && successStatusCode 
-                ? Response.Ok() 
-                : Response.Fail();
+            catch (Exception ex)
+            {
+                return Response.Fail<string>($"Request failed: {ex.Message}", "Exception", 0);
+            }
         })
         .WithoutWarmUp()
         .WithLoadSimulations(
-            Simulation.Inject(rate: 50, // 50 requests per second
-                              interval: TimeSpan.FromSeconds(1),
-                              during: TimeSpan.FromSeconds(2)) // Run for a duration that allows 100 requests (50*2=100)
+            Simulation.Inject(rate: 50,
+                            interval: TimeSpan.FromSeconds(1),
+                            during: TimeSpan.FromSeconds(2))
         );
 
         NBomberRunner
             .RegisterScenarios(scenario)
             .Run();
     }
-    
 } 
