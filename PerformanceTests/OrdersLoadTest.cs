@@ -6,8 +6,7 @@ namespace WorkshopManager.PerformanceTests;
 
 public class OrdersLoadTest
 {
-    // HttpClient is intended to be instantiated once and re-used throughout the life of an application.
-    // Instantiating an HttpClient class for every request will exhaust the number of sockets available under heavy loads.
+    
     private static readonly HttpClient HttpClient = new();
 
     public static void Run()
@@ -21,7 +20,6 @@ public class OrdersLoadTest
                                                                                       
             var response = await Http.Send(HttpClient, request);
             
-            // Explicitly handle FSharpOption
             var fsharpOption = response.Payload;
             bool optionIsSome = fsharpOption.IsSome();
             bool successStatusCode = false;
@@ -45,10 +43,5 @@ public class OrdersLoadTest
             .RegisterScenarios(scenario)
             .Run();
     }
-
-    // If this were a console app's Main method:
-    // public static void Main(string[] args)
-    // {
-    //     Run();
-    // }
+    
 } 

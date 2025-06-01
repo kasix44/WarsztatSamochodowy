@@ -1,36 +1,102 @@
-# WorkshopManager
+# System Zarządzania Warsztatem Samochodowym
 
-System zarządzania warsztatem samochodowym.
+## Opis Projektu
+System Zarządzania Warsztatem Samochodowym to kompleksowe rozwiązanie informatyczne przeznaczone do zarządzania warsztatem samochodowym. Aplikacja umożliwia efektywne zarządzanie klientami, pojazdami, zleceniami serwisowymi, częściami zamiennymi oraz pracownikami warsztatu.
 
-## CI/CD (GitHub Actions)
+## Funkcjonalności
+- Zarządzanie bazą klientów
+- Zarządzanie pojazdami klientów
+- Obsługa zleceń serwisowych
+- Zarządzanie częściami zamiennymi
+- Śledzenie aktywności mechaników
+- Generowanie raportów
+- System komentarzy do zleceń
+- Zarządzanie użytkownikami i rolami
 
-Automatyczna integracja i wdrażanie (CI/CD) dla tego projektu jest skonfigurowane przy użyciu GitHub Actions. Workflow zdefiniowany jest w pliku `.github/workflows/dotnet-ci.yml`.
+## Technologie
+- **Backend**: ASP.NET Core 8.0
+- **Frontend**: Razor Pages
+- **Baza danych**: Microsoft SQL Server
+- **Autentykacja**: ASP.NET Core Identity
+- **Logowanie**: NLog
+- **Generowanie PDF**: QuestPDF
+- **Testy wydajnościowe**: NBomber
+- **API Documentation**: Swagger/OpenAPI
+- **Mapowanie obiektów**: Riok.Mapperly
 
-### Główne kroki workflow:
+## Wymagania Systemowe
+- .NET 8.0 SDK
+- Microsoft SQL Server
+- Przeglądarka internetowa z obsługą JavaScript
 
-1.  **Checkout code (`actions/checkout@v4`):**
-    *   Pobiera najnowszą wersję kodu z repozytorium.
+## Instalacja i Konfiguracja
 
-2.  **Setup .NET (`actions/setup-dotnet@v4`):**
-    *   Konfiguruje środowisko .NET w wersji 8.0.x na maszynie budującej.
+1. Sklonuj repozytorium
+2. Skonfiguruj połączenie z bazą danych w pliku `appsettings.json`
+3. Wykonaj migracje bazy danych:
+   ```bash
+   dotnet ef database update
+   ```
+4. Uruchom aplikację:
+   ```bash
+   dotnet run
+   ```
 
-3.  **Restore dependencies (`dotnet restore`):**
-    *   Przywraca wszystkie zależności NuGet zdefiniowane w pliku `.csproj`.
+## Role Użytkowników
 
-4.  **Build (`dotnet build --configuration Release --no-restore`):**
-    *   Kompiluje projekt w konfiguracji `Release`.
-    *   Opcja `--no-restore` jest używana, ponieważ zależności zostały już przywrócone w poprzednim kroku.
+### Administrator
+- Pełny dostęp do wszystkich funkcji systemu
+- Zarządzanie użytkownikami i rolami
+- Konfiguracja systemu
+- Generowanie raportów
+- Domyślne dane logowania:
+  - Email: admin@demo.com
+  - Hasło: Admin123!
 
-5.  **Test (`dotnet test --configuration Release --no-build --verbosity normal`):**
-    *   Uruchamia wszystkie testy jednostkowe i integracyjne w projekcie.
-    *   Opcja `--no-build` zapobiega ponownej kompilacji, ponieważ projekt został już zbudowany.
-    *   `--verbosity normal` ustawia poziom szczegółowości logów z testów.
+### Mechanik
+- Przeglądanie i aktualizacja zleceń serwisowych
+- Dodawanie aktywności do zleceń
+- Przeglądanie historii pojazdów
+- Domyślne dane logowania:
+  - Email: mech@demo.com
+  - Hasło: Mech123!
 
-### Wyzwalacze (Triggers):
+### Recepcjonista
+- Dodawanie i edycja klientów
+- Rejestracja nowych zleceń serwisowych
+- Przeglądanie statusu zleceń
+- Domyślne dane logowania:
+  - Email: recep@demo.com
+  - Hasło: Recep123!
 
-Workflow jest automatycznie uruchamiany w następujących przypadkach:
+## Struktura Projektu
+- **Data/** - Kontekst bazy danych i migracje
+- **Models/** - Modele danych
+- **Services/** - Logika biznesowa
+- **Controllers/** - Kontrolery aplikacji
+- **Views/** - Widoki Razor Pages
+- **wwwroot/** - Statyczne pliki (CSS, JavaScript, obrazy)
 
-*   **Push do gałęzi `main`**: Każde wypchnięcie zmian do głównej gałęzi `main`.
-*   **Pull request do gałęzi `main`**: Każde utworzenie lub aktualizacja pull requesta skierowanego do gałęzi `main`.
+## Bezpieczeństwo
+- Uwierzytelnianie oparte na ASP.NET Core Identity
+- Autoryzacja oparta na rolach
+- Szyfrowane hasła
+- Zabezpieczone endpointy API
+- Walidacja danych wejściowych
 
-Ten proces zapewnia, że każda zmiana w kodzie jest automatycznie budowana i testowana, co pomaga w utrzymaniu jakości kodu i wczesnym wykrywaniu błędów. 
+## Logowanie
+System wykorzystuje NLog do logowania zdarzeń. Logi są zapisywane w następujących lokalizacjach:
+- Logi aplikacji: `logs/all.log`
+- Logi błędów: `logs/error.log`
+- Logi web: `logs/web.log`
+
+## API
+Dokumentacja API jest dostępna pod adresem `/swagger` w trybie deweloperskim. API zawiera endpointy do:
+- Zarządzania klientami
+- Zarządzania pojazdami
+- Obsługi zleceń serwisowych
+- Zarządzania częściami
+- Zarządzania aktywnościami
+
+## Licencja
+Ten projekt jest udostępniany na licencji MIT. 

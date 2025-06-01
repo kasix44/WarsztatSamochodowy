@@ -44,8 +44,7 @@ namespace WorkshopManager.Models
         public IdentityUser? AssignedMechanic { get; set; }
 
         public List<UsedPart>? UsedParts { get; set; } = new();
-        public ICollection<JobActivity>? JobActivities { get; set; }
+        public ICollection<JobActivity>? JobActivities { get; set; } = new List<JobActivity>();
         public ICollection<ServiceOrderComment>? Comments { get; set; }
     }
-
 }

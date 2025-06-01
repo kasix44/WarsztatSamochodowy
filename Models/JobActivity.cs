@@ -16,10 +16,6 @@ namespace WorkshopManager.Models
         [Display(Name = "Koszt robocizny")]
         public decimal LaborCost { get; set; }
 
-        [ForeignKey("ServiceOrder")]
-        [Display(Name = "Zlecenie (opcjonalne)")]
-        public int? ServiceOrderId { get; set; }
-
-        public ServiceOrder? ServiceOrder { get; set; }
+        public ICollection<ServiceOrder>? ServiceOrders { get; set; }
     }
 }

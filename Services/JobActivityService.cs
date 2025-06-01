@@ -20,19 +20,13 @@ namespace WorkshopManager.Services
 
         public async Task<List<JobActivityDto>> GetAllAsync()
         {
-            var activities = await _context.JobActivities
-                .Include(a => a.ServiceOrder)
-                .ToListAsync();
-            
+            var activities = await _context.JobActivities.ToListAsync();
             return activities.Select(a => _mapper.ToDto(a)).ToList();
         }
 
         public async Task<JobActivityDto?> GetByIdAsync(int id)
         {
-            var activity = await _context.JobActivities
-                .Include(a => a.ServiceOrder)
-                .FirstOrDefaultAsync(a => a.Id == id);
-            
+            var activity = await _context.JobActivities.FindAsync(id);
             return activity != null ? _mapper.ToDto(activity) : null;
         }
 

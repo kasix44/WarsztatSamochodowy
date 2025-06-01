@@ -27,7 +27,6 @@ public partial class ServiceOrderCommentMapper
             Status = order.Status,
             VehicleId = order.VehicleId,
             AssignedMechanicId = order.AssignedMechanicId,
-            // Don't map collections to prevent circular reference
             Vehicle = null,
             UsedParts = null,
             JobActivities = null,
@@ -46,7 +45,6 @@ public partial class ServiceOrderCommentMapper
             Status = dto.Status,
             VehicleId = dto.VehicleId,
             AssignedMechanicId = dto.AssignedMechanicId,
-            // Don't map collections to prevent circular reference
             Vehicle = null,
             UsedParts = null,
             JobActivities = null,

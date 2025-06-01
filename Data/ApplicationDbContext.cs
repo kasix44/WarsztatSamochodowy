@@ -32,6 +32,15 @@ namespace WorkshopManager.Data
             builder.Entity<ServiceOrderComment>()
                 .HasIndex(c => c.ServiceOrderId);
 
+            builder.Entity<Vehicle>()
+                .HasIndex(v => v.LicensePlate);
+
+            builder.Entity<ServiceOrder>()
+                .HasIndex(s => s.VehicleId);
+
+            builder.Entity<ServiceOrder>()
+                .HasIndex(s => s.AssignedMechanicId);
+
             builder.Entity<JobActivity>()
                 .Property(j => j.LaborCost)
                 .HasPrecision(18, 2);

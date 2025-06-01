@@ -8,7 +8,6 @@
 
 <form asp-action="EditJobActivity">
     <input type="hidden" asp-for="Id" />
-    <input type="hidden" asp-for="ServiceOrderId" />
 
     <div class="form-group">
         <label asp-for="Description" class="control-label"></label>
@@ -23,7 +22,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Zapisz</button>
-    <a asp-action="Details" asp-route-id="@Model.ServiceOrderId" class="btn btn-secondary">Anuluj</a>
+    <a asp-action="Details" asp-route-id="@ViewBag.ServiceOrderId" class="btn btn-secondary">Anuluj</a>
 </form>
 
 @section Scripts {

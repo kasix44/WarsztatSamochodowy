@@ -279,10 +279,8 @@ namespace WorkshopManager.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Recepcjonista")]
-        public async Task<IActionResult> EditJobActivity(int id, [Bind("Id,Description,LaborCost,ServiceOrderId")] JobActivityDto activityDto)
+        public async Task<IActionResult> EditJobActivity(JobActivityDto activityDto)
         {
-            if (id != activityDto.Id) return NotFound();
-
             if (ModelState.IsValid)
             {
                 try
@@ -290,7 +288,7 @@ namespace WorkshopManager.Controllers
                     var activity = _jobActivityMapper.ToEntity(activityDto);
                     _context.Update(activity);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction("Details", new { id = activityDto.ServiceOrderId });
+                    return RedirectToAction("Details", new { id = ViewBag.ServiceOrderId });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -322,11 +320,17 @@ namespace WorkshopManager.Controllers
         [Authorize(Roles = "Admin,Recepcjonista")]
         public async Task<IActionResult> AddExistingJobActivity(int serviceOrderId)
         {
-            var availableActivities = await _context.JobActivities
-                .Where(a => a.ServiceOrderId == null)
-                .ToListAsync();
+            var serviceOrder = await _context.ServiceOrders
+                .Include(so => so.JobActivities)
+                .FirstOrDefaultAsync(so => so.Id == serviceOrderId);
 
-            var activityDtos = availableActivities.Select(a => _jobActivityMapper.ToDto(a)).ToList();
+            if (serviceOrder == null)
+            {
+                return NotFound();
+            }
+
+            var allActivities = await _context.JobActivities.ToListAsync();
+            var activityDtos = allActivities.Select(a => _jobActivityMapper.ToDto(a)).ToList();
 
             var model = new AddExistingJobActivityViewModel
             {
@@ -344,21 +348,27 @@ namespace WorkshopManager.Controllers
         {
             if (ModelState.IsValid)
             {
+                var serviceOrder = await _context.ServiceOrders
+                    .Include(so => so.JobActivities)
+                    .FirstOrDefaultAsync(so => so.Id == model.ServiceOrderId);
+
+                if (serviceOrder == null)
+                {
+                    return NotFound();
+                }
+
                 var activity = await _context.JobActivities.FindAsync(model.SelectedJobActivityId);
                 if (activity != null)
                 {
-                    activity.ServiceOrderId = model.ServiceOrderId;
+                    serviceOrder.JobActivities?.Add(activity);
                     await _context.SaveChangesAsync();
                 }
 
                 return RedirectToAction("Details", new { id = model.ServiceOrderId });
             }
 
-            var availableActivities = await _context.JobActivities
-                .Where(a => a.ServiceOrderId == null)
-                .ToListAsync();
-
-            model.AvailableJobActivities = availableActivities.Select(a => _jobActivityMapper.ToDto(a)).ToList();
+            var allActivities = await _context.JobActivities.ToListAsync();
+            model.AvailableJobActivities = allActivities.Select(a => _jobActivityMapper.ToDto(a)).ToList();
 
             return View(model);
         }

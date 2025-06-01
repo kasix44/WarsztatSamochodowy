@@ -29,12 +29,9 @@ namespace WorkshopManager.Controllers
         // CREATE GLOBAL / DO ZLECENIA
 
         // GET: JobActivity/Create
-        public IActionResult Create(int? serviceOrderId = null)
+        public IActionResult Create()
         {
-            var model = new JobActivityDto
-            {
-                ServiceOrderId = serviceOrderId
-            };
+            var model = new JobActivityDto();
             return View(model);
         }
 
@@ -46,12 +43,6 @@ namespace WorkshopManager.Controllers
             if (ModelState.IsValid)
             {
                 await _jobActivityService.AddAsync(activityDto);
-
-                if (activityDto.ServiceOrderId.HasValue)
-                {
-                    return RedirectToAction("Details", "ServiceOrder", new { id = activityDto.ServiceOrderId });
-                }
-
                 return RedirectToAction(nameof(Index));
             }
             return View(activityDto);
@@ -77,7 +68,7 @@ namespace WorkshopManager.Controllers
             if (ModelState.IsValid)
             {
                 await _jobActivityService.UpdateAsync(activityDto);
-                return RedirectToAction(nameof(Index)); // Zawsze wracaj do listy czynności
+                return RedirectToAction(nameof(Index));
             }
 
             return View(activityDto);
@@ -86,15 +77,9 @@ namespace WorkshopManager.Controllers
         // DELETE
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, int? serviceOrderId = null)
+        public async Task<IActionResult> Delete(int id)
         {
             await _jobActivityService.DeleteAsync(id);
-
-            if (serviceOrderId.HasValue)
-            {
-                return RedirectToAction("Details", "ServiceOrder", new { id = serviceOrderId });
-            }
-
             return RedirectToAction(nameof(Index));
         }
     }

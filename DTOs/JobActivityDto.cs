@@ -14,9 +14,4 @@ public class JobActivityDto
     [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = true)]
     [Display(Name = "Koszt robocizny")]
     public decimal LaborCost { get; set; }
-
-    [Display(Name = "Zlecenie (opcjonalne)")]
-    public int? ServiceOrderId { get; set; }
-
-    public ServiceOrderDto? ServiceOrder { get; set; }
 } 
