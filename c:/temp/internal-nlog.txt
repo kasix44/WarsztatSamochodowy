@@ -404,3 +404,31 @@
 2025-06-01 16:52:45.8784 Info Shutdown() called. Logger closing...
 2025-06-01 16:52:45.8784 Info Closing old configuration.
 2025-06-01 16:52:45.8834 Info Logger has been closed down.
+2025-06-01 16:53:29.5292 Info Loading assembly name: NLog.Web.AspNetCore
+2025-06-01 16:53:29.5490 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.1202. Product version: 5.4.0+1a84e4cd5773967e452956643bd8d3fe4b688e55. GlobalAssemblyCache: False
+2025-06-01 16:53:29.5727 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-06-01 16:53:29.5732 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-06-01 16:53:29.5746 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'filters' in section 'target'
+2025-06-01 16:53:29.5746 Info Registered target NLog.Targets.FileTarget(Name=errorfile)
+2025-06-01 16:53:29.5746 Info Registered target NLog.Targets.ConsoleTarget(Name=consolelogger)
+2025-06-01 16:53:29.5770 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-06-01 16:53:29.6413 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=83, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-01 16:53:29.6464 Info Configuration initialized.
+2025-06-01 16:53:29.8773 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=83, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-01 17:03:10.6137 Info Shutdown() called. Logger closing...
+2025-06-01 17:03:10.6144 Info Closing old configuration.
+2025-06-01 17:03:10.6187 Info Logger has been closed down.
+2025-06-01 17:03:12.9876 Info Loading assembly name: NLog.Web.AspNetCore
+2025-06-01 17:03:13.0224 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.1202. Product version: 5.4.0+1a84e4cd5773967e452956643bd8d3fe4b688e55. GlobalAssemblyCache: False
+2025-06-01 17:03:13.0426 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-06-01 17:03:13.0434 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-06-01 17:03:13.0442 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'filters' in section 'target'
+2025-06-01 17:03:13.0442 Info Registered target NLog.Targets.FileTarget(Name=errorfile)
+2025-06-01 17:03:13.0442 Info Registered target NLog.Targets.ConsoleTarget(Name=consolelogger)
+2025-06-01 17:03:13.0466 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-06-01 17:03:13.1050 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=83, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-01 17:03:13.1107 Info Configuration initialized.
+2025-06-01 17:03:13.2562 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=83, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-01 17:04:57.5278 Info Shutdown() called. Logger closing...
+2025-06-01 17:04:57.5289 Info Closing old configuration.
+2025-06-01 17:04:57.5330 Info Logger has been closed down.

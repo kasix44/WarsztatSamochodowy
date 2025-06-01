@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tL0KkRm0goxXOzmeJtzpNeWhtH54yxmHbHdmHzoDt80=",
+  "Hash": "WNZJHRpi3BNg7SSheGKZ0zstVXE8OLfiq+zfo0TMt5o=",
   "Source": "WorkshopManager",
   "BasePath": "_content/WorkshopManager",
   "Mode": "Default",
@@ -2789,6 +2789,27 @@
       "OriginalItemSpec": "wwwroot/uploads/8649a809-8c3f-474c-a254-14d53dc26e1b.jpg"
     },
     {
+      "Identity": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/8f5cffe6-ac20-47ed-8bcf-221c7aab6d7f.jpg",
+      "SourceId": "WorkshopManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/",
+      "BasePath": "_content/WorkshopManager",
+      "RelativePath": "uploads/8f5cffe6-ac20-47ed-8bcf-221c7aab6d7f#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "2tf50794f7",
+      "Integrity": "uhS29V6DuLix+2+Pzs+kKLnvuf+A1dKfjv59IDPBH/U=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/8f5cffe6-ac20-47ed-8bcf-221c7aab6d7f.jpg"
+    },
+    {
       "Identity": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/91fb8421-10a1-4851-929d-0d02987e178a.jpg",
       "SourceId": "WorkshopManager",
       "SourceType": "Discovered",
@@ -2913,6 +2934,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/uploads/bfc93d86-46df-4d14-9aa7-173c79fda7ae.jpg"
+    },
+    {
+      "Identity": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/d7be63de-eb6e-4342-a886-af7cf8164bc8.jpg",
+      "SourceId": "WorkshopManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/",
+      "BasePath": "_content/WorkshopManager",
+      "RelativePath": "uploads/d7be63de-eb6e-4342-a886-af7cf8164bc8#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "gma3pmf7x8",
+      "Integrity": "eCb8msm29SXEjQwCQ1VhjjvZshcp8pDKuOGApPQ8BUA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/d7be63de-eb6e-4342-a886-af7cf8164bc8.jpg"
     },
     {
       "Identity": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/porsche.jpg",
@@ -10898,6 +10940,88 @@
       ]
     },
     {
+      "Route": "uploads/8f5cffe6-ac20-47ed-8bcf-221c7aab6d7f.2tf50794f7.jpg",
+      "AssetFile": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/8f5cffe6-ac20-47ed-8bcf-221c7aab6d7f.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "963597"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uhS29V6DuLix+2+Pzs+kKLnvuf+A1dKfjv59IDPBH/U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 01 Jun 2025 14:56:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2tf50794f7"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/8f5cffe6-ac20-47ed-8bcf-221c7aab6d7f.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-uhS29V6DuLix+2+Pzs+kKLnvuf+A1dKfjv59IDPBH/U="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/8f5cffe6-ac20-47ed-8bcf-221c7aab6d7f.jpg",
+      "AssetFile": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/8f5cffe6-ac20-47ed-8bcf-221c7aab6d7f.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "963597"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uhS29V6DuLix+2+Pzs+kKLnvuf+A1dKfjv59IDPBH/U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 01 Jun 2025 14:56:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-uhS29V6DuLix+2+Pzs+kKLnvuf+A1dKfjv59IDPBH/U="
+        }
+      ]
+    },
+    {
       "Route": "uploads/91fb8421-10a1-4851-929d-0d02987e178a.fo6axh5gln.jpg",
       "AssetFile": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/91fb8421-10a1-4851-929d-0d02987e178a.jpg",
       "Selectors": [],
@@ -11386,6 +11510,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-uhS29V6DuLix+2+Pzs+kKLnvuf+A1dKfjv59IDPBH/U="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/d7be63de-eb6e-4342-a886-af7cf8164bc8.gma3pmf7x8.jpg",
+      "AssetFile": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/d7be63de-eb6e-4342-a886-af7cf8164bc8.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "83650"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"eCb8msm29SXEjQwCQ1VhjjvZshcp8pDKuOGApPQ8BUA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 01 Jun 2025 14:56:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gma3pmf7x8"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/d7be63de-eb6e-4342-a886-af7cf8164bc8.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-eCb8msm29SXEjQwCQ1VhjjvZshcp8pDKuOGApPQ8BUA="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/d7be63de-eb6e-4342-a886-af7cf8164bc8.jpg",
+      "AssetFile": "/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/wwwroot/uploads/d7be63de-eb6e-4342-a886-af7cf8164bc8.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "83650"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"eCb8msm29SXEjQwCQ1VhjjvZshcp8pDKuOGApPQ8BUA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 01 Jun 2025 14:56:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-eCb8msm29SXEjQwCQ1VhjjvZshcp8pDKuOGApPQ8BUA="
         }
       ]
     },

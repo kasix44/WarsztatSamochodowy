@@ -306,10 +306,19 @@ namespace WorkshopManager.Controllers
         [Authorize(Roles = "Admin,Recepcjonista")]
         public async Task<IActionResult> DeleteJobActivity(int id, int serviceOrderId)
         {
+            var serviceOrder = await _context.ServiceOrders
+                .Include(so => so.JobActivities)
+                .FirstOrDefaultAsync(so => so.Id == serviceOrderId);
+
+            if (serviceOrder == null)
+            {
+                return NotFound();
+            }
+
             var activity = await _context.JobActivities.FindAsync(id);
             if (activity != null)
             {
-                _context.JobActivities.Remove(activity);
+                serviceOrder.JobActivities?.Remove(activity);
                 await _context.SaveChangesAsync();
             }
 

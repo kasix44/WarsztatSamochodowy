@@ -75,6 +75,7 @@ else
         <tr>
             <th>Opis</th>
             <th>Koszt robocizny</th>
+            <th>Akcje</th>
         </tr>
         </thead>
         <tbody>
@@ -83,6 +84,12 @@ else
             <tr>
                 <td>@activity.Description</td>
                 <td>@activity.LaborCost.ToString("C")</td>
+                <td>
+                    <form asp-action="DeleteJobActivity" method="post" asp-route-id="@activity.Id" asp-route-serviceOrderId="@Model.Id" onsubmit="return confirm('Czy na pewno chcesz usunąć tę czynność ze zlecenia?');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-sm btn-danger">Usuń</button>
+                    </form>
+                </td>
             </tr>
         }
         </tbody>
