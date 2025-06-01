@@ -46,11 +46,24 @@ try
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
                            throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
+    // builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    //     options.UseSqlServer(connectionString, sqlServerOptions => sqlServerOptions.EnableRetryOnFailure(
+    //         maxRetryCount: 5,
+    //         maxRetryDelay: TimeSpan.FromSeconds(30),
+    //         errorNumbersToAdd: null)));
+    
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(connectionString, sqlServerOptions => sqlServerOptions.EnableRetryOnFailure(
-            maxRetryCount: 5,
-            maxRetryDelay: TimeSpan.FromSeconds(30),
-            errorNumbersToAdd: null)));
+        options
+            .UseSqlServer(connectionString, sqlServerOptions => sqlServerOptions.EnableRetryOnFailure(
+                maxRetryCount: 5,
+                maxRetryDelay: TimeSpan.FromSeconds(30),
+                errorNumbersToAdd: null))
+            .EnableSensitiveDataLogging()
+            .EnableDetailedErrors()
+            .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
+
+
+    );
 
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

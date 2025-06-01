@@ -1,0 +1,13 @@
+2025-06-01 18:27:01.508 +02:00 [INF] [ThreadId:5] NBomber 5.8.1 started a new session: 2025-06-01_16.27.47_session_3b69eef5
+2025-06-01 18:27:01.537 +02:00 [INF] [ThreadId:5] NBomber started as single node
+2025-06-01 18:27:01.539 +02:00 [INF] [ThreadId:5] License validation....
+2025-06-01 18:27:01.539 +02:00 [WRN] [ThreadId:5] THIS VERSION IS FREE ONLY FOR PERSONAL USE. You can't use it for an organization.
+2025-06-01 18:27:01.548 +02:00 [INF] [ThreadId:5] Reports folder: /Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/reports/2025-06-01_16.27.47_session_3b69eef5
+2025-06-01 18:27:01.549 +02:00 [INF] [ThreadId:5] Plugins: no plugins were loaded
+2025-06-01 18:27:01.549 +02:00 [INF] [ThreadId:5] Reporting sinks: no reporting sinks were loaded
+2025-06-01 18:27:01.549 +02:00 [INF] [ThreadId:5] Starting init...
+2025-06-01 18:27:01.554 +02:00 [INF] [ThreadId:5] Target scenarios: get_all_orders_scenario
+2025-06-01 18:27:01.555 +02:00 [INF] [ThreadId:5] Init finished
+2025-06-01 18:27:01.567 +02:00 [INF] [ThreadId:5] Starting bombing...
+2025-06-01 18:27:03.611 +02:00 [INF] [ThreadId:13] Waiting on scenarios completion...
+2025-06-01 18:27:05.961 +02:00 [WRN] [ThreadId:23] Stopping test early: stop command activated by CLI

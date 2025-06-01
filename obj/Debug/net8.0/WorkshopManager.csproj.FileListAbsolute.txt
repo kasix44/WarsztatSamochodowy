@@ -1062,6 +1062,8 @@
 /Users/kasiadabek/RiderProjects/Warsztat/bin/Debug/net8.0/runtimes/browser/lib/net8.0/System.Text.Encodings.Web.dll
 /Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/nlog.config
 /Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/appsettings.Development.json
+/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/appsettings.json
+/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/WorkshopManager.staticwebassets.runtime.json
 /Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/WorkshopManager.staticwebassets.endpoints.json
 /Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/LatoFont/Lato-Black.ttf
 /Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/LatoFont/Lato-BlackItalic.ttf
@@ -1082,8 +1084,6 @@
 /Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/LatoFont/Lato-Thin.ttf
 /Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/LatoFont/Lato-ThinItalic.ttf
 /Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/LatoFont/OFL.txt
-/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/appsettings.json
-/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/WorkshopManager.staticwebassets.runtime.json
 /Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/WorkshopManager
 /Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/WorkshopManager.deps.json
 /Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/WorkshopManager.runtimeconfig.json
