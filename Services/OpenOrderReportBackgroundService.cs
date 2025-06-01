@@ -15,6 +15,7 @@ namespace WorkshopManager.Services
         private readonly ILogger<OpenOrderReportBackgroundService> _logger;
         private readonly IServiceScopeFactory _scopeFactory;
         private readonly IConfiguration _configuration;
+        private readonly string _pdfsDirectory;
 
         public OpenOrderReportBackgroundService(
             ILogger<OpenOrderReportBackgroundService> logger,
@@ -24,6 +25,13 @@ namespace WorkshopManager.Services
             _logger = logger;
             _scopeFactory = scopeFactory;
             _configuration = configuration;
+            
+            // Create PDFs directory if it doesn't exist
+            _pdfsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "PDFs");
+            if (!Directory.Exists(_pdfsDirectory))
+            {
+                Directory.CreateDirectory(_pdfsDirectory);
+            }
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -75,7 +83,10 @@ namespace WorkshopManager.Services
                 return;
             }
 
-            var pdfPath = Path.Combine(Path.GetTempPath(), "open_orders_report.pdf");
+            // Generate unique filename with timestamp
+            var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            var pdfPath = Path.Combine(_pdfsDirectory, $"open_orders_report_{timestamp}.pdf");
+            
             Document.Create(container =>
             {
                 container.Page(page =>
@@ -142,7 +153,6 @@ namespace WorkshopManager.Services
             _logger.LogInformation($"Open orders report generated: {pdfPath}");
 
             await SendEmailWithAttachment(pdfPath);
-            File.Delete(pdfPath); // Clean up the PDF file after sending
         }
 
         private async Task SendEmailWithAttachment(string attachmentPath)
