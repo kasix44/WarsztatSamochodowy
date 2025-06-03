@@ -1,0 +1,26 @@
+test info
+test suite: nbomber_default_test_suite_name
+test name: nbomber_default_test_name
+session id: 2025-06-03_17.44.51_session_edfbc8c8
+
+scenario: get_all_orders_scenario
+  - ok count: 100
+  - fail count: 0
+  - all data: 0 MB
+  - duration: 00:00:02
+
+load simulations: 
+  - inject, rate: 50, interval: 00:00:01, during: 00:00:02
+
++-------------------------+----------------------------------------------------+
+| step                    | ok stats                                           |
++-------------------------+----------------------------------------------------+
+| name                    | global information                                 |
++-------------------------+----------------------------------------------------+
+| request count           | all = 100, ok = 100, RPS = 50                      |
++-------------------------+----------------------------------------------------+
+| latency (ms)            | min = 1.6, mean = 3.43, max = 47.93, StdDev = 4.95 |
++-------------------------+----------------------------------------------------+
+| latency percentile (ms) | p50 = 2.63, p75 = 3.1, p95 = 4.91, p99 = 19.77     |
++-------------------------+----------------------------------------------------+
+
