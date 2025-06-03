@@ -20,6 +20,7 @@ namespace WorkshopManager.Data
         public DbSet<JobActivity> JobActivities { get; set; } = default!;
         public DbSet<ServiceOrderComment> ServiceOrderComments { get; set; }
 
+        //indeksy nieklastrowane - am gdzie jest hasindex, zapytania mamy w kontrolerach - np ordersQuery w serviceordercontroller
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

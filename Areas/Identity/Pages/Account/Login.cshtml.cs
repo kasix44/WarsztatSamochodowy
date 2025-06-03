@@ -7,11 +7,13 @@ using WorkshopManager.Data;
 
 namespace WorkshopManager.Areas.Identity.Pages.Account
 {
+    //model strony logowania dla razor pages 
     public class LoginModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
+        //kontruktor obslugujacy logowanie uzytkownika, ilogger logowanie zdarzen itp
         public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
@@ -29,6 +31,7 @@ namespace WorkshopManager.Areas.Identity.Pages.Account
         [TempData]
         public string ErrorMessage { get; set; }
 
+        //dane logowania
         public class InputModel
         {
             [Required(ErrorMessage = "Email jest wymagany.")]
@@ -45,6 +48,7 @@ namespace WorkshopManager.Areas.Identity.Pages.Account
             public bool RememberMe { get; set; }
         }
 
+        //wyswietlenie strony 
         public void OnGet(string? returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
@@ -55,6 +59,7 @@ namespace WorkshopManager.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl ?? Url.Content("~/");
         }
 
+        //co sie dzieje po kliknieciu zaloguj 
         public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
         {
             ReturnUrl = returnUrl ?? Url.Content("~/");

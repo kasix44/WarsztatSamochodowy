@@ -10,8 +10,8 @@ namespace WorkshopManager.Controllers
     [Authorize(Roles = "Admin,Recepcjonista")]
     public class JobActivityController : Controller
     {
-        private readonly IJobActivityService _jobActivityService;
-        private readonly JobActivityMapper _mapper;
+        private readonly IJobActivityService _jobActivityService; //logika biznesowa 
+        private readonly JobActivityMapper _mapper; //mapuje dto 
 
         public JobActivityController(IJobActivityService jobActivityService, JobActivityMapper mapper)
         {

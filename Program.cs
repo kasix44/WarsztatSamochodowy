@@ -10,6 +10,7 @@ using WorkshopManager.Mappers;
 using NLog.Web;
 using WorkshopManager.PerformanceTests;
 
+//logger startowy
 var logger = NLog.LogManager.GetCurrentClassLogger();
 logger.Debug("init main");
 
@@ -18,11 +19,12 @@ try
     logger.Info("Starting WorkshopManager application");
     var builder = WebApplication.CreateBuilder(args);
 
-    builder.Logging.ClearProviders();
-    builder.Host.UseNLog();
+    builder.Logging.ClearProviders(); //czyszcze wbudowane logowanie
+    builder.Host.UseNLog(); //uruchamiam nlog
 
     QuestPDF.Settings.License = LicenseType.Community;
 
+    //rejestracja serwisow DI - addscoped to nowa instancja na kazde zadanie http
     builder.Services.AddScoped<ICustomerService, CustomerService>();
     builder.Services.AddScoped<IVehicleService, VehicleService>();
     builder.Services.AddScoped<IServiceOrderService, ServiceOrderService>();
@@ -52,6 +54,7 @@ try
     //         maxRetryDelay: TimeSpan.FromSeconds(30),
     //         errorNumbersToAdd: null)));
     
+    //polaczenie z baza danych 
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options
             .UseSqlServer(connectionString, sqlServerOptions => sqlServerOptions.EnableRetryOnFailure(
@@ -67,6 +70,7 @@ try
 
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+    //identity + role + cookie 
     builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     {
         options.SignIn.RequireConfirmedAccount = false;
@@ -88,6 +92,7 @@ try
         options.ExpireTimeSpan = TimeSpan.FromDays(7);
     });
 
+    //mapery
     builder.Services.AddScoped<PartMapper>();
     builder.Services.AddScoped<UsedPartMapper>();
     builder.Services.AddScoped<ServiceOrderMapper>();
@@ -102,8 +107,10 @@ try
     builder.Services.AddScoped<Lazy<CustomerMapper>>(provider => 
         new Lazy<CustomerMapper>(() => provider.GetRequiredService<CustomerMapper>()));
 
+    //background service -raport email 
     builder.Services.AddHostedService<OpenOrderReportBackgroundService>();
 
+    //razor, mvc, swagger 
     builder.Services.AddControllersWithViews();
     builder.Services.AddRazorPages();
 
@@ -117,6 +124,7 @@ try
         });
     });
 
+    //bubdowanie aplikacji 
     var app = builder.Build();
 
     if (app.Environment.IsDevelopment())
@@ -157,6 +165,7 @@ try
         var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
         var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
+        //tworzenie rol i kont startowych 
         string[] roles = { "Admin", "Mechanik", "Recepcjonista" };
 
         foreach (var role in roles)

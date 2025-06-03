@@ -15,6 +15,7 @@ namespace WorkshopManager.Models
 
     public class ServiceOrder
     {
+        //klucz glowny generowany automatycznie
         public int Id { get; set; }
 
         [Required]

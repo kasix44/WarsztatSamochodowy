@@ -9,6 +9,7 @@ namespace WorkshopManager.Controllers
     [Authorize(Roles = "Admin,Recepcjonista")]
     public class CustomerController : Controller
     {
+        //wstrzykiwanie zaleznosci DI
         private readonly ICustomerService _customerService;
 
         public CustomerController(ICustomerService customerService)

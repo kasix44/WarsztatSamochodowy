@@ -10,6 +10,7 @@ namespace WorkshopManager.Mappers;
 [Mapper]
 public partial class CustomerMapper
 {
+    //wstrzykiwanie lazy zapobiega cyklicznej zaleznosci miedzy mapperami
     private readonly Lazy<VehicleMapper> _vehicleMapperLazy;
 
     [MapperConstructor]

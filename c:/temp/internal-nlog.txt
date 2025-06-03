@@ -870,3 +870,168 @@
 2025-06-01 19:02:14.8214 Info Shutdown() called. Logger closing...
 2025-06-01 19:02:14.8226 Info Closing old configuration.
 2025-06-01 19:02:14.8273 Info Logger has been closed down.
+2025-06-01 20:52:24.0001 Info Loading assembly name: NLog.Web.AspNetCore
+2025-06-01 20:52:24.0175 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.1202. Product version: 5.4.0+1a84e4cd5773967e452956643bd8d3fe4b688e55. GlobalAssemblyCache: False
+2025-06-01 20:52:24.0387 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-06-01 20:52:24.0396 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-06-01 20:52:24.0403 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'filters' in section 'target'
+2025-06-01 20:52:24.0403 Info Registered target NLog.Targets.FileTarget(Name=errorfile)
+2025-06-01 20:52:24.0403 Info Registered target NLog.Targets.ConsoleTarget(Name=consolelogger)
+2025-06-01 20:52:24.0425 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-06-01 20:52:24.0975 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-01 20:52:24.1025 Info Configuration initialized.
+2025-06-01 20:52:24.2981 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-01 20:52:24.4655 Warn Logger: Microsoft.EntityFrameworkCore.Database.Command configured with duplicate output to target: ConsoleTarget(Name=consolelogger). LoggingRule with NamePattern='Microsoft.EntityFrameworkCore.Database.Command' and Level=Info has been skipped.
+2025-06-01 20:52:43.8612 Info Shutdown() called. Logger closing...
+2025-06-01 20:52:43.8616 Info Closing old configuration.
+2025-06-01 20:52:43.8656 Info Logger has been closed down.
+2025-06-02 15:24:22.6322 Info Loading assembly name: NLog.Web.AspNetCore
+2025-06-02 15:24:22.6508 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.1202. Product version: 5.4.0+1a84e4cd5773967e452956643bd8d3fe4b688e55. GlobalAssemblyCache: False
+2025-06-02 15:24:22.6742 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-06-02 15:24:22.6755 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-06-02 15:24:22.6764 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'filters' in section 'target'
+2025-06-02 15:24:22.6764 Info Registered target NLog.Targets.FileTarget(Name=errorfile)
+2025-06-02 15:24:22.6764 Info Registered target NLog.Targets.ConsoleTarget(Name=consolelogger)
+2025-06-02 15:24:22.6790 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-06-02 15:24:22.7492 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-02 15:24:22.7541 Info Configuration initialized.
+2025-06-02 15:24:22.9755 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-02 15:24:23.1508 Warn Logger: Microsoft.EntityFrameworkCore.Database.Command configured with duplicate output to target: ConsoleTarget(Name=consolelogger). LoggingRule with NamePattern='Microsoft.EntityFrameworkCore.Database.Command' and Level=Info has been skipped.
+2025-06-02 15:24:30.9242 Info Shutdown() called. Logger closing...
+2025-06-02 15:24:30.9242 Info Closing old configuration.
+2025-06-02 15:24:30.9287 Info Logger has been closed down.
+2025-06-02 16:28:45.1070 Info Loading assembly name: NLog.Web.AspNetCore
+2025-06-02 16:28:45.1245 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.1202. Product version: 5.4.0+1a84e4cd5773967e452956643bd8d3fe4b688e55. GlobalAssemblyCache: False
+2025-06-02 16:28:45.1441 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-06-02 16:28:45.1441 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-06-02 16:28:45.1451 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'filters' in section 'target'
+2025-06-02 16:28:45.1451 Info Registered target NLog.Targets.FileTarget(Name=errorfile)
+2025-06-02 16:28:45.1451 Info Registered target NLog.Targets.ConsoleTarget(Name=consolelogger)
+2025-06-02 16:28:45.1479 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-06-02 16:28:45.2189 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-02 16:28:45.2234 Info Configuration initialized.
+2025-06-02 16:28:45.3979 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-02 16:28:45.5555 Warn Logger: Microsoft.EntityFrameworkCore.Database.Command configured with duplicate output to target: ConsoleTarget(Name=consolelogger). LoggingRule with NamePattern='Microsoft.EntityFrameworkCore.Database.Command' and Level=Info has been skipped.
+2025-06-02 16:29:29.0822 Info Shutdown() called. Logger closing...
+2025-06-02 16:29:29.0827 Info Closing old configuration.
+2025-06-02 16:29:29.0871 Info Logger has been closed down.
+2025-06-03 14:42:45.4250 Info Loading assembly name: NLog.Web.AspNetCore
+2025-06-03 14:42:45.4636 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.1202. Product version: 5.4.0+1a84e4cd5773967e452956643bd8d3fe4b688e55. GlobalAssemblyCache: False
+2025-06-03 14:42:45.4888 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-06-03 14:42:45.4893 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-06-03 14:42:45.4901 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'filters' in section 'target'
+2025-06-03 14:42:45.4901 Info Registered target NLog.Targets.FileTarget(Name=errorfile)
+2025-06-03 14:42:45.4911 Info Registered target NLog.Targets.ConsoleTarget(Name=consolelogger)
+2025-06-03 14:42:45.4934 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-06-03 14:42:45.5695 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-03 14:42:45.5813 Info Configuration initialized.
+2025-06-03 14:42:45.8493 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-03 14:42:46.0957 Warn Logger: Microsoft.EntityFrameworkCore.Database.Command configured with duplicate output to target: ConsoleTarget(Name=consolelogger). LoggingRule with NamePattern='Microsoft.EntityFrameworkCore.Database.Command' and Level=Info has been skipped.
+2025-06-03 14:42:57.2326 Info Shutdown() called. Logger closing...
+2025-06-03 14:42:57.2326 Info Closing old configuration.
+2025-06-03 14:42:57.2368 Info Logger has been closed down.
+2025-06-03 14:48:48.0526 Info Loading assembly name: NLog.Web.AspNetCore
+2025-06-03 14:48:48.0699 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.1202. Product version: 5.4.0+1a84e4cd5773967e452956643bd8d3fe4b688e55. GlobalAssemblyCache: False
+2025-06-03 14:48:48.0908 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-06-03 14:48:48.0911 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-06-03 14:48:48.0924 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'filters' in section 'target'
+2025-06-03 14:48:48.0924 Info Registered target NLog.Targets.FileTarget(Name=errorfile)
+2025-06-03 14:48:48.0924 Info Registered target NLog.Targets.ConsoleTarget(Name=consolelogger)
+2025-06-03 14:48:48.0946 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-06-03 14:48:48.1506 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-03 14:48:48.1551 Info Configuration initialized.
+2025-06-03 14:48:48.3449 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-03 14:48:48.5191 Warn Logger: Microsoft.EntityFrameworkCore.Database.Command configured with duplicate output to target: ConsoleTarget(Name=consolelogger). LoggingRule with NamePattern='Microsoft.EntityFrameworkCore.Database.Command' and Level=Info has been skipped.
+2025-06-03 14:48:53.8247 Info Shutdown() called. Logger closing...
+2025-06-03 14:48:53.8251 Info Closing old configuration.
+2025-06-03 14:48:53.8291 Info Logger has been closed down.
+2025-06-03 14:53:10.3356 Info Loading assembly name: NLog.Web.AspNetCore
+2025-06-03 14:53:10.3548 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.1202. Product version: 5.4.0+1a84e4cd5773967e452956643bd8d3fe4b688e55. GlobalAssemblyCache: False
+2025-06-03 14:53:10.3763 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-06-03 14:53:10.3774 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-06-03 14:53:10.3774 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'filters' in section 'target'
+2025-06-03 14:53:10.3774 Info Registered target NLog.Targets.FileTarget(Name=errorfile)
+2025-06-03 14:53:10.3785 Info Registered target NLog.Targets.ConsoleTarget(Name=consolelogger)
+2025-06-03 14:53:10.3807 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-06-03 14:53:10.4320 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-03 14:53:10.4366 Info Configuration initialized.
+2025-06-03 14:53:10.6312 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-03 14:53:10.7964 Warn Logger: Microsoft.EntityFrameworkCore.Database.Command configured with duplicate output to target: ConsoleTarget(Name=consolelogger). LoggingRule with NamePattern='Microsoft.EntityFrameworkCore.Database.Command' and Level=Info has been skipped.
+2025-06-03 14:53:25.7393 Info Shutdown() called. Logger closing...
+2025-06-03 14:53:25.7398 Info Closing old configuration.
+2025-06-03 14:53:25.7438 Info Logger has been closed down.
+2025-06-03 15:06:05.8158 Info Loading assembly name: NLog.Web.AspNetCore
+2025-06-03 15:06:05.8337 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.1202. Product version: 5.4.0+1a84e4cd5773967e452956643bd8d3fe4b688e55. GlobalAssemblyCache: False
+2025-06-03 15:06:05.8542 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-06-03 15:06:05.8549 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-06-03 15:06:05.8557 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'filters' in section 'target'
+2025-06-03 15:06:05.8557 Info Registered target NLog.Targets.FileTarget(Name=errorfile)
+2025-06-03 15:06:05.8557 Info Registered target NLog.Targets.ConsoleTarget(Name=consolelogger)
+2025-06-03 15:06:05.8579 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-06-03 15:06:05.9169 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-03 15:06:05.9213 Info Configuration initialized.
+2025-06-03 15:06:06.1144 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-03 15:06:06.2821 Warn Logger: Microsoft.EntityFrameworkCore.Database.Command configured with duplicate output to target: ConsoleTarget(Name=consolelogger). LoggingRule with NamePattern='Microsoft.EntityFrameworkCore.Database.Command' and Level=Info has been skipped.
+2025-06-03 15:07:08.4606 Info Shutdown() called. Logger closing...
+2025-06-03 15:07:08.4624 Info Closing old configuration.
+2025-06-03 15:07:08.4682 Info Logger has been closed down.
+2025-06-03 18:37:10.1187 Info Loading assembly name: NLog.Web.AspNetCore
+2025-06-03 18:37:10.1361 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.1202. Product version: 5.4.0+1a84e4cd5773967e452956643bd8d3fe4b688e55. GlobalAssemblyCache: False
+2025-06-03 18:37:10.1576 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-06-03 18:37:10.1585 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-06-03 18:37:10.1585 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'filters' in section 'target'
+2025-06-03 18:37:10.1594 Info Registered target NLog.Targets.FileTarget(Name=errorfile)
+2025-06-03 18:37:10.1594 Info Registered target NLog.Targets.ConsoleTarget(Name=consolelogger)
+2025-06-03 18:37:10.1616 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-06-03 18:37:10.2138 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-03 18:37:10.2184 Info Configuration initialized.
+2025-06-03 18:37:10.4254 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-03 18:37:10.5932 Warn Logger: Microsoft.EntityFrameworkCore.Database.Command configured with duplicate output to target: ConsoleTarget(Name=consolelogger). LoggingRule with NamePattern='Microsoft.EntityFrameworkCore.Database.Command' and Level=Info has been skipped.
+2025-06-03 18:42:17.3730 Info Shutdown() called. Logger closing...
+2025-06-03 18:42:17.3737 Info Closing old configuration.
+2025-06-03 18:42:17.3781 Info Logger has been closed down.
+2025-06-03 19:00:10.4163 Info Loading assembly name: NLog.Web.AspNetCore
+2025-06-03 19:00:10.4341 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.1202. Product version: 5.4.0+1a84e4cd5773967e452956643bd8d3fe4b688e55. GlobalAssemblyCache: False
+2025-06-03 19:00:10.4536 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-06-03 19:00:10.4544 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-06-03 19:00:10.4551 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'filters' in section 'target'
+2025-06-03 19:00:10.4551 Info Registered target NLog.Targets.FileTarget(Name=errorfile)
+2025-06-03 19:00:10.4551 Info Registered target NLog.Targets.ConsoleTarget(Name=consolelogger)
+2025-06-03 19:00:10.4573 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-06-03 19:00:10.5120 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-03 19:00:10.5163 Info Configuration initialized.
+2025-06-03 19:00:10.6931 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-03 19:00:10.8468 Warn Logger: Microsoft.EntityFrameworkCore.Database.Command configured with duplicate output to target: ConsoleTarget(Name=consolelogger). LoggingRule with NamePattern='Microsoft.EntityFrameworkCore.Database.Command' and Level=Info has been skipped.
+2025-06-03 19:02:33.0147 Info Shutdown() called. Logger closing...
+2025-06-03 19:02:33.0154 Info Closing old configuration.
+2025-06-03 19:02:33.0194 Info Logger has been closed down.
+2025-06-03 19:02:50.3711 Info Loading assembly name: NLog.Web.AspNetCore
+2025-06-03 19:02:50.3883 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.1202. Product version: 5.4.0+1a84e4cd5773967e452956643bd8d3fe4b688e55. GlobalAssemblyCache: False
+2025-06-03 19:02:50.4098 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-06-03 19:02:50.4103 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-06-03 19:02:50.4112 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'filters' in section 'target'
+2025-06-03 19:02:50.4112 Info Registered target NLog.Targets.FileTarget(Name=errorfile)
+2025-06-03 19:02:50.4122 Info Registered target NLog.Targets.ConsoleTarget(Name=consolelogger)
+2025-06-03 19:02:50.4144 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-06-03 19:02:50.4688 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-03 19:02:50.4733 Info Configuration initialized.
+2025-06-03 19:02:50.6622 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-03 19:02:50.8235 Warn Logger: Microsoft.EntityFrameworkCore.Database.Command configured with duplicate output to target: ConsoleTarget(Name=consolelogger). LoggingRule with NamePattern='Microsoft.EntityFrameworkCore.Database.Command' and Level=Info has been skipped.
+2025-06-03 19:03:16.3664 Info Shutdown() called. Logger closing...
+2025-06-03 19:03:16.3664 Info Closing old configuration.
+2025-06-03 19:03:16.3718 Info Logger has been closed down.
+2025-06-03 19:08:51.3595 Info Loading assembly name: NLog.Web.AspNetCore
+2025-06-03 19:08:51.3775 Info NLog.Web.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.1202. Product version: 5.4.0+1a84e4cd5773967e452956643bd8d3fe4b688e55. GlobalAssemblyCache: False
+2025-06-03 19:08:51.3983 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-06-03 19:08:51.3987 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-06-03 19:08:51.3999 Warn Error has been raised. Exception: NLog.NLogConfigurationException: 'FileTarget' cannot assign unknown property 'filters' in section 'target'
+2025-06-03 19:08:51.3999 Info Registered target NLog.Targets.FileTarget(Name=errorfile)
+2025-06-03 19:08:51.3999 Info Registered target NLog.Targets.ConsoleTarget(Name=consolelogger)
+2025-06-03 19:08:51.4022 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.4.0.3182. Product version: 5.4.0+4d45d445601312040107cbe2ac00e56c4bf4a60b. GlobalAssemblyCache: False
+2025-06-03 19:08:51.4613 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-03 19:08:51.4658 Info Configuration initialized.
+2025-06-03 19:08:51.6414 Info Validating config: TargetNames=allfile, consolelogger, errorfile, ownFile-web, ConfigItems=84, FilePath=/Users/kasiadabek/RiderProjects/WarsztatSamochodowy/bin/Debug/net8.0/NLog.config
+2025-06-03 19:08:51.7914 Warn Logger: Microsoft.EntityFrameworkCore.Database.Command configured with duplicate output to target: ConsoleTarget(Name=consolelogger). LoggingRule with NamePattern='Microsoft.EntityFrameworkCore.Database.Command' and Level=Info has been skipped.
+2025-06-03 19:08:55.7653 Info Shutdown() called. Logger closing...
+2025-06-03 19:08:55.7657 Info Closing old configuration.
+2025-06-03 19:08:55.7702 Info Logger has been closed down.

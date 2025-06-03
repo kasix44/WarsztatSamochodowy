@@ -7,6 +7,7 @@ using WorkshopManager.Services.Interfaces;
 
 namespace WorkshopManager.Services
 {
+    //implementacja interfejsu 
     public class CustomerService : ICustomerService
     {
         private readonly ApplicationDbContext _context;
